@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.devops.numix.app-mergeDebugResources-29:/values-h320dp-port-v13/values-h320dp-port-v13.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\alexa\\.gradle\\caches\\8.12\\transforms\\9294a97e48bc883b2f823b7069ed3583\\transformed\\material-1.11.0\\res\\values-h320dp-port-v13\\values-h320dp-port-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "63",
+                        "endOffsets": "114"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/milk_white"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <!-- Calculate 2% of screen height for margin.
+         This is tricky in XML directly. We'll use a fixed dp value that approximates it,
+         or you can calculate it programmatically if precision is paramount.
+         Let's use a guideline of 8dp for now, adjust based on testing. -->
+
+    <Button
+        android:id="@+id/buttonSettings"
+        style="@style/NumixMainMenuButton"
+        android:text="@string/settings" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.04" /> <Button
+    android:id="@+id/buttonResults"
+    style="@style/NumixMainMenuButton"
+    android:text="@string/results" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.04" />
+
+    <Button
+        android:id="@+id/buttonStartGame"
+        style="@style/NumixMainMenuButton"
+        android:text="@string/start_game" />
+
+</LinearLayout>

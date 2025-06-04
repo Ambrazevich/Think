@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/milk_white"
+    android:padding="8dp"
+    tools:context=".GameActivity">
+
+    <ImageButton
+        android:id="@+id/buttonBackToMenu"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@android:drawable/ic_media_previous"
+        app:tint="@color/dark_blue"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/back_button_desc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBarTime"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="12dp"
+        android:max="100"
+        android:progress="100"
+        android:progressDrawable="@drawable/progress_bar_time"
+        app:layout_constraintTop_toBottomOf="@id/buttonBackToMenu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/content_desc_time_indicator"/>
+
+    <TextView
+        android:id="@+id/textViewProblem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="36sp"
+        android:textColor="@color/problem_text_color"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/progressBarTime"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"
+        tools:text="123 + 456 ="
+        android:contentDescription="@string/content_desc_problem_area"/>
+
+    <TextView
+        android:id="@+id/textViewHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="36sp"
+        android:textColor="@color/hint_text_color"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/textViewProblem"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        tools:text="579"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/textViewInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:textColor="@color/problem_text_color"
+        android:background="@android:color/transparent"
+        android:gravity="center_horizontal|bottom"
+        android:padding="8dp"
+        android:minHeight="60dp"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
+        app:layout_constraintBottom_toTopOf="@id/keypadGrid"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        tools:text="123"
+        android:contentDescription="@string/content_desc_input_area"/>
+
+
+    <!-- Each button should take 10% of screen height.
+         This is hard to achieve with fixed rows and ConstraintLayout directly.
+         A TableLayout or GridLayout might be better for fixed sizing,
+         or programmatic sizing based on screen height.
+         For now, we'll use LinearLayouts with weights to distribute space.
+         The overall height of the keypad container will be constrained. -->
+    <LinearLayout
+        android:id="@+id/keypadGrid"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.45"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <Button android:id="@+id/button1" style="@style/NumixKeypadButton.Dark" android:text="1"/>
+            <Button android:id="@+id/button2" style="@style/NumixKeypadButton.Dark" android:text="2"/>
+            <Button android:id="@+id/button3" style="@style/NumixKeypadButton.Dark" android:text="3"/>
+            <Button android:id="@+id/buttonOK" style="@style/NumixKeypadButton.Light" android:text="@string/btn_ok"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <Button android:id="@+id/button4" style="@style/NumixKeypadButton.Dark" android:text="4"/>
+            <Button android:id="@+id/button5" style="@style/NumixKeypadButton.Dark" android:text="5"/>
+            <Button android:id="@+id/button6" style="@style/NumixKeypadButton.Dark" android:text="6"/>
+            <Button android:id="@+id/buttonHint" style="@style/NumixKeypadButton.Light" android:text="@string/btn_hint"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <Button android:id="@+id/button7" style="@style/NumixKeypadButton.Dark" android:text="7"/>
+            <Button android:id="@+id/button8" style="@style/NumixKeypadButton.Dark" android:text="8"/>
+            <Button android:id="@+id/button9" style="@style/NumixKeypadButton.Dark" android:text="9"/>
+            <Button android:id="@+id/buttonClear" style="@style/NumixKeypadButton.Light" android:text="@string/btn_clear"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <Button android:id="@+id/button0" style="@style/NumixKeypadButton.Dark" android:text="0" android:layout_weight="2"/> <Button android:id="@+id/buttonSlash" style="@style/NumixKeypadButton.Light" android:text="@string/btn_fraction_slash"/>
+            <Button android:id="@+id/buttonDot" style="@style/NumixKeypadButton.Light" android:text="@string/btn_decimal_point"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

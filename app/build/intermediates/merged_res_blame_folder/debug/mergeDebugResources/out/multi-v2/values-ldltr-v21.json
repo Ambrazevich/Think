@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.devops.numix.app-mergeDebugResources-29:/values-ldltr-v21/values-ldltr-v21.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\alexa\\.gradle\\caches\\8.12\\transforms\\cc56f8421dbfc70736266ed4dee9d7da\\transformed\\appcompat-1.6.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "112",
+                        "endOffsets": "163"
+                    }
+                }
+            ]
+        }
+    ]
+}

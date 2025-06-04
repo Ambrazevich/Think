@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/milk_white"
+    android:padding="16dp"
+    tools:context=".SettingsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+                <TextView
+                    style="@style/SettingsWheelLabel"
+                    android:text="@string/difficulty" />
+                <Spinner
+                    android:id="@+id/spinnerDifficulty"
+                    style="@style/SettingsSpinner"
+                    android:layout_width="match_parent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+                <TextView
+                    style="@style/SettingsWheelLabel"
+                    android:text="@string/time" />
+                <Spinner
+                    android:id="@+id/spinnerTime"
+                    style="@style/SettingsSpinner"
+                    android:layout_width="match_parent"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/operations"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"/>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchAddition"
+            style="@style/SettingsSwitch"
+            android:text="@string/addition" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchSubtraction"
+            style="@style/SettingsSwitch"
+            android:text="@string/subtraction" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchMultiplication"
+            style="@style/SettingsSwitch"
+            android:text="@string/multiplication" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchDivision"
+            style="@style/SettingsSwitch"
+            android:text="@string/division" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchPower"
+            style="@style/SettingsSwitch"
+            android:text="@string/power" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchFractions"
+            style="@style/SettingsSwitch"
+            android:text="@string/fractions" />
+
+        <!-- The requirement "Unable to leave this menu without selecting at least one action"
+             will be handled in Java code before allowing to leave. -->
+
+    </LinearLayout>
+</ScrollView>
