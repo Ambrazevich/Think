@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.devops.numix' // <<< THIS IS THE CORRECT NAMESPACE DECLARATION
+    namespace 'com.devops.numix'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.devops.numix" // This is the unique ID for the app store
+        applicationId "com.devops.numix"
         minSdk 21
         targetSdk 34
         versionCode 1
@@ -30,8 +30,11 @@ android {
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.11.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    // This line is CRUCIAL for MaterialButton and other Material Design components
+    implementation 'com.google.android.material:material:1.11.0' // Or latest stable version
+    // This line is CRUCIAL for ConstraintLayout
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4' // Or latest stable version
+
     implementation 'com.google.code.gson:gson:2.10.1'
 
     testImplementation 'junit:junit:4.13.2'

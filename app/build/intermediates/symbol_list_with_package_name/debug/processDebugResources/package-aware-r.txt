@@ -3857,6 +3857,16 @@ string bottomsheet_action_expand
 string bottomsheet_action_expand_halfway
 string bottomsheet_drag_handle_clicked
 string bottomsheet_drag_handle_content_description
+string btn_0
+string btn_1
+string btn_2
+string btn_3
+string btn_4
+string btn_5
+string btn_6
+string btn_7
+string btn_8
+string btn_9
 string btn_clear
 string btn_decimal_point
 string btn_fraction_slash
@@ -3872,7 +3882,6 @@ string confirm_clear_results_title
 string content_desc_input_area
 string content_desc_problem_area
 string content_desc_time_indicator
-string default_time_1_min
 string difficulty
 string difficulty_levels_array_easy
 string difficulty_levels_array_hard
@@ -4004,7 +4013,6 @@ string results
 string results_date_format
 string results_format
 string results_title
-string save_settings
 string search_menu_title
 string searchbar_scrolling_view_behavior
 string searchview_clear_text_content_description
@@ -4328,9 +4336,8 @@ style MaterialAlertDialog_MaterialComponents_Title_Panel_CenterStacked
 style MaterialAlertDialog_MaterialComponents_Title_Text
 style MaterialAlertDialog_MaterialComponents_Title_Text_CenterStacked
 style NumixButton
-style NumixKeypadButton
-style NumixKeypadButton_Dark
-style NumixKeypadButton_Light
+style NumixKeypadButtonDark
+style NumixKeypadButtonLight
 style NumixMainMenuButton
 style Platform_AppCompat
 style Platform_AppCompat_Light

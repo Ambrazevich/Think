@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Standard Material Palette (can be used as fallbacks or for parts of the theme) -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -8,11 +9,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="milk_white">#FFFDF5E6</color> <color name="dark_blue">#FF00008B</color>
+    <!-- Custom Colors for Numix -->
+    <color name="milk_white">#FFFDF5E6</color>
+    <color name="dark_blue">#FF00008B</color>
     <color name="light_blue">#FFADD8E6</color>
-    <color name="button_text_color">#FFFFFFFF</color>
-    <color name="problem_text_color">#FF000000</color>
-    <color name="hint_text_color">#FF000000</color>
-    <color name="progress_bar_background">#FFD3D3D3</color> <color name="progress_bar_progress">@color/dark_blue</color>
-
+    <color name="button_text_color">#FFFFFFFF</color> <!-- Typically white for dark buttons -->
+    <color name="problem_text_color">#FF000000</color> <!-- Black for readability on milk_white -->
+    <color name="hint_text_color">#FF000000</color>    <!-- Black for readability on milk_white -->
+    <color name="progress_bar_background">#FFD3D3D3</color> <!-- Light gray -->
+    <color name="progress_bar_progress">@color/dark_blue</color>
 </resources>
