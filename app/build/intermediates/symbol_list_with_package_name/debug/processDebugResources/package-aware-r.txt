@@ -3536,10 +3536,12 @@ id submenuarrow
 id submit_area
 id supportScrollUp
 id switchAddition
+id switchCommonFractions
+id switchDecimalFractions
 id switchDivision
-id switchFractions
 id switchMultiplication
 id switchPower
+id switchSquareRoot
 id switchSubtraction
 id tabMode
 id tag_accessibility_actions
@@ -3877,11 +3879,13 @@ string character_counter_overflowed_content_description
 string character_counter_pattern
 string clean_results
 string clear_text_end_icon_content_description
+string common_fractions
 string confirm_clear_results_message
 string confirm_clear_results_title
 string content_desc_input_area
 string content_desc_problem_area
 string content_desc_time_indicator
+string decimal_fractions
 string difficulty
 string difficulty_levels_array_easy
 string difficulty_levels_array_hard
@@ -3893,7 +3897,6 @@ string error_select_operation
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
-string fractions
 string game_over
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
@@ -4020,6 +4023,7 @@ string searchview_navigation_content_description
 string settings
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
+string square_root
 string start_game
 string status_bar_notification_info_overflow
 string subtraction

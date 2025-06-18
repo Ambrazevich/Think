@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,6 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Difficulty and Time Spinners -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,6 +50,7 @@
             </LinearLayout>
         </LinearLayout>
 
+        <!-- Operation Switches -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,12 +85,19 @@
             android:text="@string/power" />
 
         <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switchFractions"
+            android:id="@+id/switchSquareRoot"
             style="@style/SettingsSwitch"
-            android:text="@string/fractions" />
+            android:text="@string/square_root" />
 
-        <!-- The requirement "Unable to leave this menu without selecting at least one action"
-             will be handled in Java code before allowing to leave. -->
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchCommonFractions"
+            style="@style/SettingsSwitch"
+            android:text="@string/common_fractions" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchDecimalFractions"
+            style="@style/SettingsSwitch"
+            android:text="@string/decimal_fractions" />
 
     </LinearLayout>
 </ScrollView>

@@ -1,30 +1,24 @@
 package com.devops.numix.data;
 
 public enum OperationType {
-    ADDITION("+"),
-    SUBTRACTION("-"),
-    MULTIPLICATION("x"),
-    DIVISION("÷"), // For display, actual calculation might use /
-    POWER("^"),
-    FRACTIONS("FRACTIONS_CATEGORY"), // Represents the general switch for all fraction operations
-    FRACTION_ADD("+f"), // Using different symbols internally to distinguish if needed
-    FRACTION_SUBTRACT("-f"),
-    FRACTION_MULTIPLY("xf"),
-    FRACTION_DIVIDE("÷f");
+    // Operations selected by the user in Settings
+    ADDITION,
+    SUBTRACTION,
+    MULTIPLICATION,
+    DIVISION,
+    POWER,
+    SQUARE_ROOT,
+    COMMON_FRACTIONS,
+    DECIMAL_FRACTIONS,
 
+    // Internal types used by the generator to create specific problems
+    INTERNAL_FRACTION_ADD,
+    INTERNAL_FRACTION_SUB,
+    INTERNAL_FRACTION_MUL,
+    INTERNAL_FRACTION_DIV,
 
-    private final String symbol;
-
-    OperationType(String symbol) {
-        this.symbol = symbol;
-    }
-
-    public String getSymbol() {
-        // For display in problem string, might want to use the standard symbols
-        if (this == FRACTION_ADD) return "+";
-        if (this == FRACTION_SUBTRACT) return "-";
-        if (this == FRACTION_MULTIPLY) return "x";
-        if (this == FRACTION_DIVIDE) return "÷";
-        return symbol;
-    }
+    INTERNAL_DECIMAL_ADD,
+    INTERNAL_DECIMAL_SUB,
+    INTERNAL_DECIMAL_MUL,
+    INTERNAL_DECIMAL_DIV
 }

@@ -10,12 +10,15 @@
     <string name="difficulty">Difficulty</string>
     <string name="time">Time</string>
     <string name="operations">Operations</string>
-    <string name="addition">Addition (+)</string>
-    <string name="subtraction">Subtraction (-)</string>
-    <string name="multiplication">Multiplication (x)</string>
-    <string name="division">Division (÷)</string>
-    <string name="power">Power (^)</string>
-    <string name="fractions">Fractions (a/b)</string>
+    <string name="addition">Addition</string>
+    <string name="subtraction">Subtraction</string>
+    <string name="multiplication">Multiplication</string>
+    <string name="division">Division</string>
+    <string name="power">Power</string>
+    <!-- FIX: Adding the missing string resources -->
+    <string name="square_root">Square Root</string>
+    <string name="common_fractions">Common Fractions</string>
+    <string name="decimal_fractions">Decimal Fractions</string>
     <string name="error_select_operation">Please select at least one mathematical operation.</string>
 
     <string-array name="difficulty_levels">

@@ -4,20 +4,21 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Settings implements Serializable { // Implement Serializable for passing via Intent
+public class Settings implements Serializable {
 
     public enum Difficulty { EASY, MEDIUM, HARD }
 
-    private long roundTimeMillis; // 0 for endless
+    private long roundTimeMillis;
     private Difficulty difficultyLevel;
-    private Set<OperationType> enabledOperations; // Using a Set for active operations
+    private Set<OperationType> enabledOperations;
 
     // Default settings
     public Settings() {
         this.roundTimeMillis = 60 * 1000; // 1 minute
         this.difficultyLevel = Difficulty.EASY;
         this.enabledOperations = new HashSet<>();
-        this.enabledOperations.add(OperationType.ADDITION); // Default operation
+        // Default to Addition being enabled on a fresh install
+        this.enabledOperations.add(OperationType.ADDITION);
     }
 
     public long getRoundTimeMillis() {
@@ -37,6 +38,10 @@ public class Settings implements Serializable { // Implement Serializable for pa
     }
 
     public Set<OperationType> getEnabledOperations() {
+        // Ensure the set is never null when accessed
+        if (this.enabledOperations == null) {
+            this.enabledOperations = new HashSet<>();
+        }
         return enabledOperations;
     }
 
@@ -44,24 +49,12 @@ public class Settings implements Serializable { // Implement Serializable for pa
         this.enabledOperations = enabledOperations;
     }
 
+    // Corrected isOperationEnabled method. It no longer needs special logic.
     public boolean isOperationEnabled(OperationType type) {
-        if (type == null || enabledOperations == null) return false;
-
-        // If checking for a specific fraction operation (ADD, SUB, etc.),
-        // it's enabled if the general FRACTIONS category switch is on.
-        if (type == OperationType.FRACTION_ADD || type == OperationType.FRACTION_SUBTRACT ||
-                type == OperationType.FRACTION_MULTIPLY || type == OperationType.FRACTION_DIVIDE) {
-            return enabledOperations.contains(OperationType.FRACTIONS);
+        if (type == null || enabledOperations == null) {
+            return false;
         }
         return enabledOperations.contains(type);
-    }
-
-    public void setOperationEnabled(OperationType type, boolean enabled) {
-        if (enabled) {
-            enabledOperations.add(type);
-        } else {
-            enabledOperations.remove(type);
-        }
     }
 
     public boolean hasAtLeastOneOperationSelected() {
