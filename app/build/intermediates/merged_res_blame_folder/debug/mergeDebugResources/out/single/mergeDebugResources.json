@@ -1,58 +1,58 @@
 [
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-31:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-33:\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-32:\\layout_activity_settings.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-34:\\layout\\activity_settings.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-31:\\layout_list_item_result.xml.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-33:\\layout\\list_item_result.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-32:\\layout_list_item_result.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-34:\\layout\\list_item_result.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-31:\\raw_correct.mp3.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-33:\\raw\\correct.mp3"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-32:\\layout_activity_results.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-34:\\layout\\activity_results.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-31:\\layout_activity_results.xml.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-33:\\layout\\activity_results.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-32:\\drawable_rounded_button_light_blue.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-34:\\drawable\\rounded_button_light_blue.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-31:\\layout_activity_settings.xml.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-33:\\layout\\activity_settings.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-32:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-34:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-31:\\raw_incorrect.mp3.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-33:\\raw\\incorrect.mp3"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-32:\\raw_correct.mp3.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-34:\\raw\\correct.mp3"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-31:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-33:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-32:\\layout_item_result.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-34:\\layout\\item_result.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-31:\\layout_activity_game.xml.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-33:\\layout\\activity_game.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-32:\\raw_incorrect.mp3.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-34:\\raw\\incorrect.mp3"
     },
     {
-        "merged": "com.devops.numix.app-debug-31:/layout_activity_settings.xml.flat",
-        "source": "com.devops.numix.app-main-33:/layout/activity_settings.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-32:\\drawable_rounded_button_dark_blue.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-34:\\drawable\\rounded_button_dark_blue.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-31:\\drawable_rounded_button_light_blue.xml.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-33:\\drawable\\rounded_button_light_blue.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-32:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-34:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-31:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-33:\\mipmap-anydpi-v26\\ic_launcher.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-32:\\layout_activity_game.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-34:\\layout\\activity_game.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-31:\\layout_item_result.xml.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-33:\\layout\\item_result.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-32:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-34:\\layout\\activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-31:\\drawable_progress_bar_time.xml.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-33:\\drawable\\progress_bar_time.xml"
+        "merged": "com.devops.numix.app-debug-32:/layout_list_item_result.xml.flat",
+        "source": "com.devops.numix.app-main-34:/layout/list_item_result.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-31:\\drawable_rounded_button_dark_blue.xml.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-33:\\drawable\\rounded_button_dark_blue.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-debug-32:\\drawable_progress_bar_time.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.12\\com.devops.numix.app-main-34:\\drawable\\progress_bar_time.xml"
     }
 ]

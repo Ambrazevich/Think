@@ -97,7 +97,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    // --- UPDATED METHOD ---
     private void checkAnswer() {
         if (currentProblem == null || currentInput.length() == 0 || !problemActive) return;
 
@@ -139,6 +138,19 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             // Re-enable the keypad for another attempt
             problemActive = true;
         }
+    }
+
+    // --- UPDATED METHOD ---
+    private void finishGame(boolean timedOut, boolean isError) {
+        problemActive = false; if (roundTimer != null) { roundTimer.cancel(); roundTimer = null; }
+        if (!isError && storageHelper != null) {
+            storageHelper.saveGameResult(new GameResult(System.currentTimeMillis(), correctAnswers, incorrectAnswers));
+            if (timedOut) {
+                // --- FIX: The "Round Over!" toast message is now removed ---
+                // Toast.makeText(this, R.string.game_over, Toast.LENGTH_SHORT).show();
+            }
+        } else if (isError) { Toast.makeText(this, "Game ended due to an error.", Toast.LENGTH_LONG).show(); }
+        new Handler(Looper.getMainLooper()).postDelayed(() -> { if (!isFinishing()) super.finish(); }, isError ? 2000 : (timedOut ? 1000: 200));
     }
 
     // --- Other methods (unchanged) ---
@@ -191,14 +203,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
     private void cancelHintHidingTask() { if (hintHandler != null && hintRunnable != null) hintHandler.removeCallbacks(hintRunnable); }
-    private void finishGame(boolean timedOut, boolean isError) {
-        problemActive = false; if (roundTimer != null) { roundTimer.cancel(); roundTimer = null; }
-        if (!isError && storageHelper != null) {
-            storageHelper.saveGameResult(new GameResult(System.currentTimeMillis(), correctAnswers, incorrectAnswers));
-            if (timedOut) Toast.makeText(this, R.string.game_over, Toast.LENGTH_SHORT).show();
-        } else if (isError) { Toast.makeText(this, "Game ended due to an error.", Toast.LENGTH_LONG).show(); }
-        new Handler(Looper.getMainLooper()).postDelayed(() -> { if (!isFinishing()) super.finish(); }, isError ? 2000 : (timedOut ? 1000: 200));
-    }
     @Override protected void onDestroy() {
         super.onDestroy(); if (roundTimer != null) roundTimer.cancel(); if (soundPlayer != null) soundPlayer.release();
         cancelHintHidingTask();

@@ -30,10 +30,9 @@ android {
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    // This line is CRUCIAL for MaterialButton and other Material Design components
-    implementation 'com.google.android.material:material:1.11.0' // Or latest stable version
-    // This line is CRUCIAL for ConstraintLayout
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4' // Or latest stable version
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0' // <-- ADD THIS LINE
 
     implementation 'com.google.code.gson:gson:2.10.1'
 

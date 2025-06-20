@@ -15,7 +15,6 @@
     <string name="multiplication">Multiplication</string>
     <string name="division">Division</string>
     <string name="power">Power</string>
-    <!-- FIX: Adding the missing string resources -->
     <string name="square_root">Square Root</string>
     <string name="common_fractions">Common Fractions</string>
     <string name="decimal_fractions">Decimal Fractions</string>
@@ -40,9 +39,10 @@
     </string-array>
 
     <!-- Game Screen -->
+    <!-- FIX: Re-adding the missing string resource -->
     <string name="back_button_desc">Back to Main Menu</string>
     <string name="btn_ok">OK</string>
-    <string name="btn_hint">\?</string> <!-- Escaped question mark -->
+    <string name="btn_hint">\?</string>
     <string name="btn_clear">C</string>
     <string name="btn_fraction_slash">/</string>
     <string name="btn_decimal_point">.</string>
@@ -63,8 +63,8 @@
 
     <!-- Results Screen -->
     <string name="results_title">Game Results</string>
-    <string name="results_format">Correct: %1$d / Incorrect: %2$d</string>
-    <string name="results_date_format">Date: %1$s</string>
+    <string name="results_format">%1$d/%2$d</string>
+    <string name="results_date_format">%1$s</string>
     <string name="no_results">No results yet. Play a game!</string>
     <string name="clean_results">CLEAN</string>
     <string name="confirm_clear_results_title">Confirm Clear</string>

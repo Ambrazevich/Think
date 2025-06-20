@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="12dp"
+    android:layout_marginBottom="8dp"
     android:background="?android:attr/selectableItemBackground"
-    android:layout_marginBottom="8dp">
+    android:padding="12dp">
 
-    <TextView
-        android:id="@+id/textViewScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"/>
-
+    <!-- Date and Time aligned to the parent's left edge -->
     <TextView
         android:id="@+id/textViewDateTime"
+        style="@style/ResultItemText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="@android:color/darker_gray"/>
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
 
-</LinearLayout>
+    <!-- Score aligned to the parent's right edge -->
+    <TextView
+        android:id="@+id/textViewScore"
+        style="@style/ResultItemText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:textStyle="bold" />
+
+</RelativeLayout>

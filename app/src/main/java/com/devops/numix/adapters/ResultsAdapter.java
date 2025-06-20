@@ -21,9 +21,8 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ResultVi
 
     private List<GameResult> resultsList;
     private Context context;
-    // Format: YYYY/MM/DD/HH/MM (as per requirement, though HH:MM is more standard for time)
-    // Assuming requirement means YYYY/MM/DD HH:MM
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault());
+    // FIX: Changed date format pattern to include time
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
 
 
     public ResultsAdapter(Context context, List<GameResult> resultsList) {
@@ -41,12 +40,18 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ResultVi
     @Override
     public void onBindViewHolder(@NonNull ResultViewHolder holder, int position) {
         GameResult result = resultsList.get(position);
+
+        int correct = result.getCorrectAnswers();
+        int incorrect = result.getIncorrectAnswers();
+        int totalTasks = correct + incorrect;
+
+        // Set the score text (e.g., "14/15") directly
         holder.textViewScore.setText(String.format(Locale.getDefault(),
                 context.getString(R.string.results_format),
-                result.getCorrectAnswers(), result.getIncorrectAnswers()));
-        holder.textViewDateTime.setText(String.format(Locale.getDefault(),
-                context.getString(R.string.results_date_format),
-                dateFormat.format(new Date(result.getTimestamp()))));
+                correct, totalTasks));
+
+        // Set the date and time text (e.g., "20/06/2025 11:55") directly
+        holder.textViewDateTime.setText(dateFormat.format(new Date(result.getTimestamp())));
     }
 
     @Override
@@ -55,10 +60,7 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ResultVi
     }
 
     public void updateResults(List<GameResult> newResults) {
-        this.resultsList.clear();
-        if (newResults != null) {
-            this.resultsList.addAll(newResults);
-        }
+        this.resultsList = newResults;
         notifyDataSetChanged();
     }
 

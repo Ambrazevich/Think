@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.devops.numix.app-mergeDebugResources-29:/values-da/values-da.xml",
+            "outputFile": "com.devops.numix.app-mergeDebugResources-30:/values-da/values-da.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Admin\\.gradle\\caches\\8.12\\transforms\\d1298d21198db1ca45cc90f91b945746\\transformed\\core-1.9.0\\res\\values-da\\values-da.xml",

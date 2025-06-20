@@ -123,6 +123,7 @@ style NumixButton
 style NumixKeypadButtonDark
 style NumixKeypadButtonLight
 style NumixMainMenuButton
+style ResultItemText
 style SettingsSpinner
 style SettingsSwitch
 style SettingsWheelLabel
