@@ -3210,7 +3210,6 @@ id button6
 id button7
 id button8
 id button9
-id buttonBackToMenu
 id buttonCleanResults
 id buttonClear
 id buttonDot
@@ -3605,6 +3604,7 @@ id title_template
 id toggle
 id top
 id topPanel
+id topSpacer
 id touch_outside
 id transitionToEnd
 id transitionToStart
@@ -3905,10 +3905,6 @@ string content_desc_input_area
 string content_desc_problem_area
 string content_desc_time_indicator
 string decimal_fractions
-string difficulty
-string difficulty_levels_array_easy
-string difficulty_levels_array_hard
-string difficulty_levels_array_medium
 string division
 string error_a11y_label
 string error_icon_content_description
@@ -3919,8 +3915,8 @@ string fab_transformation_sheet_behavior
 string game_over
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
-string initial_input_text
 string item_view_role_description
+string level
 string m3_exceed_max_badge_text_suffix
 string m3_ref_typeface_brand_medium
 string m3_ref_typeface_brand_regular
@@ -4394,7 +4390,6 @@ style RtlOverlay_Widget_AppCompat_Search_DropDown_Text
 style RtlOverlay_Widget_AppCompat_SearchView_MagIcon
 style RtlUnderlay_Widget_AppCompat_ActionButton
 style RtlUnderlay_Widget_AppCompat_ActionButton_Overflow
-style SettingsSpinner
 style SettingsSwitch
 style SettingsWheelLabel
 style ShapeAppearance_M3_Comp_Badge_Large_Shape

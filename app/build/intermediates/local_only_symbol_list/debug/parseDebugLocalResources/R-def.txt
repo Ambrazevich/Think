@@ -30,7 +30,6 @@ id button6
 id button7
 id button8
 id button9
-id buttonBackToMenu
 id buttonCleanResults
 id buttonClear
 id buttonDot
@@ -60,6 +59,7 @@ id textViewNoResults
 id textViewProblem
 id textViewResultsTitle
 id textViewScore
+id topSpacer
 layout activity_game
 layout activity_main
 layout activity_results
@@ -96,14 +96,10 @@ string content_desc_input_area
 string content_desc_problem_area
 string content_desc_time_indicator
 string decimal_fractions
-string difficulty
-string difficulty_levels_array_easy
-string difficulty_levels_array_hard
-string difficulty_levels_array_medium
 string division
 string error_select_operation
 string game_over
-string initial_input_text
+string level
 string multiplication
 string no
 string no_results
@@ -124,7 +120,6 @@ style NumixKeypadButtonDark
 style NumixKeypadButtonLight
 style NumixMainMenuButton
 style ResultItemText
-style SettingsSpinner
 style SettingsSwitch
 style SettingsWheelLabel
 style Theme.Numix

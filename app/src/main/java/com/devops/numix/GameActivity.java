@@ -24,7 +24,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private TextView textViewProblem, textViewInput, textViewHint;
     private ProgressBar progressBarTime;
-    private ImageButton buttonBackToMenu;
     private Button buttonDot, buttonSlash;
     private Settings gameSettings;
     private ProblemGenerator problemGenerator;
@@ -59,11 +58,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         textViewInput = findViewById(R.id.textViewInput);
         textViewHint = findViewById(R.id.textViewHint);
         progressBarTime = findViewById(R.id.progressBarTime);
-        buttonBackToMenu = findViewById(R.id.buttonBackToMenu);
         buttonDot = findViewById(R.id.buttonDot);
         buttonSlash = findViewById(R.id.buttonSlash);
+
         setupKeypad();
-        buttonBackToMenu.setOnClickListener(v -> finishGame(false, false));
         startGame();
     }
 
@@ -119,41 +117,31 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if (isCorrect) {
-            // --- CORRECT ANSWER LOGIC ---
             soundPlayer.playCorrectSound();
             if (!hintUsedForCurrentProblem) {
                 correctAnswers++;
             } else {
-                incorrectAnswers++; // Hinted answer still counts as incorrect for scoring
+                incorrectAnswers++;
             }
-            // Schedule the next problem to appear
             new Handler(Looper.getMainLooper()).postDelayed(this::generateNewProblem, DELAY_NEXT_PROBLEM);
         } else {
-            // --- INCORRECT ANSWER LOGIC ---
             soundPlayer.playIncorrectSound();
             incorrectAnswers++;
-            // Clear the user's input so they can try again on the same problem
             currentInput.setLength(0);
             updateInputDisplay();
-            // Re-enable the keypad for another attempt
             problemActive = true;
         }
     }
 
-    // --- UPDATED METHOD ---
     private void finishGame(boolean timedOut, boolean isError) {
         problemActive = false; if (roundTimer != null) { roundTimer.cancel(); roundTimer = null; }
         if (!isError && storageHelper != null) {
             storageHelper.saveGameResult(new GameResult(System.currentTimeMillis(), correctAnswers, incorrectAnswers));
-            if (timedOut) {
-                // --- FIX: The "Round Over!" toast message is now removed ---
-                // Toast.makeText(this, R.string.game_over, Toast.LENGTH_SHORT).show();
-            }
+            // Toast for "Round Over" is intentionally removed as per request
         } else if (isError) { Toast.makeText(this, "Game ended due to an error.", Toast.LENGTH_LONG).show(); }
         new Handler(Looper.getMainLooper()).postDelayed(() -> { if (!isFinishing()) super.finish(); }, isError ? 2000 : (timedOut ? 1000: 200));
     }
 
-    // --- Other methods (unchanged) ---
     private void setupKeypad() {
         setClickListener(R.id.button0); setClickListener(R.id.button1); setClickListener(R.id.button2);
         setClickListener(R.id.button3); setClickListener(R.id.button4); setClickListener(R.id.button5);
@@ -165,7 +153,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         View v = findViewById(id); if (v != null) v.setOnClickListener(this);
     }
     @Override public void onClick(View v) {
-        if (!problemActive && v.getId() != R.id.buttonBackToMenu) return;
+        if (!problemActive) return;
         int id = v.getId();
         if ((id == R.id.buttonDot || id == R.id.buttonSlash) && !v.isEnabled()) return;
         if (id == R.id.buttonOK) { checkAnswer();

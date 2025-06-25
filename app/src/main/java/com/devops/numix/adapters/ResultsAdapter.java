@@ -21,7 +21,7 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ResultVi
 
     private List<GameResult> resultsList;
     private Context context;
-    // FIX: Changed date format pattern to include time
+    // Date format to match "dd/MM/yyyy HH:mm"
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
 
 
@@ -33,37 +33,45 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ResultVi
     @NonNull
     @Override
     public ResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflates the layout for each individual item in the list
         View view = LayoutInflater.from(context).inflate(R.layout.list_item_result, parent, false);
         return new ResultViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ResultViewHolder holder, int position) {
+        // Get the specific game result for this list item
         GameResult result = resultsList.get(position);
 
+        // Calculate the total number of tasks for the score fraction
         int correct = result.getCorrectAnswers();
         int incorrect = result.getIncorrectAnswers();
         int totalTasks = correct + incorrect;
 
-        // Set the score text (e.g., "14/15") directly
+        // Set the score text to the "correct/total" format (e.g., "14/15")
         holder.textViewScore.setText(String.format(Locale.getDefault(),
                 context.getString(R.string.results_format),
                 correct, totalTasks));
 
-        // Set the date and time text (e.g., "20/06/2025 11:55") directly
-        holder.textViewDateTime.setText(dateFormat.format(new Date(result.getTimestamp())));
+        // Format the timestamp and set the date/time text (e.g., "22/06/2025 11:31")
+        holder.textViewDateTime.setText(String.format(Locale.getDefault(),
+                context.getString(R.string.results_date_format),
+                dateFormat.format(new Date(result.getTimestamp()))));
     }
 
     @Override
     public int getItemCount() {
+        // Returns the total number of items in the list
         return resultsList.size();
     }
 
+    // Helper method that allows the ResultsActivity to update the data in the adapter
     public void updateResults(List<GameResult> newResults) {
         this.resultsList = newResults;
-        notifyDataSetChanged();
+        notifyDataSetChanged(); // Refreshes the RecyclerView to show the new data
     }
 
+    // ViewHolder class holds the references to the UI views for each list item
     static class ResultViewHolder extends RecyclerView.ViewHolder {
         TextView textViewScore;
         TextView textViewDateTime;

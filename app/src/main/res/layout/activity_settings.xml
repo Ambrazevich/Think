@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/milk_white"
+    android:background="@color/white"
+    android:fillViewport="true"
     android:padding="16dp"
     tools:context=".SettingsActivity">
 
@@ -12,12 +13,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Difficulty and Time Spinners -->
+        <!-- Using Spinners instead of NumberPickers -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="24dp">
+            android:layout_marginBottom="24dp"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -27,11 +29,13 @@
                 android:gravity="center_horizontal">
                 <TextView
                     style="@style/SettingsWheelLabel"
-                    android:text="@string/difficulty" />
+                    android:text="@string/level" />
                 <Spinner
                     android:id="@+id/spinnerDifficulty"
-                    style="@style/SettingsSpinner"
-                    android:layout_width="match_parent"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -45,8 +49,10 @@
                     android:text="@string/time" />
                 <Spinner
                     android:id="@+id/spinnerTime"
-                    style="@style/SettingsSpinner"
-                    android:layout_width="match_parent"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -63,37 +69,30 @@
             android:id="@+id/switchAddition"
             style="@style/SettingsSwitch"
             android:text="@string/addition" />
-
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switchSubtraction"
             style="@style/SettingsSwitch"
             android:text="@string/subtraction" />
-
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switchMultiplication"
             style="@style/SettingsSwitch"
             android:text="@string/multiplication" />
-
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switchDivision"
             style="@style/SettingsSwitch"
             android:text="@string/division" />
-
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switchPower"
             style="@style/SettingsSwitch"
             android:text="@string/power" />
-
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switchSquareRoot"
             style="@style/SettingsSwitch"
             android:text="@string/square_root" />
-
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switchCommonFractions"
             style="@style/SettingsSwitch"
             android:text="@string/common_fractions" />
-
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switchDecimalFractions"
             style="@style/SettingsSwitch"

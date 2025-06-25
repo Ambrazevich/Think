@@ -3,7 +3,8 @@ package com.devops.numix;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.CompoundButton;
+import android.widget.Spinner; // Import Spinner
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.devops.numix.data.OperationType;
@@ -16,13 +17,19 @@ import java.util.Set;
 public class SettingsActivity extends AppCompatActivity {
     private static final String TAG = "SettingsActivity";
 
+    // --- FIX: Using Spinners instead of NumberPickers ---
     private Spinner spinnerDifficulty;
     private Spinner spinnerTime;
+
     private SwitchMaterial switchAddition, switchSubtraction, switchMultiplication, switchDivision, switchPower,
             switchSquareRoot, switchCommonFractions, switchDecimalFractions;
 
     private StorageHelper storageHelper;
     private Settings currentSettings;
+
+    private final CompoundButton.OnCheckedChangeListener basicOperationListener = (buttonView, isChecked) -> {
+        updateFractionSwitchesState();
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,7 @@ public class SettingsActivity extends AppCompatActivity {
         storageHelper = new StorageHelper(this);
         currentSettings = storageHelper.loadSettings();
 
+        // Initialize views
         spinnerDifficulty = findViewById(R.id.spinnerDifficulty);
         spinnerTime = findViewById(R.id.spinnerTime);
         switchAddition = findViewById(R.id.switchAddition);
@@ -45,14 +53,41 @@ public class SettingsActivity extends AppCompatActivity {
 
         setupSpinners();
         loadSettingsToUI();
+
+        // Attach listener after loading initial state
+        switchAddition.setOnCheckedChangeListener(basicOperationListener);
+        switchSubtraction.setOnCheckedChangeListener(basicOperationListener);
+        switchMultiplication.setOnCheckedChangeListener(basicOperationListener);
+        switchDivision.setOnCheckedChangeListener(basicOperationListener);
+
+        // Set the initial enabled/disabled state for fraction switches
+        updateFractionSwitchesState();
+    }
+
+    private void updateFractionSwitchesState() {
+        boolean anyBasicOpSelected = switchAddition.isChecked() ||
+                switchSubtraction.isChecked() ||
+                switchMultiplication.isChecked() ||
+                switchDivision.isChecked();
+
+        switchCommonFractions.setEnabled(anyBasicOpSelected);
+        switchDecimalFractions.setEnabled(anyBasicOpSelected);
+
+        if (!anyBasicOpSelected) {
+            switchCommonFractions.setChecked(false);
+            switchDecimalFractions.setChecked(false);
+        }
     }
 
     private void setupSpinners() {
+        // --- FIX: Logic for setting up Spinners ---
+        // Difficulty Spinner
         ArrayAdapter<CharSequence> difficultyAdapter = ArrayAdapter.createFromResource(this,
                 R.array.difficulty_levels, android.R.layout.simple_spinner_item);
         difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDifficulty.setAdapter(difficultyAdapter);
 
+        // Time Spinner
         ArrayAdapter<CharSequence> timeAdapter = ArrayAdapter.createFromResource(this,
                 R.array.time_options, android.R.layout.simple_spinner_item);
         timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -60,6 +95,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void loadSettingsToUI() {
+        // Load settings into Spinners
         if (currentSettings.getDifficultyLevel() != null) {
             spinnerDifficulty.setSelection(currentSettings.getDifficultyLevel().ordinal());
         }
@@ -87,11 +123,15 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private boolean saveSettingsFromUI() {
+        // Save settings from Spinners
         currentSettings.setDifficultyLevel(Settings.Difficulty.values()[spinnerDifficulty.getSelectedItemPosition()]);
 
         int timePosition = spinnerTime.getSelectedItemPosition();
-        if (timePosition == 5) currentSettings.setRoundTimeMillis(0);
-        else currentSettings.setRoundTimeMillis((long)(timePosition + 1) * 60000L);
+        if (timePosition == 5) { // Index 5 is endless
+            currentSettings.setRoundTimeMillis(0);
+        } else {
+            currentSettings.setRoundTimeMillis((long)(timePosition + 1) * 60000L);
+        }
 
         Set<OperationType> enabledOps = new HashSet<>();
         if (switchAddition.isChecked()) enabledOps.add(OperationType.ADDITION);

@@ -7,7 +7,7 @@
     <string name="start_game">Start</string>
 
     <!-- Settings -->
-    <string name="difficulty">Difficulty</string>
+    <string name="level">Level</string>
     <string name="time">Time</string>
     <string name="operations">Operations</string>
     <string name="addition">Addition</string>
@@ -25,10 +25,8 @@
         <item>Medium</item>
         <item>Hard</item>
     </string-array>
-    <string name="difficulty_levels_array_easy">Easy</string>
-    <string name="difficulty_levels_array_medium">Medium</string>
-    <string name="difficulty_levels_array_hard">Hard</string>
 
+    <!-- This is the correct array for the Time dropdown Spinner -->
     <string-array name="time_options">
         <item>1 Minute</item>
         <item>2 Minutes</item>
@@ -39,14 +37,12 @@
     </string-array>
 
     <!-- Game Screen -->
-    <!-- FIX: Re-adding the missing string resource -->
     <string name="back_button_desc">Back to Main Menu</string>
     <string name="btn_ok">OK</string>
     <string name="btn_hint">\?</string>
     <string name="btn_clear">C</string>
     <string name="btn_fraction_slash">/</string>
     <string name="btn_decimal_point">.</string>
-    <string name="initial_input_text"></string>
     <string name="game_over">Round Over!</string>
 
     <!-- Keypad Digits -->

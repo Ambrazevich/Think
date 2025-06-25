@@ -1,30 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3" xmlns:ns1="http://schemas.android.com/tools"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\sources\NumixCompleteProject\app\src\main\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\sources\NumixCompleteProject\app\src\main\res"><file name="progress_bar_time" path="D:\sources\NumixCompleteProject\app\src\main\res\drawable\progress_bar_time.xml" qualifiers="" type="drawable"/><file name="rounded_button_dark_blue" path="D:\sources\NumixCompleteProject\app\src\main\res\drawable\rounded_button_dark_blue.xml" qualifiers="" type="drawable"/><file name="rounded_button_light_blue" path="D:\sources\NumixCompleteProject\app\src\main\res\drawable\rounded_button_light_blue.xml" qualifiers="" type="drawable"/><file name="activity_game" path="D:\sources\NumixCompleteProject\app\src\main\res\layout\activity_game.xml" qualifiers="" type="layout"/><file name="activity_main" path="D:\sources\NumixCompleteProject\app\src\main\res\layout\activity_main.xml" qualifiers="" type="layout"/><file name="activity_results" path="D:\sources\NumixCompleteProject\app\src\main\res\layout\activity_results.xml" qualifiers="" type="layout"/><file name="activity_settings" path="D:\sources\NumixCompleteProject\app\src\main\res\layout\activity_settings.xml" qualifiers="" type="layout"/><file name="item_result" path="D:\sources\NumixCompleteProject\app\src\main\res\layout\item_result.xml" qualifiers="" type="layout"/><file name="list_item_result" path="D:\sources\NumixCompleteProject\app\src\main\res\layout\list_item_result.xml" qualifiers="" type="layout"/><file name="ic_launcher" path="D:\sources\NumixCompleteProject\app\src\main\res\mipmap-anydpi-v26\ic_launcher.xml" qualifiers="anydpi-v26" type="mipmap"/><file name="ic_launcher_round" path="D:\sources\NumixCompleteProject\app\src\main\res\mipmap-anydpi-v26\ic_launcher_round.xml" qualifiers="anydpi-v26" type="mipmap"/><file name="correct" path="D:\sources\NumixCompleteProject\app\src\main\res\raw\correct.mp3" qualifiers="" type="raw"/><file name="incorrect" path="D:\sources\NumixCompleteProject\app\src\main\res\raw\incorrect.mp3" qualifiers="" type="raw"/><file path="D:\sources\NumixCompleteProject\app\src\main\res\values\Colors.xml" qualifiers=""><color name="purple_200">#FFBB86FC</color><color name="purple_500">#FF6200EE</color><color name="purple_700">#FF3700B3</color><color name="teal_200">#FF03DAC5</color><color name="teal_700">#FF018786</color><color name="black">#FF000000</color><color name="white">#FFFFFFFF</color><color name="milk_white">#FFFDF5E6</color><color name="dark_blue">#FF00008B</color><color name="light_blue">#FFADD8E6</color><color name="button_text_color">#FFFFFFFF</color><color name="problem_text_color">#FF000000</color><color name="hint_text_color">#FF000000</color><color name="progress_bar_background">#FFD3D3D3</color><color name="progress_bar_progress">@color/dark_blue</color></file><file path="D:\sources\NumixCompleteProject\app\src\main\res\values\Strings.xml" qualifiers=""><string name="app_name">Numix</string><string name="results_title">Game Results</string><string name="results_format">%1$d/%2$d</string><string name="results_date_format">%1$s</string><string name="no_results">No results yet. Play a game!</string><string name="clean_results">CLEAN</string><string name="confirm_clear_results_title">Confirm Clear</string><string name="confirm_clear_results_message">Are you sure you want to delete all game results? This action cannot be undone.</string><string name="yes">Yes</string><string name="no">No</string><string name="content_desc_problem_area">Mathematical problem appears here</string><string name="difficulty_levels_array_medium">Medium</string><string name="btn_hint">\?</string><string name="initial_input_text"/><string name="content_desc_time_indicator">Time remaining indicator</string><string name="error_select_operation">Please select at least one mathematical operation.</string><string name="common_fractions">Common Fractions</string><string name="settings">Settings</string><string-array name="difficulty_levels">
+<merger version="3" xmlns:ns1="http://schemas.android.com/tools"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\sources\NumixCompleteProject\app\src\main\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\sources\NumixCompleteProject\app\src\main\res"><file name="progress_bar_time" path="D:\sources\NumixCompleteProject\app\src\main\res\drawable\progress_bar_time.xml" qualifiers="" type="drawable"/><file name="rounded_button_dark_blue" path="D:\sources\NumixCompleteProject\app\src\main\res\drawable\rounded_button_dark_blue.xml" qualifiers="" type="drawable"/><file name="rounded_button_light_blue" path="D:\sources\NumixCompleteProject\app\src\main\res\drawable\rounded_button_light_blue.xml" qualifiers="" type="drawable"/><file name="activity_game" path="D:\sources\NumixCompleteProject\app\src\main\res\layout\activity_game.xml" qualifiers="" type="layout"/><file name="activity_main" path="D:\sources\NumixCompleteProject\app\src\main\res\layout\activity_main.xml" qualifiers="" type="layout"/><file name="activity_results" path="D:\sources\NumixCompleteProject\app\src\main\res\layout\activity_results.xml" qualifiers="" type="layout"/><file name="activity_settings" path="D:\sources\NumixCompleteProject\app\src\main\res\layout\activity_settings.xml" qualifiers="" type="layout"/><file name="item_result" path="D:\sources\NumixCompleteProject\app\src\main\res\layout\item_result.xml" qualifiers="" type="layout"/><file name="list_item_result" path="D:\sources\NumixCompleteProject\app\src\main\res\layout\list_item_result.xml" qualifiers="" type="layout"/><file name="ic_launcher" path="D:\sources\NumixCompleteProject\app\src\main\res\mipmap-anydpi-v26\ic_launcher.xml" qualifiers="anydpi-v26" type="mipmap"/><file name="ic_launcher_round" path="D:\sources\NumixCompleteProject\app\src\main\res\mipmap-anydpi-v26\ic_launcher_round.xml" qualifiers="anydpi-v26" type="mipmap"/><file name="correct" path="D:\sources\NumixCompleteProject\app\src\main\res\raw\correct.mp3" qualifiers="" type="raw"/><file name="incorrect" path="D:\sources\NumixCompleteProject\app\src\main\res\raw\incorrect.mp3" qualifiers="" type="raw"/><file path="D:\sources\NumixCompleteProject\app\src\main\res\values\Colors.xml" qualifiers=""><color name="purple_200">#FFBB86FC</color><color name="purple_500">#FF6200EE</color><color name="purple_700">#FF3700B3</color><color name="teal_200">#FF03DAC5</color><color name="teal_700">#FF018786</color><color name="black">#FF000000</color><color name="white">#FFFFFFFF</color><color name="milk_white">#FFFFFFFF</color><color name="dark_blue">#FF828788</color><color name="light_blue"> #a5a7a8</color><color name="button_text_color">#FFFFFFFF</color><color name="problem_text_color">#FF000000</color><color name="hint_text_color">#FF000000</color><color name="progress_bar_background">#FFD3D3D3</color><color name="progress_bar_progress">@color/dark_blue</color></file><file path="D:\sources\NumixCompleteProject\app\src\main\res\values\Strings.xml" qualifiers=""><string name="app_name">Numix</string><string name="settings">Settings</string><string name="results">Results</string><string name="start_game">Start</string><string name="level">Level</string><string name="time">Time</string><string name="operations">Operations</string><string name="addition">Addition</string><string name="subtraction">Subtraction</string><string name="multiplication">Multiplication</string><string name="division">Division</string><string name="power">Power</string><string name="square_root">Square Root</string><string name="common_fractions">Common Fractions</string><string name="decimal_fractions">Decimal Fractions</string><string name="error_select_operation">Please select at least one mathematical operation.</string><string-array name="difficulty_levels">
         <item>Easy</item>
         <item>Medium</item>
         <item>Hard</item>
-    </string-array><string name="division">Division</string><string name="difficulty_levels_array_easy">Easy</string><string name="multiplication">Multiplication</string><string name="difficulty">Difficulty</string><string name="back_button_desc">Back to Main Menu</string><string name="time">Time</string><string name="btn_clear">C</string><string name="start_game">Start</string><string name="square_root">Square Root</string><string name="content_desc_input_area">Enter your answer here</string><string name="difficulty_levels_array_hard">Hard</string><string name="subtraction">Subtraction</string><string name="btn_fraction_slash">/</string><string name="btn_0">0</string><string name="decimal_fractions">Decimal Fractions</string><string name="power">Power</string><string-array name="time_options">
+    </string-array><string-array name="time_options">
         <item>1 Minute</item>
         <item>2 Minutes</item>
         <item>3 Minutes</item>
         <item>4 Minutes</item>
         <item>5 Minutes</item>
         <item>Endless ∞</item>
-    </string-array><string name="btn_decimal_point">.</string><string name="game_over">Round Over!</string><string name="btn_7">7</string><string name="addition">Addition</string><string name="btn_8">8</string><string name="btn_5">5</string><string name="btn_6">6</string><string name="btn_3">3</string><string name="btn_ok">OK</string><string name="btn_4">4</string><string name="btn_1">1</string><string name="btn_2">2</string><string name="results">Results</string><string name="operations">Operations</string><string name="btn_9">9</string></file><file path="D:\sources\NumixCompleteProject\app\src\main\res\values\Themes.xml" qualifiers=""><style name="Theme.Numix" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    </string-array><string name="back_button_desc">Back to Main Menu</string><string name="btn_ok">OK</string><string name="btn_hint">\?</string><string name="btn_clear">C</string><string name="btn_fraction_slash">/</string><string name="btn_decimal_point">.</string><string name="game_over">Round Over!</string><string name="btn_0">0</string><string name="btn_1">1</string><string name="btn_2">2</string><string name="btn_3">3</string><string name="btn_4">4</string><string name="btn_5">5</string><string name="btn_6">6</string><string name="btn_7">7</string><string name="btn_8">8</string><string name="btn_9">9</string><string name="results_title">Game Results</string><string name="results_format">%1$d/%2$d</string><string name="results_date_format">%1$s</string><string name="no_results">No results yet. Play a game!</string><string name="clean_results">CLEAN</string><string name="confirm_clear_results_title">Confirm Clear</string><string name="confirm_clear_results_message">Are you sure you want to delete all game results? This action cannot be undone.</string><string name="yes">Yes</string><string name="no">No</string><string name="content_desc_problem_area">Mathematical problem appears here</string><string name="content_desc_input_area">Enter your answer here</string><string name="content_desc_time_indicator">Time remaining indicator</string></file><file path="D:\sources\NumixCompleteProject\app\src\main\res\values\Themes.xml" qualifiers=""><style name="Theme.Numix" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        
         <item name="colorPrimary">@color/dark_blue</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimaryVariant">@color/dark_blue</item> 
         <item name="colorOnPrimary">@color/white</item>
+        
         <item name="colorSecondary">@color/light_blue</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
-        <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
-        <item name="android:windowBackground">@color/milk_white</item>
+
+        
+        <item name="android:statusBarColor" ns1:targetApi="l">@color/white</item>
+        
+        <item name="android:windowLightStatusBar" ns1:targetApi="m">true</item>
+
+        
+        <item name="android:windowBackground">@color/white</item>
+    </style><style name="NumixButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/dark_blue</item>
+        <item name="android:textColor">@color/button_text_color</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">18sp</item>
+        <item name="cornerRadius">12dp</item>
     </style><style name="NumixMainMenuButton" parent="NumixButton">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">24sp</item>
+    </style><style name="ResultItemText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
     </style><style name="NumixKeypadButtonDark" parent="Widget.MaterialComponents.Button">
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
@@ -49,14 +70,6 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:layout_marginBottom">4dp</item>
-    </style><style name="SettingsSpinner" parent="Widget.AppCompat.Spinner.Underlined">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:layout_marginStart">8dp</item>
-        <item name="android:layout_marginEnd">8dp</item>
-        <item name="android:paddingTop">12dp</item>
-        <item name="android:paddingBottom">12dp</item>
     </style><style name="SettingsSwitch" parent="Widget.MaterialComponents.CompoundButton.Switch">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -66,17 +79,4 @@
         <item name="android:paddingEnd">16dp</item>
         <item name="android:paddingTop">10dp</item>
         <item name="android:paddingBottom">10dp</item>
-    </style><style name="NumixButton" parent="Widget.MaterialComponents.Button">
-        <item name="android:backgroundTint">@color/dark_blue</item>
-        <item name="android:textColor">@color/button_text_color</item>
-        <item name="android:paddingLeft">16dp</item>
-        <item name="android:paddingRight">16dp</item>
-        <item name="android:paddingTop">12dp</item>
-        <item name="android:paddingBottom">12dp</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">18sp</item>
-        <item name="cornerRadius">12dp</item>
-    </style><style name="ResultItemText">
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/black</item>
     </style></file></source></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\sources\NumixCompleteProject\app\src\debug\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\sources\NumixCompleteProject\app\src\debug\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\sources\NumixCompleteProject\app\build\generated\res\resValues\debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\sources\NumixCompleteProject\app\build\generated\res\resValues\debug"/></dataSet><mergedItems/></merger>

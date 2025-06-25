@@ -17,8 +17,6 @@ public class ProblemGenerator {
     private final Settings settings;
     private final DecimalFormat decimalFormat;
     private final DecimalFormat integerFormat;
-
-    // --- NEW: Variable to store the last problem ---
     private String lastProblemDisplay = "";
 
     private static class Operand {
@@ -40,20 +38,14 @@ public class ProblemGenerator {
 
     public Problem generateProblem() {
         Problem newProblem;
-        int maxRetries = 5; // Safety break to prevent rare infinite loops
+        int maxRetries = 5;
         int retries = 0;
 
-        // --- NEW: Loop to ensure the next problem is not a duplicate ---
         do {
             newProblem = generateNewProblemInternal();
             retries++;
         } while (newProblem.getDisplayEquation().equals(lastProblemDisplay) && retries < maxRetries);
 
-        if (retries == maxRetries) {
-            Log.w(TAG, "Could not generate a unique problem after " + maxRetries + " tries. Returning a duplicate.");
-        }
-
-        // Store the new problem's display string for the next round
         lastProblemDisplay = newProblem.getDisplayEquation();
         return newProblem;
     }
@@ -78,9 +70,8 @@ public class ProblemGenerator {
         if (enabledOps.contains(OperationType.DECIMAL_FRACTIONS)) complexOperandTypes.add(OperationType.DECIMAL_FRACTIONS);
 
         boolean canDoCompound = !basicOps.isEmpty() && !complexOperandTypes.isEmpty();
-        boolean shouldBeCompound = canDoCompound && random.nextInt(3) == 0;
 
-        if (shouldBeCompound) {
+        if (canDoCompound) {
             return generateCompoundProblem(basicOps, complexOperandTypes);
         } else {
             List<OperationType> allAvailableSimpleOps = new ArrayList<>(enabledOps);
@@ -108,19 +99,18 @@ public class ProblemGenerator {
 
     private Problem generateCompoundProblem(List<OperationType> basicOps, List<OperationType> operandTypes) {
         OperationType basicOp = basicOps.get(random.nextInt(basicOps.size()));
-        OperationType type1 = operandTypes.get(random.nextInt(operandTypes.size()));
-        OperationType type2 = operandTypes.get(random.nextInt(operandTypes.size()));
+        OperationType complexType = operandTypes.get(random.nextInt(operandTypes.size()));
 
-        if (type1 == OperationType.COMMON_FRACTIONS || type2 == OperationType.COMMON_FRACTIONS) {
+        if (complexType == OperationType.COMMON_FRACTIONS) {
             return generateCommonFractionProblem(mapBasicToInternalFractionOp(basicOp));
         }
-        if (type1 == OperationType.DECIMAL_FRACTIONS || type2 == OperationType.DECIMAL_FRACTIONS) {
+        if (complexType == OperationType.DECIMAL_FRACTIONS) {
             return generateDecimalProblem(mapBasicToInternalDecimalOp(basicOp));
         }
 
         if (basicOp == OperationType.DIVISION) {
             int answerInt = random.nextInt(10) + 2;
-            Operand op2 = generateOperand(type2);
+            Operand op2 = generateOperand(complexType, settings.getDifficultyLevel());
             int op2IntValue = (int) Math.round(op2.value);
             if (op2IntValue == 0) op2IntValue = 2;
             double op1Value = op2IntValue * answerInt;
@@ -130,12 +120,8 @@ public class ProblemGenerator {
             return new Problem(problemStr, String.valueOf(answerInt), basicOp);
         }
 
-        Operand op1 = generateOperand(type1);
-        Operand op2 = generateOperand(type2);
-
-        if (op1.isFraction() || op2.isFraction()) {
-            return generateCommonFractionProblem(mapBasicToInternalFractionOp(basicOp));
-        }
+        Operand op1 = generateOperand(complexType, settings.getDifficultyLevel());
+        Operand op2 = generateOperand(complexType, settings.getDifficultyLevel());
 
         if (basicOp == OperationType.SUBTRACTION && op1.value < op2.value) {
             Operand temp = op1; op1 = op2; op2 = temp;
@@ -152,25 +138,43 @@ public class ProblemGenerator {
         return new Problem(problemStr, integerFormat.format(answerValue), basicOp);
     }
 
-    private Operand generateOperand(OperationType type) {
-        if (random.nextInt(3) == 0) { // 1 in 3 chance of being a simple integer
-            int val = random.nextInt(10) + 1;
-            return new Operand(String.valueOf(val), val);
+    // --- FIX: Removed the random chance to generate a simple integer ---
+    private Operand generateOperand(OperationType type, Settings.Difficulty difficulty) {
+        int powerBaseMax, sqrtBaseMax, fractionNumMax, fractionDenMax, decimalMaxVal;
+        double decimalPrecision;
+
+        switch (difficulty) {
+            case EASY:
+                powerBaseMax = 5; sqrtBaseMax = 10; fractionNumMax = 10; fractionDenMax = 10;
+                decimalMaxVal = 100; decimalPrecision = 10.0;
+                break;
+            case MEDIUM:
+                powerBaseMax = 8; sqrtBaseMax = 20; fractionNumMax = 50; fractionDenMax = 50;
+                decimalMaxVal = 5000; decimalPrecision = 100.0;
+                break;
+            case HARD:
+            default:
+                powerBaseMax = 12; sqrtBaseMax = 35; fractionNumMax = 100; fractionDenMax = 100;
+                decimalMaxVal = 10000; decimalPrecision = 100.0;
+                break;
         }
+
+        // This method will now ONLY generate operands of the requested complex type.
         switch (type) {
             case POWER:
-                int base = random.nextInt(5) + 2; int exp = random.nextInt(2) + 2;
+                int base = random.nextInt(powerBaseMax - 1) + 2;
+                int exp = random.nextInt(2) + 2; // Keep exponent simple (2 or 3)
                 return new Operand(base + "^" + exp, Math.pow(base, exp));
             case SQUARE_ROOT:
-                int baseSqrt = random.nextInt(9) + 2;
+                int baseSqrt = random.nextInt(sqrtBaseMax - 1) + 2;
                 return new Operand("√" + (baseSqrt * baseSqrt), baseSqrt);
             case COMMON_FRACTIONS:
-                return new Operand(new Fraction(random.nextInt(10)+1, random.nextInt(9)+1));
+                return new Operand(new Fraction(random.nextInt(fractionNumMax) + 1, random.nextInt(fractionDenMax-1) + 1));
             case DECIMAL_FRACTIONS:
-                double d = (double) (random.nextInt(100) + 1) / 10.0;
+                double d = (double) (random.nextInt(decimalMaxVal) + 1) / decimalPrecision;
                 return new Operand(decimalFormat.format(d), d);
-            default:
-                int fallbackVal = random.nextInt(10) + 1;
+            default: // This will now only be hit if a basic op like ADDITION is passed in.
+                int fallbackVal = random.nextInt(sqrtBaseMax) + 1;
                 return new Operand(String.valueOf(fallbackVal), fallbackVal);
         }
     }
