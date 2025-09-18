@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.devops.numix'
+    namespace 'com.challenge.think'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.devops.numix"
+        applicationId "com.challenge.think"
         minSdk 21
         targetSdk 34
         versionCode 1
@@ -18,6 +18,11 @@ android {
 
     buildTypes {
         release {
+            minifyEnabled true
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -32,8 +37,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.gridlayout:gridlayout:1.0.0' // <-- ADD THIS LINE
-
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation 'com.google.code.gson:gson:2.10.1'
 
     testImplementation 'junit:junit:4.13.2'

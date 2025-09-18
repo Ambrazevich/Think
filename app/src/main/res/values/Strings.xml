@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Numix</string>
+    <string name="app_name">Think!</string>
 
     <!-- Main Menu -->
     <string name="settings">Settings</string>
@@ -20,21 +20,7 @@
     <string name="decimal_fractions">Decimal Fractions</string>
     <string name="error_select_operation">Please select at least one mathematical operation.</string>
 
-    <string-array name="difficulty_levels">
-        <item>Easy</item>
-        <item>Medium</item>
-        <item>Hard</item>
-    </string-array>
-
-    <!-- This is the correct array for the Time dropdown Spinner -->
-    <string-array name="time_options">
-        <item>1 Minute</item>
-        <item>2 Minutes</item>
-        <item>3 Minutes</item>
-        <item>4 Minutes</item>
-        <item>5 Minutes</item>
-        <item>Endless ∞</item>
-    </string-array>
+    
 
     <!-- Game Screen -->
     <string name="back_button_desc">Back to Main Menu</string>

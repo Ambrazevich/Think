@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,16 +15,19 @@
         android:text="@string/results_title"
         android:textSize="24sp"
         android:textColor="@color/black"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="16dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewResults"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_below="@id/textViewResultsTitle"
-        android:layout_above="@id/buttonCleanResults"
+        app:layout_constraintTop_toBottomOf="@id/textViewResultsTitle"
+        app:layout_constraintBottom_toTopOf="@id/buttonCleanResults"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="16dp"/>
 
     <TextView
@@ -32,16 +36,21 @@
         android:layout_height="wrap_content"
         android:text="@string/no_results"
         android:textSize="18sp"
-        android:layout_centerInParent="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:visibility="gone"/>
 
-    <!-- FIX: The style attribute now correctly points to a style defined in themes.xml -->
     <Button
         android:id="@+id/buttonCleanResults"
-        style="@style/NumixButton"
-        android:layout_width="match_parent"
+        style="@style/ThinkButton"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.40"
         android:text="@string/clean_results" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

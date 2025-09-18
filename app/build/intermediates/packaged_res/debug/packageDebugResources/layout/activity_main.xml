@@ -16,7 +16,7 @@
 
     <Button
         android:id="@+id/buttonSettings"
-        style="@style/NumixMainMenuButton"
+        style="@style/ThinkMainMenuButton"
         android:text="@string/settings" />
 
     <View
@@ -24,7 +24,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.04" /> <Button
     android:id="@+id/buttonResults"
-    style="@style/NumixMainMenuButton"
+    style="@style/ThinkMainMenuButton"
     android:text="@string/results" />
 
     <View
@@ -34,7 +34,7 @@
 
     <Button
         android:id="@+id/buttonStartGame"
-        style="@style/NumixMainMenuButton"
+        style="@style/ThinkMainMenuButton"
         android:text="@string/start_game" />
 
 </LinearLayout>

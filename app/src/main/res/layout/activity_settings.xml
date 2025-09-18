@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Using Spinners instead of NumberPickers -->
+        <!-- Using NumberPickers instead of Spinners -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,12 +30,10 @@
                 <TextView
                     style="@style/SettingsWheelLabel"
                     android:text="@string/level" />
-                <Spinner
-                    android:id="@+id/spinnerDifficulty"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="12dp"/>
+                <NumberPicker
+                    android:id="@+id/numberPickerDifficulty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <LinearLayout
@@ -47,23 +45,21 @@
                 <TextView
                     style="@style/SettingsWheelLabel"
                     android:text="@string/time" />
-                <Spinner
-                    android:id="@+id/spinnerTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="12dp"/>
+                <NumberPicker
+                    android:id="@+id/numberPickerTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
 
         <!-- Operation Switches -->
-        <TextView
+        <!--TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/operations"
             android:textSize="20sp"
             android:textColor="@color/black"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp"/>-->
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switchAddition"

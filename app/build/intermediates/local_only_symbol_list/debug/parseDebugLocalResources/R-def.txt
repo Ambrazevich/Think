@@ -1,7 +1,5 @@
 R_DEF: Internal format may change without notice
 local
-array difficulty_levels
-array time_options
 color black
 color button_text_color
 color dark_blue
@@ -17,6 +15,8 @@ color purple_700
 color teal_200
 color teal_700
 color white
+drawable ic_launcher_background
+drawable icon
 drawable progress_bar_time
 drawable rounded_button_dark_blue
 drawable rounded_button_light_blue
@@ -40,10 +40,10 @@ id buttonSettings
 id buttonSlash
 id buttonStartGame
 id keypadGrid
+id numberPickerDifficulty
+id numberPickerTime
 id progressBarTime
 id recyclerViewResults
-id spinnerDifficulty
-id spinnerTime
 id switchAddition
 id switchCommonFractions
 id switchDecimalFractions
@@ -67,6 +67,7 @@ layout activity_settings
 layout item_result
 layout list_item_result
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 raw correct
 raw incorrect
@@ -115,11 +116,11 @@ string start_game
 string subtraction
 string time
 string yes
-style NumixButton
-style NumixKeypadButtonDark
-style NumixKeypadButtonLight
-style NumixMainMenuButton
 style ResultItemText
 style SettingsSwitch
 style SettingsWheelLabel
-style Theme.Numix
+style Theme.Think
+style ThinkButton
+style ThinkKeypadButtonDark
+style ThinkKeypadButtonLight
+style ThinkMainMenuButton

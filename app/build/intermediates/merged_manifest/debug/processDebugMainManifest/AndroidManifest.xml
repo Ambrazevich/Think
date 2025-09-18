@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.devops.numix"
+    package="com.challenge.think"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -9,26 +9,26 @@
         android:targetSdkVersion="34" />
 
     <permission
-        android:name="com.devops.numix.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:name="com.challenge.think.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.devops.numix.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+    <uses-permission android:name="com.challenge.think.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
     <application
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:extractNativeLibs="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:testOnly="true"
-        android:theme="@style/Theme.Numix" >
+        android:theme="@style/Theme.Think" >
 
         <!-- MainActivity: Launcher Activity -->
         <activity
-            android:name="com.devops.numix.MainActivity"
+            android:name="com.challenge.think.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -40,22 +40,22 @@
 
         <!-- SettingsActivity Declaration -->
         <activity
-            android:name="com.devops.numix.SettingsActivity"
+            android:name="com.challenge.think.SettingsActivity"
             android:screenOrientation="portrait" />
 
         <!-- GameActivity Declaration -->
         <activity
-            android:name="com.devops.numix.GameActivity"
+            android:name="com.challenge.think.GameActivity"
             android:screenOrientation="portrait" />
 
         <!-- ResultsActivity Declaration -->
         <activity
-            android:name="com.devops.numix.ResultsActivity"
+            android:name="com.challenge.think.ResultsActivity"
             android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.devops.numix.androidx-startup"
+            android:authorities="com.challenge.think.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.emoji2.text.EmojiCompatInitializer"
