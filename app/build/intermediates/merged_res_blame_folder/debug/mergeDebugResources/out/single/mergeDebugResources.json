@@ -16,10 +16,6 @@
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.0-milestone-1\\com.challenge.think.app-main-34:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.challenge.think.app-debug-32:/layout_activity_settings.xml.flat",
-        "source": "com.challenge.think.app-main-34:/layout/activity_settings.xml"
-    },
-    {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.0-milestone-1\\com.challenge.think.app-debug-32:\\mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.0-milestone-1\\com.challenge.think.app-main-34:\\mipmap-xxhdpi\\ic_launcher_foreground.webp"
     },

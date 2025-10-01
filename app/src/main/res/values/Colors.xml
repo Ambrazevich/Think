@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Facebook Color Palette -->
+    <color name="fb_blue">#1877F2</color>
+    <color name="fb_blue_light">#4296F5</color>
+    <color name="fb_background">#F0F2F5</color>
+    <color name="fb_text_dark">#1C1E21</color>
+    <color name="fb_text_light">#606770</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
 
-    <!-- Custom Colors -->
-    <color name="milk_white">#FFFFFFFF</color>
-
-    <!-- FIX: Changed dark_blue to the new gray color -->
-    <color name="dark_blue">#FF828788</color>
-
-    <color name="light_blue"> #a5a7a8</color>
-    <color name="button_text_color">#FFFFFFFF</color>
-    <color name="problem_text_color">#FF000000</color>
-    <color name="hint_text_color">#FF000000</color>
-    <color name="progress_bar_background">#FFD3D3D3</color>
-    <color name="progress_bar_progress">@color/dark_blue</color>
-
+    <!-- App-specific colors -->
+    <color name="problem_text_color">@color/fb_text_dark</color>
+    <color name="hint_text_color">@color/fb_text_light</color>
+    <color name="button_text_color">@color/white</color>
+    <color name="progress_bar_background">#E0E0E0</color>
+    <color name="progress_bar_progress">@color/fb_blue</color>
 </resources>
