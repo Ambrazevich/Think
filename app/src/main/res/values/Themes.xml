@@ -10,7 +10,7 @@
         <item name="colorOnSecondary">@color/white</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/fb_background</item>
+                                        <item name="android:statusBarColor" tools:targetApi="l">@color/fb_background</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
 
         <!-- App background -->
@@ -90,9 +90,11 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/fb_text_dark</item>
         <item name="fontFamily">sans-serif</item>
-        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingStart">24dp</item>
         <item name="android:paddingEnd">16dp</item>
         <item name="android:paddingTop">10dp</item>
         <item name="android:paddingBottom">10dp</item>
+        <item name="android:thumb">@drawable/switch_thumb_large</item>
+        <item name="track">@drawable/switch_track_large</item>
     </style>
 </resources>

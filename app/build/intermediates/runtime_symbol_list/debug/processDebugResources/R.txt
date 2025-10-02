@@ -3091,6 +3091,8 @@ int drawable notification_template_icon_low_bg 0x7f0700d8
 int drawable notification_tile_bg 0x7f0700d9
 int drawable notify_panel_notification_icon_bg 0x7f0700da
 int drawable progress_bar_time 0x7f0700db
+int drawable switch_thumb_large 0x7f0700df
+int drawable switch_track_large 0x7f0700e0
 int drawable test_level_drawable 0x7f0700dc
 int drawable tooltip_frame_dark 0x7f0700dd
 int drawable tooltip_frame_light 0x7f0700de
