@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/fb_background"
     android:padding="8dp"
+    android:layoutDirection="ltr"
     tools:context=".GameActivity">
 
     <!-- FIX: Added an empty View to act as a spacer -->
@@ -98,7 +99,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.45"
         app:columnCount="4"
-        app:rowCount="4">
+        app:rowCount="4"
+        android:layoutDirection="ltr">
 
         <!-- All keypad buttons remain the same -->
         <!-- Row 0 -->

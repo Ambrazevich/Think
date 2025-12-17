@@ -1,5 +1,10 @@
 R_DEF: Internal format may change without notice
 local
+array difficulty_levels
+array language_codes
+array language_options
+array time_options
+array time_values
 color black
 color button_text_color
 color fb_background
@@ -36,11 +41,21 @@ id buttonResults
 id buttonSettings
 id buttonSlash
 id buttonStartGame
+id commentEdit
+id helperText
 id keypadGrid
 id numberPickerDifficulty
+id numberPickerLanguage
 id numberPickerTime
 id progressBarTime
+id rate_root
 id recyclerViewResults
+id star1
+id star2
+id star3
+id star4
+id star5
+id stars_container
 id switchAddition
 id switchCommonFractions
 id switchDecimalFractions
@@ -56,11 +71,13 @@ id textViewNoResults
 id textViewProblem
 id textViewResultsTitle
 id textViewScore
+id titleText
 id topSpacer
 layout activity_game
 layout activity_main
 layout activity_results
 layout activity_settings
+layout dialog_rate_comment
 layout item_result
 layout list_item_result
 mipmap ic_launcher
@@ -88,6 +105,7 @@ string btn_hint
 string btn_ok
 string clean_results
 string common_fractions
+string configure_settings_first
 string confirm_clear_results_message
 string confirm_clear_results_title
 string content_desc_input_area
@@ -96,13 +114,22 @@ string content_desc_time_indicator
 string decimal_fractions
 string division
 string error_select_operation
+string game_error_end
+string game_error_gen
 string game_over
+string language
 string level
 string multiplication
 string no
 string no_results
 string operations
 string power
+string rate_cancel
+string rate_feedback
+string rate_hint
+string rate_submit
+string rate_title
+string rating_thanks
 string results
 string results_date_format
 string results_format
@@ -121,3 +148,5 @@ style ThinkButton
 style ThinkKeypadButtonDark
 style ThinkKeypadButtonLight
 style ThinkMainMenuButton
+xml backup_rules
+xml data_extraction_rules

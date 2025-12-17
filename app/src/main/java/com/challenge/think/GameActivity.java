@@ -175,7 +175,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
     private void startGame() {
         correctAnswers = 0; incorrectAnswers = 0; isEndlessMode = gameSettings.getRoundTimeMillis() == 0L;
-        if (isEndlessMode) { progressBarTime.setVisibility(View.GONE); } else {
+        if (isEndlessMode) {
+            progressBarTime.setVisibility(View.VISIBLE);
+            progressBarTime.setMax(100);
+            progressBarTime.setProgress(100);
+        } else {
             progressBarTime.setVisibility(View.VISIBLE);
             progressBarTime.setMax((int) (gameSettings.getRoundTimeMillis() / 1000));
             startTimer(gameSettings.getRoundTimeMillis());

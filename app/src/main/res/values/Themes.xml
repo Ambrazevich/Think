@@ -10,7 +10,7 @@
         <item name="colorOnSecondary">@color/white</item>
 
         <!-- Status bar color. -->
-                                        <item name="android:statusBarColor" tools:targetApi="l">@color/fb_background</item>
+                                        <item name="android:statusBarColor">@color/fb_background</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
 
         <!-- App background -->
@@ -85,6 +85,7 @@
     </style>
 
     <style name="SettingsSwitch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="useMaterialThemeColors">false</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">18sp</item>

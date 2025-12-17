@@ -99,7 +99,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         // Time NumberPicker
         numberPickerTime.setMinValue(0);
-        numberPickerTime.setMaxValue(5);
+        numberPickerTime.setMaxValue(2);
         numberPickerTime.setDisplayedValues(getResources().getStringArray(R.array.time_options));
         numberPickerTime.setWrapSelectorWheel(false);
 
@@ -118,9 +118,11 @@ public class SettingsActivity extends AppCompatActivity {
 
         long timeMillis = currentSettings.getRoundTimeMillis();
         if (timeMillis == 0L) {
-            numberPickerTime.setValue(5); // Endless
+            numberPickerTime.setValue(2); // Endless
         } else {
-            numberPickerTime.setValue((int) (timeMillis / 60000L) - 1);
+            int minutes = (int) (timeMillis / 60000L);
+            if (minutes > 2) minutes = 2; 
+            numberPickerTime.setValue(minutes - 1);
         }
 
         // Load Language
@@ -150,7 +152,7 @@ public class SettingsActivity extends AppCompatActivity {
         currentSettings.setDifficultyLevel(Settings.Difficulty.values()[numberPickerDifficulty.getValue()]);
 
         int timeValue = numberPickerTime.getValue();
-        if (timeValue == 5) { // Index 5 is endless
+        if (timeValue == 2) { // Index 2 is endless
             currentSettings.setRoundTimeMillis(0);
         } else {
             currentSettings.setRoundTimeMillis((long)(timeValue + 1) * 60000L);

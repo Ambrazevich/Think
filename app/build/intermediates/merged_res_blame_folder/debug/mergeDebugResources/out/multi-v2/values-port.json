@@ -4,7 +4,7 @@
             "outputFile": "com.challenge.think.app-mergeDebugResources-30:/values-port/values-port.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Admin\\.gradle\\caches\\9.0-milestone-1\\transforms\\53d03f74fecc451e722f509e370803bf\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
+                    "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-4\\d2eee8917633a839af5d174fa0f05dd8\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

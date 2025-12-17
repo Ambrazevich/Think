@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="http://schemas.android.com/tools">
+    <string-array name="difficulty_levels">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+    <string-array name="language_codes">
+        <item>en</item>
+        <item>iw</item>
+    </string-array>
+    <string-array name="language_options">
+        <item>English</item>
+        <item>עברית</item>
+    </string-array>
+    <string-array name="time_options">
+        <item>1 min</item>
+        <item>2 mins</item>
+        <item>∞</item>
+    </string-array>
+    <string-array name="time_values">
+        <item>60000</item>
+        <item>120000</item>
+        <item>-1</item>
+    </string-array>
     <color name="black">#000000</color>
     <color name="button_text_color">@color/white</color>
     <color name="fb_background">#F0F2F5</color>
@@ -32,6 +55,7 @@
     <string name="btn_ok">OK</string>
     <string name="clean_results">CLEAN</string>
     <string name="common_fractions">Common Fractions</string>
+    <string name="configure_settings_first">Please configure settings first (select at least one operation).</string>
     <string name="confirm_clear_results_message">Are you sure you want to delete all game results? This action cannot be undone.</string>
     <string name="confirm_clear_results_title">Confirm Clear</string>
     <string name="content_desc_input_area">Enter your answer here</string>
@@ -40,13 +64,22 @@
     <string name="decimal_fractions">Decimal Fractions</string>
     <string name="division">Division</string>
     <string name="error_select_operation">Please select at least one mathematical operation.</string>
+    <string name="game_error_end">Game ended due to an error.</string>
+    <string name="game_error_gen">Error: Could not generate a new problem.</string>
     <string name="game_over">Round Over!</string>
+    <string name="language">Lang</string>
     <string name="level">Level</string>
     <string name="multiplication">Multiplication</string>
     <string name="no">No</string>
     <string name="no_results">No results yet. Play a game!</string>
     <string name="operations">Operations</string>
     <string name="power">Power</string>
+    <string name="rate_cancel">Cancel</string>
+    <string name="rate_feedback">Rate &amp; Feedback</string>
+    <string name="rate_hint">Please set a rating or write a comment.</string>
+    <string name="rate_submit">Submit</string>
+    <string name="rate_title">Rate &amp; review</string>
+    <string name="rating_thanks">Thanks for rating %d★</string>
     <string name="results">Results</string>
     <string name="results_date_format">%1$s</string>
     <string name="results_format">%1$d/%2$d</string>
@@ -63,6 +96,7 @@
         <item name="fontFamily">sans-serif</item>
     </style>
     <style name="SettingsSwitch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="useMaterialThemeColors">false</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">18sp</item>
@@ -93,7 +127,7 @@
         <item name="colorOnSecondary">@color/white</item>
 
         
-        <item name="android:statusBarColor" ns1:targetApi="l">@color/fb_background</item>
+                                        <item name="android:statusBarColor">@color/fb_background</item>
         <item name="android:windowLightStatusBar" ns1:targetApi="m">true</item>
 
         

@@ -77,6 +77,11 @@ animator mtrl_fab_hide_motion_spec
 animator mtrl_fab_show_motion_spec
 animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
+array difficulty_levels
+array language_codes
+array language_options
+array time_options
+array time_values
 attr SharedValue
 attr SharedValueId
 attr actionBarDivider
@@ -3239,6 +3244,7 @@ id clip_vertical
 id clockwise
 id closest
 id collapseActionView
+id commentEdit
 id compress
 id confirm_button
 id constraint
@@ -3325,6 +3331,7 @@ id group_divider
 id grouping
 id groups
 id header_title
+id helperText
 id hideable
 id home
 id homeAsUp
@@ -3437,6 +3444,7 @@ id notification_background
 id notification_main_column
 id notification_main_column_container
 id numberPickerDifficulty
+id numberPickerLanguage
 id numberPickerTime
 id off
 id on
@@ -3477,6 +3485,7 @@ id progressBarTime
 id progress_circular
 id progress_horizontal
 id radio
+id rate_root
 id ratio
 id rectangles
 id recyclerViewResults
@@ -3538,6 +3547,12 @@ id src_atop
 id src_in
 id src_over
 id standard
+id star1
+id star2
+id star3
+id star4
+id star5
+id stars_container
 id start
 id startHorizontal
 id startToEnd
@@ -3597,6 +3612,7 @@ id textinput_suffix_text
 id time
 id title
 id titleDividerNoCustom
+id titleText
 id title_template
 id toggle
 id top
@@ -3769,6 +3785,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_rate_comment
 layout item_result
 layout list_item_result
 layout m3_alert_dialog
@@ -3897,6 +3914,7 @@ string character_counter_pattern
 string clean_results
 string clear_text_end_icon_content_description
 string common_fractions
+string configure_settings_first
 string confirm_clear_results_message
 string confirm_clear_results_title
 string content_desc_input_area
@@ -3910,10 +3928,13 @@ string error_select_operation
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string game_error_end
+string game_error_gen
 string game_over
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
 string item_view_role_description
+string language
 string level
 string m3_exceed_max_badge_text_suffix
 string m3_ref_typeface_brand_medium
@@ -4025,6 +4046,12 @@ string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
 string power
+string rate_cancel
+string rate_feedback
+string rate_hint
+string rate_submit
+string rate_title
+string rating_thanks
 string results
 string results_date_format
 string results_format
@@ -5321,3 +5348,5 @@ styleable ViewPager2 android_orientation
 styleable ViewStubCompat android_id android_layout android_inflatedId
 styleable ViewTransition android_id SharedValue SharedValueId clearsTag duration ifTagNotSet ifTagSet motionInterpolator motionTarget onStateTransition pathMotionArc setsTag transitionDisable upDuration viewTransitionMode
 styleable include constraintSet
+xml backup_rules
+xml data_extraction_rules
