@@ -43,7 +43,8 @@
         <!-- SettingsActivity Declaration -->
         <activity
             android:name="com.challenge.think.SettingsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Think.Settings" />
 
         <!-- GameActivity Declaration -->
         <activity

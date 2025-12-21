@@ -29,6 +29,15 @@ public class MainActivity extends AppCompatActivity implements RateDialogFragmen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        // Apply Night Mode based on settings
+        StorageHelper storageHelper = new StorageHelper(this);
+        Settings settings = storageHelper.loadSettings();
+        if (settings != null) {
+            int mode = settings.isDarkMode() ? androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES : androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO;
+            androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(mode);
+        }
+
         setContentView(R.layout.activity_main);
 
         Button buttonSettings = findViewById(R.id.buttonSettings);
@@ -56,12 +65,12 @@ public class MainActivity extends AppCompatActivity implements RateDialogFragmen
 
         if (buttonStartGame != null) {
             buttonStartGame.setOnClickListener(v -> {
-                StorageHelper storageHelper = new StorageHelper(MainActivity.this);
-                Settings settings = storageHelper.loadSettings(); // loadSettings now ensures non-null return
+                StorageHelper sh = new StorageHelper(MainActivity.this);
+                Settings s = sh.loadSettings(); // loadSettings now ensures non-null return
 
                 // settings object itself is guaranteed non-null by StorageHelper.loadSettings()
                 // We only need to check if operations are selected.
-                if (!settings.hasAtLeastOneOperationSelected()) {
+                if (!s.hasAtLeastOneOperationSelected()) {
                     Toast.makeText(MainActivity.this, R.string.configure_settings_first, Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                     startActivity(intent);

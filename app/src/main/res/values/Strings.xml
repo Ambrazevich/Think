@@ -29,6 +29,7 @@
     <string name="rate_cancel">Cancel</string>
     <string name="rate_hint">Please set a rating or write a comment.</string>
     <string name="language">Lang</string>
+    <string name="dark_mode">Dark Mode</string>
 
     <string-array name="time_options">
         <item>1 min</item>

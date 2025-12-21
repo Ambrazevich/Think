@@ -28,6 +28,7 @@
         <!-- SettingsActivity Declaration -->
         <activity
             android:name=".SettingsActivity"
+            android:theme="@style/Theme.Think.Settings"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 

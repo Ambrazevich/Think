@@ -11,6 +11,7 @@ public class Settings implements Serializable {
     private long roundTimeMillis;
     private Difficulty difficultyLevel;
     private Set<OperationType> enabledOperations;
+    private boolean darkMode;
 
     // Default settings
     public Settings() {
@@ -19,6 +20,15 @@ public class Settings implements Serializable {
         this.enabledOperations = new HashSet<>();
         // Default to Addition being enabled on a fresh install
         this.enabledOperations.add(OperationType.ADDITION);
+        this.darkMode = true; // Default to Dark Mode
+    }
+
+    public boolean isDarkMode() {
+        return darkMode;
+    }
+
+    public void setDarkMode(boolean darkMode) {
+        this.darkMode = darkMode;
     }
 
     public long getRoundTimeMillis() {
