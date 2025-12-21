@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fb_background"
-    android:padding="16dp"
+    android:background="@color/game_background"
+    android:padding="24dp"
     tools:context=".ResultsActivity">
 
     <TextView
@@ -13,12 +13,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/results_title"
-        android:textSize="24sp"
-        android:textColor="@color/fb_text_dark"
+        android:textSize="32sp"
+        android:textColor="@color/game_primary"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="24dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewResults"
@@ -28,14 +29,18 @@
         app:layout_constraintBottom_toTopOf="@id/buttonCleanResults"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:clipToPadding="false"
+        tools:listitem="@layout/list_item_result"/>
 
     <TextView
         android:id="@+id/textViewNoResults"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/no_results"
-        android:textSize="18sp"
+        android:textSize="20sp"
+        android:textColor="@color/text_secondary"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +55,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.40"
-        android:text="@string/clean_results" />
+        android:text="@string/clean_results"
+        android:backgroundTint="@color/game_error"
+        android:textColor="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

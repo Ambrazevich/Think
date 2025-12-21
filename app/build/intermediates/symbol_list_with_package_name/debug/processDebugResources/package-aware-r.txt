@@ -1387,6 +1387,7 @@ color cardview_dark_background
 color cardview_light_background
 color cardview_shadow_end_color
 color cardview_shadow_start_color
+color correct_green
 color design_bottom_navigation_shadow_color
 color design_box_stroke_color
 color design_dark_default_color_background
@@ -1438,9 +1439,20 @@ color fb_text_dark
 color fb_text_light
 color foreground_material_dark
 color foreground_material_light
+color game_background
+color game_error
+color game_primary
+color game_primary_variant
+color game_secondary
+color game_surface
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color hint_text_color
+color incorrect_red
+color input_background_color
+color input_stroke_color
+color input_text_color
+color keypad_text_color
 color m3_appbar_overlay_color
 color m3_assist_chip_icon_tint_color
 color m3_assist_chip_stroke_color
@@ -2111,12 +2123,15 @@ color secondary_text_default_material_dark
 color secondary_text_default_material_light
 color secondary_text_disabled_material_dark
 color secondary_text_disabled_material_light
+color settings_accent_color
 color switch_thumb_disabled_material_dark
 color switch_thumb_disabled_material_light
 color switch_thumb_material_dark
 color switch_thumb_material_light
 color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
+color text_primary
+color text_secondary
 color tooltip_background_dark
 color tooltip_background_light
 color white
@@ -3012,6 +3027,7 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable ic_arrow_back_black_24
+drawable ic_check
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
@@ -3025,6 +3041,7 @@ drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_search_black_24
 drawable icon
+drawable input_background_shape
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
 drawable m3_bottom_sheet_drag_handle
@@ -3566,6 +3583,7 @@ id submit_area
 id supportScrollUp
 id switchAddition
 id switchCommonFractions
+id switchDarkMode
 id switchDecimalFractions
 id switchDivision
 id switchMultiplication
@@ -3589,6 +3607,7 @@ id tag_window_insets_animation_callback
 id text
 id text2
 id textEnd
+id textGameTitle
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
@@ -3617,7 +3636,6 @@ id title_template
 id toggle
 id top
 id topPanel
-id topSpacer
 id touch_outside
 id transitionToEnd
 id transitionToStart
@@ -3920,6 +3938,7 @@ string confirm_clear_results_title
 string content_desc_input_area
 string content_desc_problem_area
 string content_desc_time_indicator
+string dark_mode
 string decimal_fractions
 string division
 string error_a11y_label
@@ -4698,6 +4717,7 @@ style Theme_MaterialComponents_Light_NoActionBar_Bridge
 style Theme_MaterialComponents_NoActionBar
 style Theme_MaterialComponents_NoActionBar_Bridge
 style Theme_Think
+style Theme_Think_Settings
 style ThemeOverlay_AppCompat
 style ThemeOverlay_AppCompat_ActionBar
 style ThemeOverlay_AppCompat_Dark
@@ -4816,6 +4836,7 @@ style ThinkButton
 style ThinkKeypadButtonDark
 style ThinkKeypadButtonLight
 style ThinkMainMenuButton
+style ThinkNumberPickerTheme
 style Widget_AppCompat_ActionBar
 style Widget_AppCompat_ActionBar_Solid
 style Widget_AppCompat_ActionBar_TabBar

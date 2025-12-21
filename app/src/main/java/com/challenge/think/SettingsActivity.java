@@ -2,6 +2,8 @@ package com.challenge.think;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.NumberPicker; // Import NumberPicker
 import android.widget.Toast;
@@ -25,7 +27,7 @@ public class SettingsActivity extends AppCompatActivity {
     private NumberPicker numberPickerLanguage; // Add Language Picker
 
     private SwitchMaterial switchAddition, switchSubtraction, switchMultiplication, switchDivision, switchPower,
-            switchSquareRoot, switchCommonFractions, switchDecimalFractions;
+            switchSquareRoot, switchCommonFractions, switchDecimalFractions, switchDarkMode;
 
     private StorageHelper storageHelper;
     private Settings currentSettings;
@@ -47,6 +49,11 @@ public class SettingsActivity extends AppCompatActivity {
 
         storageHelper = new StorageHelper(this);
         currentSettings = storageHelper.loadSettings();
+        
+        // Apply theme based on settings (if not already applied by system or previous activity)
+        // Note: AppCompatDelegate.setDefaultNightMode is usually process-wide.
+        // We ensure the switch matches the actual setting.
+
         languageCodes = getResources().getStringArray(R.array.language_codes);
 
         // Initialize views
@@ -61,6 +68,7 @@ public class SettingsActivity extends AppCompatActivity {
         switchSquareRoot = findViewById(R.id.switchSquareRoot);
         switchCommonFractions = findViewById(R.id.switchCommonFractions);
         switchDecimalFractions = findViewById(R.id.switchDecimalFractions);
+        switchDarkMode = findViewById(R.id.switchDarkMode);
 
         setupNumberPickers();
         loadSettingsToUI();
@@ -70,6 +78,15 @@ public class SettingsActivity extends AppCompatActivity {
         switchSubtraction.setOnCheckedChangeListener(basicOperationListener);
         switchMultiplication.setOnCheckedChangeListener(basicOperationListener);
         switchDivision.setOnCheckedChangeListener(basicOperationListener);
+        
+        switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            currentSettings.setDarkMode(isChecked);
+            storageHelper.saveSettings(currentSettings); // Save immediately
+            
+            int mode = isChecked ? androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES : androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO;
+            androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(mode);
+            // Activity will recreate automatically
+        });
 
         // Set the initial enabled/disabled state for fraction switches
         updateFractionSwitchesState();
@@ -94,18 +111,21 @@ public class SettingsActivity extends AppCompatActivity {
         // Difficulty NumberPicker
         numberPickerDifficulty.setMinValue(0);
         numberPickerDifficulty.setMaxValue(Settings.Difficulty.values().length - 1);
+        numberPickerDifficulty.setDisplayedValues(null); // Reset first
         numberPickerDifficulty.setDisplayedValues(getResources().getStringArray(R.array.difficulty_levels));
         numberPickerDifficulty.setWrapSelectorWheel(false);
 
         // Time NumberPicker
         numberPickerTime.setMinValue(0);
         numberPickerTime.setMaxValue(2);
+        numberPickerTime.setDisplayedValues(null); // Reset first
         numberPickerTime.setDisplayedValues(getResources().getStringArray(R.array.time_options));
         numberPickerTime.setWrapSelectorWheel(false);
 
         // Language NumberPicker
         numberPickerLanguage.setMinValue(0);
         numberPickerLanguage.setMaxValue(languageCodes.length - 1);
+        numberPickerLanguage.setDisplayedValues(null); // Reset first
         numberPickerLanguage.setDisplayedValues(getResources().getStringArray(R.array.language_options));
         numberPickerLanguage.setWrapSelectorWheel(false);
     }
@@ -145,6 +165,8 @@ public class SettingsActivity extends AppCompatActivity {
         switchSquareRoot.setChecked(ops.contains(OperationType.SQUARE_ROOT));
         switchCommonFractions.setChecked(ops.contains(OperationType.COMMON_FRACTIONS));
         switchDecimalFractions.setChecked(ops.contains(OperationType.DECIMAL_FRACTIONS));
+        
+        switchDarkMode.setChecked(currentSettings.isDarkMode());
     }
 
     private boolean saveSettingsFromUI() {

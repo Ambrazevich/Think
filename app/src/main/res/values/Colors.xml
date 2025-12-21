@@ -1,18 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Facebook Color Palette -->
-    <color name="fb_blue">#1877F2</color>
-    <color name="fb_blue_light">#4296F5</color>
-    <color name="fb_background">#F0F2F5</color>
-    <color name="fb_text_dark">#1C1E21</color>
-    <color name="fb_text_light">#606770</color>
+    <!-- Pastel Light Game Palette (Day Mode) -->
+    <color name="game_background">#F5F7FA</color> <!-- Light Blue-Grey Background -->
+    <color name="game_surface">#FFFFFF</color>   <!-- White Surface -->
+    <color name="game_primary">#B39DDB</color>    <!-- Pastel Deep Purple (200) -->
+    <color name="game_primary_variant">#7E57C2</color> <!-- Deep Purple (400) -->
+    <color name="game_secondary">#80CBC4</color>  <!-- Pastel Teal (Restored) -->
+    
+    <color name="text_primary">#37474F</color>    <!-- Blue Grey 800 -->
+    
+    <color name="keypad_text_color">#333333</color> <!-- Dark digits for Day Mode -->
+    <color name="text_secondary">#78909C</color>  <!-- Blue Grey 400 -->
+    <color name="game_error">#E57373</color>      <!-- Red 300 -->
+    <color name="correct_green">#81C784</color>   <!-- Green 300 -->
+    <color name="incorrect_red">#E57373</color>     <!-- Red 300 -->
+
+    <!-- Legacy Mappings -->
+    <color name="fb_blue">@color/game_primary</color>
+    <color name="fb_blue_light">@color/game_secondary</color>
+    <color name="fb_background">@color/game_background</color>
+    <color name="fb_text_dark">@color/text_primary</color>
+    <color name="fb_text_light">@color/text_secondary</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 
-    <!-- App-specific colors -->
-    <color name="problem_text_color">@color/fb_text_dark</color>
-    <color name="hint_text_color">@color/fb_text_light</color>
-    <color name="button_text_color">@color/white</color>
-    <color name="progress_bar_background">#E0E0E0</color>
-    <color name="progress_bar_progress">@color/fb_blue</color>
+    <!-- App-specific colors mappings -->
+    <color name="problem_text_color">#455A64</color> <!-- Dark Grey for problem text on light bg -->
+    <color name="hint_text_color">@color/text_secondary</color>
+    <color name="button_text_color">#FFFFFF</color> <!-- White text on pastel buttons -->
+    <color name="progress_bar_background">@color/game_surface</color>
+    <color name="progress_bar_progress">@color/game_secondary</color>
+
+    <!-- Input Field Colors -->
+    <color name="input_background_color">#ECEFF1</color> <!-- Blue Grey 50 -->
+    <color name="input_stroke_color">#CFD8DC</color>     <!-- Blue Grey 100 -->
+    <color name="input_text_color">#37474F</color>       <!-- Dark text for input -->
+    
+    <color name="settings_accent_color">#333333</color> <!-- Dark gray for settings in Day Mode -->
 </resources>

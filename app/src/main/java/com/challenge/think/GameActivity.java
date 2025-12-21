@@ -38,7 +38,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private StringBuilder currentInput = new StringBuilder();
     private Handler hintHandler;
     private Runnable hintRunnable;
-    private static final int HINT_VISIBILITY_DURATION_MS = 750;
+    private static final int HINT_VISIBILITY_DURATION_MS = 3000;
     private static final long DELAY_NEXT_PROBLEM = 750;
     private static final String TAG = "GameActivity";
 
@@ -196,7 +196,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
     private void showHint() {
         if (currentProblem != null && problemActive && textViewHint != null) {
-            textViewHint.setText(currentProblem.getCorrectAnswerString()); textViewHint.setVisibility(View.VISIBLE); hintUsedForCurrentProblem = true;
+            cancelHintHidingTask(); // Cancel any existing hide task
+            textViewHint.setText(currentProblem.getCorrectAnswerString()); 
+            textViewHint.setVisibility(View.VISIBLE);
+            textViewHint.bringToFront(); // Ensure it's on top
+            hintUsedForCurrentProblem = true;
             hintRunnable = () -> { if (textViewHint != null) textViewHint.setVisibility(View.GONE); };
             hintHandler.postDelayed(hintRunnable, HINT_VISIBILITY_DURATION_MS);
         }

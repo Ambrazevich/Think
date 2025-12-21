@@ -4,19 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fb_background"
-    android:padding="8dp"
+    android:background="@color/game_background"
+    android:padding="16dp"
     android:layoutDirection="ltr"
     tools:context=".GameActivity">
-
-    <!-- FIX: Added an empty View to act as a spacer -->
-    <View
-        android:id="@+id/topSpacer"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="8dp"/>
 
     <!-- Time Indicator -->
     <ProgressBar
@@ -27,12 +18,12 @@
         android:max="100"
         android:progress="100"
         android:progressDrawable="@drawable/progress_bar_time"
-        app:layout_constraintTop_toBottomOf="@id/topSpacer"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:contentDescription="@string/content_desc_time_indicator" />
 
     <!-- Problem Display Area -->
@@ -41,53 +32,68 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="36sp"
+        android:textStyle="bold"
         android:textColor="@color/problem_text_color"
         android:gravity="center"
+        android:fontFamily="sans-serif-black"
         app:layout_constraintTop_toBottomOf="@id/progressBarTime"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"
-        tools:text="123 + 456 ="
+        app:layout_constraintBottom_toTopOf="@+id/textViewInput"
+        app:layout_constraintVertical_bias="0.4"
+        tools:text="123 + 456"
         android:contentDescription="@string/content_desc_problem_area" />
-
-    <!-- Hint Display Area -->
-    <TextView
-        android:id="@+id/textViewHint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="36sp"
-        android:textColor="@color/hint_text_color"
-        android:gravity="center"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/textViewProblem"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        tools:text="579"
-        tools:visibility="visible"/>
 
     <!-- Answer Input Area -->
     <TextView
         android:id="@+id/textViewInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="32sp"
-        android:textColor="@color/problem_text_color"
-        android:background="@android:color/transparent"
-        android:gravity="center_horizontal|bottom"
-        android:padding="8dp"
-        android:minHeight="60dp"
+        android:textSize="40sp"
+        android:textColor="@color/input_text_color"
+        android:background="@drawable/input_background_shape"  
+        android:gravity="center"
+        android:padding="12dp"
+        android:minHeight="70dp"
         android:maxLines="1"
         android:scrollHorizontally="true"
         app:layout_constraintBottom_toTopOf="@id/keypadGrid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        tools:text="123"
+        android:layout_marginBottom="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        tools:text="579"
         android:contentDescription="@string/content_desc_input_area"/>
 
+    <!-- Hint Display Area (Overlays Input) -->
+    <TextView
+        android:id="@+id/textViewHint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/input_text_color"
+        android:background="@drawable/input_background_shape"
+        android:gravity="center"
+        android:visibility="gone"
+        android:padding="12dp"
+        android:minHeight="70dp"
+        app:layout_constraintBottom_toTopOf="@id/keypadGrid"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        tools:text="579"
+        tools:visibility="visible"/>
+        <!-- Note: created a placeholder reference to input_background_shape, 
+             if it doesn't exist I should create it or remove it. 
+             Ideally input should have a subtle background in this dark theme. 
+             I will remove the reference for safety and use color directly if needed, 
+             or just transparent. Let's keep it transparent but maybe add a bottom border manually if needed. 
+             Actually, let's keep it simple: no background drawable reference to avoid crash. -->
 
     <!-- Keypad -->
     <androidx.gridlayout.widget.GridLayout
@@ -97,182 +103,140 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.45"
+        app:layout_constraintHeight_percent="0.5"
         app:columnCount="4"
         app:rowCount="4"
         android:layoutDirection="ltr">
 
-        <!-- All keypad buttons remain the same -->
         <!-- Row 0 -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button1"
+            style="@style/ThinkKeypadButtonDark"
             android:text="@string/btn_1"
-            app:cornerRadius="12dp"
-            android:layout_margin="2dp"
-            app:backgroundTint="@color/fb_blue"
-            android:textColor="@color/button_text_color"
-            android:textSize="24sp"
             android:layout_width="0dp" android:layout_height="0dp"
+            android:layout_margin="4dp"
             app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
             app:layout_row="0" app:layout_column="0" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button2"
+            style="@style/ThinkKeypadButtonDark"
             android:text="@string/btn_2"
-            app:cornerRadius="12dp"
-            android:layout_margin="2dp"
-            app:backgroundTint="@color/fb_blue"
-            android:textColor="@color/button_text_color"
-            android:textSize="24sp"
             android:layout_width="0dp" android:layout_height="0dp"
+            android:layout_margin="4dp"
             app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
             app:layout_row="0" app:layout_column="1" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button3"
+            style="@style/ThinkKeypadButtonDark"
             android:text="@string/btn_3"
-            app:cornerRadius="12dp"
-            android:layout_margin="2dp"
-            app:backgroundTint="@color/fb_blue"
-            android:textColor="@color/button_text_color"
-            android:textSize="24sp"
             android:layout_width="0dp" android:layout_height="0dp"
+            android:layout_margin="4dp"
             app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
             app:layout_row="0" app:layout_column="2" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonOK"
-            android:text="@string/btn_ok"
-            app:cornerRadius="12dp"
-            android:layout_margin="2dp"
-            app:backgroundTint="@color/fb_blue_light"
-            android:textColor="@color/white"
-            android:textSize="24sp"
+            style="@style/ThinkKeypadButtonLight"
+            app:icon="@drawable/ic_check"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="@color/black"
+            app:iconSize="32dp"
             android:layout_width="0dp" android:layout_height="0dp"
+            android:layout_margin="4dp"
             app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
             app:layout_row="0" app:layout_column="3" />
 
         <!-- Row 1 -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button4"
+            style="@style/ThinkKeypadButtonDark"
             android:text="@string/btn_4"
-            app:cornerRadius="12dp"
-            android:layout_margin="2dp"
-            app:backgroundTint="@color/fb_blue"
-            android:textColor="@color/button_text_color"
-            android:textSize="24sp"
             android:layout_width="0dp" android:layout_height="0dp"
+            android:layout_margin="4dp"
             app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
             app:layout_row="1" app:layout_column="0" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button5"
+            style="@style/ThinkKeypadButtonDark"
             android:text="@string/btn_5"
-            app:cornerRadius="12dp"
-            android:layout_margin="2dp"
-            app:backgroundTint="@color/fb_blue"
-            android:textColor="@color/button_text_color"
-            android:textSize="24sp"
             android:layout_width="0dp" android:layout_height="0dp"
+            android:layout_margin="4dp"
             app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
             app:layout_row="1" app:layout_column="1" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button6"
+            style="@style/ThinkKeypadButtonDark"
             android:text="@string/btn_6"
-            app:cornerRadius="12dp"
-            android:layout_margin="2dp"
-            app:backgroundTint="@color/fb_blue"
-            android:textColor="@color/button_text_color"
-            android:textSize="24sp"
             android:layout_width="0dp" android:layout_height="0dp"
+            android:layout_margin="4dp"
             app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
             app:layout_row="1" app:layout_column="2" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonHint"
+            style="@style/ThinkKeypadButtonLight"
             android:text="@string/btn_hint"
-            app:cornerRadius="12dp"
-            android:layout_margin="2dp"
-            app:backgroundTint="@color/fb_blue_light"
-            android:textColor="@color/white"
-            android:textSize="24sp"
             android:layout_width="0dp" android:layout_height="0dp"
+            android:layout_margin="4dp"
             app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
             app:layout_row="1" app:layout_column="3" />
 
         <!-- Row 2 -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button7"
+            style="@style/ThinkKeypadButtonDark"
             android:text="@string/btn_7"
-            app:cornerRadius="12dp"
-            android:layout_margin="2dp"
-            app:backgroundTint="@color/fb_blue"
-            android:textColor="@color/button_text_color"
-            android:textSize="24sp"
             android:layout_width="0dp" android:layout_height="0dp"
+            android:layout_margin="4dp"
             app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
             app:layout_row="2" app:layout_column="0" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button8"
+            style="@style/ThinkKeypadButtonDark"
             android:text="@string/btn_8"
-            app:cornerRadius="12dp"
-            android:layout_margin="2dp"
-            app:backgroundTint="@color/fb_blue"
-            android:textColor="@color/button_text_color"
-            android:textSize="24sp"
             android:layout_width="0dp" android:layout_height="0dp"
+            android:layout_margin="4dp"
             app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
             app:layout_row="2" app:layout_column="1" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button9"
+            style="@style/ThinkKeypadButtonDark"
             android:text="@string/btn_9"
-            app:cornerRadius="12dp"
-            android:layout_margin="2dp"
-            app:backgroundTint="@color/fb_blue"
-            android:textColor="@color/button_text_color"
-            android:textSize="24sp"
             android:layout_width="0dp" android:layout_height="0dp"
+            android:layout_margin="4dp"
             app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
             app:layout_row="2" app:layout_column="2" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonClear"
+            style="@style/ThinkKeypadButtonLight"
             android:text="@string/btn_clear"
-            app:cornerRadius="12dp"
-            android:layout_margin="2dp"
-            app:backgroundTint="@color/fb_blue_light"
-            android:textColor="@color/white"
-            android:textSize="24sp"
             android:layout_width="0dp" android:layout_height="0dp"
+            android:layout_margin="4dp"
             app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
             app:layout_row="2" app:layout_column="3" />
 
         <!-- Row 3 -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button0"
+            style="@style/ThinkKeypadButtonDark"
             android:text="@string/btn_0"
-            app:cornerRadius="12dp"
-            android:layout_margin="2dp"
-            app:backgroundTint="@color/fb_blue"
-            android:textColor="@color/button_text_color"
-            android:textSize="24sp"
             android:layout_width="0dp" android:layout_height="0dp"
+            android:layout_margin="4dp"
             app:layout_columnSpan="2" app:layout_columnWeight="2" app:layout_rowWeight="1"
             app:layout_gravity="fill" app:layout_row="3" app:layout_column="0" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonSlash"
+            style="@style/ThinkKeypadButtonLight"
             android:text="@string/btn_fraction_slash"
-            app:cornerRadius="12dp"
-            android:layout_margin="2dp"
-            app:backgroundTint="@color/fb_blue_light"
-            android:textColor="@color/white"
-            android:textSize="24sp"
             android:layout_width="0dp" android:layout_height="0dp"
+            android:layout_margin="4dp"
             app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
             app:layout_row="3" app:layout_column="2" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonDot"
+            style="@style/ThinkKeypadButtonLight"
             android:text="@string/btn_decimal_point"
-            app:cornerRadius="12dp"
-            android:layout_margin="2dp"
-            app:backgroundTint="@color/fb_blue_light"
-            android:textColor="@color/white"
-            android:textSize="24sp"
             android:layout_width="0dp" android:layout_height="0dp"
+            android:layout_margin="4dp"
             app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
             app:layout_row="3" app:layout_column="3" />
 

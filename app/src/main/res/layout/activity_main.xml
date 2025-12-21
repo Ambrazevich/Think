@@ -1,40 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/fb_background"
-    android:padding="16dp"
+    android:background="@color/game_background"
+    android:padding="24dp"
     tools:context=".MainActivity">
 
-    <!-- Calculate 2% of screen height for margin.
-         This is tricky in XML directly. We'll use a fixed dp value that approximates it,
-         or you can calculate it programmatically if precision is paramount.
-         Let's use a guideline of 8dp for now, adjust based on testing. -->
+    <!-- Game Title / Logo -->
+    <TextView
+        android:id="@+id/textGameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="64sp"
+        android:textColor="@color/game_primary"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-black"
+        android:letterSpacing="0.05"
+        android:shadowColor="@color/game_primary_variant"
+        android:shadowDx="0"
+        android:shadowDy="4"
+        android:shadowRadius="8"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonStartGame"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <!-- Main Menu Buttons (Chained) -->
+    <Button
+        android:id="@+id/buttonStartGame"
+        style="@style/ThinkMainMenuButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/start_game"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonResults"
+        app:layout_constraintTop_toBottomOf="@+id/textGameTitle"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/buttonResults"
+        style="@style/ThinkMainMenuButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/results"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonStartGame"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSettings" />
 
     <Button
         android:id="@+id/buttonSettings"
         style="@style/ThinkMainMenuButton"
-        android:text="@string/settings" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/settings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonResults"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.04" /> <Button
-    android:id="@+id/buttonResults"
-    style="@style/ThinkMainMenuButton"
-    android:text="@string/results" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.04" />
-
-    <Button
-        android:id="@+id/buttonStartGame"
-        style="@style/ThinkMainMenuButton"
-        android:text="@string/start_game" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

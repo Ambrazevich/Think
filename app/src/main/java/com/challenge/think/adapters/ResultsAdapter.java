@@ -9,6 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
+import androidx.core.content.ContextCompat;
+
 import com.challenge.think.R;
 import com.challenge.think.data.GameResult;
 
@@ -43,15 +47,27 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ResultVi
         // Get the specific game result for this list item
         GameResult result = resultsList.get(position);
 
-        // Calculate the total number of tasks for the score fraction
         int correct = result.getCorrectAnswers();
         int incorrect = result.getIncorrectAnswers();
-        int totalTasks = correct + incorrect;
 
-        // Set the score text to the "correct/total" format (e.g., "14/15")
-        holder.textViewScore.setText(String.format(Locale.getDefault(),
-                context.getString(R.string.results_format),
-                correct, totalTasks));
+        // Create a SpannableStringBuilder to color correct and incorrect answers differently
+        String correctStr = String.valueOf(correct);
+        String incorrectStr = String.valueOf(incorrect);
+        String divider = " / ";
+        
+        SpannableStringBuilder builder = new SpannableStringBuilder();
+        builder.append(correctStr);
+        builder.setSpan(new ForegroundColorSpan(ContextCompat.getColor(context, R.color.correct_green)), 
+                0, correctStr.length(), 0);
+        
+        builder.append(divider);
+        
+        int startIncorrect = builder.length();
+        builder.append(incorrectStr);
+        builder.setSpan(new ForegroundColorSpan(ContextCompat.getColor(context, R.color.incorrect_red)), 
+                startIncorrect, startIncorrect + incorrectStr.length(), 0);
+
+        holder.textViewScore.setText(builder);
 
         // Format the timestamp and set the date/time text (e.g., "22/06/2025 11:31")
         holder.textViewDateTime.setText(String.format(Locale.getDefault(),
