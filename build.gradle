@@ -4,7 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.3.0'
+        classpath 'com.android.tools.build:gradle:8.13.2'
     }
 }
 
@@ -13,4 +13,12 @@ allprojects {
         google()
         mavenCentral()
     }
+}
+
+// Android Lint interprets "!" in a generated JAR path as an archive separator.
+// Keep generated artifacts in a sibling directory whose absolute path has no "!".
+def sharedBuildRoot = new File(rootDir.parentFile, 'Think-build')
+layout.buildDirectory.set(new File(sharedBuildRoot, 'root'))
+subprojects {
+    layout.buildDirectory.set(new File(sharedBuildRoot, project.name))
 }

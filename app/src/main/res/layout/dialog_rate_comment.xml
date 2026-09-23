@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rate_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -30,51 +31,51 @@
             android:id="@+id/star1"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:contentDescription="star 1"
+            android:contentDescription="@string/star_1_desc"
             android:src="@android:drawable/star_big_off"
             android:adjustViewBounds="true"
             android:padding="4dp"
-            android:tint="@color/game_secondary"/>
+            app:tint="@color/game_secondary"/>
 
         <ImageView
             android:id="@+id/star2"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:contentDescription="star 2"
+            android:contentDescription="@string/star_2_desc"
             android:src="@android:drawable/star_big_off"
             android:adjustViewBounds="true"
             android:padding="4dp"
-            android:tint="@color/game_secondary"/>
+            app:tint="@color/game_secondary"/>
 
         <ImageView
             android:id="@+id/star3"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:contentDescription="star 3"
+            android:contentDescription="@string/star_3_desc"
             android:src="@android:drawable/star_big_off"
             android:adjustViewBounds="true"
             android:padding="4dp"
-            android:tint="@color/game_secondary"/>
+            app:tint="@color/game_secondary"/>
 
         <ImageView
             android:id="@+id/star4"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:contentDescription="star 4"
+            android:contentDescription="@string/star_4_desc"
             android:src="@android:drawable/star_big_off"
             android:adjustViewBounds="true"
             android:padding="4dp"
-            android:tint="@color/game_secondary"/>
+            app:tint="@color/game_secondary"/>
 
         <ImageView
             android:id="@+id/star5"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:contentDescription="star 5"
+            android:contentDescription="@string/star_5_desc"
             android:src="@android:drawable/star_big_off"
             android:adjustViewBounds="true"
             android:padding="4dp"
-            android:tint="@color/game_secondary"/>
+            app:tint="@color/game_secondary"/>
     </LinearLayout>
 
     <EditText
@@ -82,6 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="100dp"
+        android:importantForAutofill="no"
         android:hint="@string/rate_hint"
         android:textColorHint="@color/text_secondary"
         android:textColor="@color/text_primary"

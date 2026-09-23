@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.challenge.think'
+    namespace 'io.github.ambrazevich.think'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.challenge.think"
+        applicationId "io.github.ambrazevich.think"
         minSdk 21
         targetSdk 34
         versionCode 1
@@ -31,6 +31,16 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
+    }
+
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
+
+    lint {
+        disable 'ExifInterface'
     }
 }
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Modern Dark Game Palette (Night Mode) -->
+    <color name="game_background">#121212</color>
+    <color name="game_surface">#1E1E1E</color>
+    <color name="game_primary">#BB86FC</color>
+    <color name="game_primary_variant">#3700B3</color>
+    <color name="game_secondary">#03DAC6</color>  <!-- Turquoise (Restored) -->
+
+    <color name="text_primary">#F0F0F0</color>
+
+    <color name="keypad_text_color">@color/game_primary</color> <!-- Purple digits for Night Mode -->
+    <color name="text_secondary">#A0A0A0</color>
+    <color name="game_error">#CF6679</color>
+    <color name="correct_green">#4CAF50</color>
+    <color name="incorrect_red">#F44336</color>
+
+    <!-- Legacy Mappings -->
+    <color name="fb_blue">@color/game_primary</color>
+    <color name="fb_blue_light">@color/game_secondary</color>
+    <color name="fb_background">@color/game_background</color>
+    <color name="fb_text_dark">@color/text_primary</color>
+    <color name="fb_text_light">@color/text_secondary</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- App-specific colors mappings -->
+    <color name="problem_text_color">#FFFFFF</color>
+    <color name="hint_text_color">@color/text_secondary</color>
+    <color name="button_text_color">#000000</color>
+    <color name="progress_bar_background">@color/game_surface</color>
+    <color name="progress_bar_progress">@color/game_secondary</color>
+
+    <!-- Input Field Colors -->
+    <color name="input_background_color">#252525</color>
+    <color name="input_stroke_color">#3E3E3E</color>
+    <color name="input_text_color">#FFFFFF</color>
+
+    <color name="settings_accent_color">@color/game_secondary</color>
+</resources>

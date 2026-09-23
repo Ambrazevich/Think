@@ -1,0 +1,248 @@
+package io.github.ambrazevich.think;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import io.github.ambrazevich.think.data.GameResult;
+import io.github.ambrazevich.think.data.Problem;
+import io.github.ambrazevich.think.data.Settings;
+import io.github.ambrazevich.think.gameutils.Fraction;
+import io.github.ambrazevich.think.gameutils.LocaleHelper;
+import io.github.ambrazevich.think.gameutils.ProblemGenerator;
+import io.github.ambrazevich.think.gameutils.StorageHelper;
+import java.math.BigDecimal;
+
+public class GameActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private TextView textViewProblem, textViewInput, textViewHint;
+    private ProgressBar progressBarTime;
+    private Button buttonDot, buttonSlash;
+    private Settings gameSettings;
+    private ProblemGenerator problemGenerator;
+    private Problem currentProblem;
+    private SoundPlayer soundPlayer;
+    private StorageHelper storageHelper;
+    private CountDownTimer roundTimer;
+    private boolean isEndlessMode, hintUsedForCurrentProblem, problemActive = true;
+    private int correctAnswers = 0, incorrectAnswers = 0;
+    private StringBuilder currentInput = new StringBuilder();
+    private Handler mainHandler;
+    private Runnable hintRunnable;
+    private Runnable nextProblemRunnable;
+    private Runnable finishRunnable;
+    private boolean gameFinished;
+    private static final int HINT_VISIBILITY_DURATION_MS = 3000;
+    private static final long DELAY_NEXT_PROBLEM = 750;
+    private static final String TAG = "GameActivity";
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        storageHelper = new StorageHelper(this);
+        gameSettings = storageHelper.loadSettings();
+        mainHandler = new Handler(Looper.getMainLooper());
+        if (gameSettings == null || !gameSettings.hasAtLeastOneOperationSelected()) {
+            Toast.makeText(this, R.string.configure_settings_first, Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
+        problemGenerator = new ProblemGenerator(gameSettings);
+        soundPlayer = new SoundPlayer(this);
+        setContentView(R.layout.activity_game);
+        textViewProblem = findViewById(R.id.textViewProblem);
+        textViewInput = findViewById(R.id.textViewInput);
+        textViewHint = findViewById(R.id.textViewHint);
+        progressBarTime = findViewById(R.id.progressBarTime);
+        buttonDot = findViewById(R.id.buttonDot);
+        buttonSlash = findViewById(R.id.buttonSlash);
+
+        setupKeypad();
+        startGame();
+    }
+
+    private void generateNewProblem() {
+        if (gameFinished || isFinishing() || isDestroyed()) return;
+        cancelHintHidingTask();
+        currentProblem = problemGenerator.generateProblem();
+        if (currentProblem == null) {
+            Toast.makeText(this, R.string.game_error_gen, Toast.LENGTH_LONG).show();
+            finishGame(false, true);
+            return;
+        }
+        updateKeypadForProblem(currentProblem.getAnswerType());
+        textViewProblem.setText(getString(R.string.problem_format, currentProblem.getDisplayEquation()));
+        currentInput.setLength(0);
+        updateInputDisplay();
+        textViewHint.setVisibility(View.GONE);
+        hintUsedForCurrentProblem = false;
+        problemActive = true;
+    }
+
+    private void updateKeypadForProblem(Problem.AnswerType answerType) {
+        boolean enableSlash = (answerType == Problem.AnswerType.FRACTION);
+        boolean enableDot = (answerType == Problem.AnswerType.DECIMAL);
+        if (buttonSlash != null) {
+            buttonSlash.setEnabled(enableSlash);
+            buttonSlash.setAlpha(enableSlash ? 1.0f : 0.5f);
+        }
+        if (buttonDot != null) {
+            buttonDot.setEnabled(enableDot);
+            buttonDot.setAlpha(enableDot ? 1.0f : 0.5f);
+        }
+    }
+
+    private void checkAnswer() {
+        if (currentProblem == null || currentInput.length() == 0 || !problemActive) return;
+
+        problemActive = false; // Disable input while we check
+        String userAnswerStr = currentInput.toString();
+        boolean isCorrect = false;
+
+        try {
+            switch (currentProblem.getAnswerType()) {
+                case FRACTION:
+                    isCorrect = Fraction.parseFraction(userAnswerStr).equals(currentProblem.getCorrectAnswerFraction());
+                    break;
+                case DECIMAL: case INTEGER:
+                    isCorrect = new BigDecimal(userAnswerStr).compareTo(new BigDecimal(currentProblem.getCorrectAnswerString())) == 0;
+                    break;
+            }
+        } catch (Exception e) {
+            Log.w(TAG, "User input could not be parsed or compared: " + userAnswerStr, e);
+            isCorrect = false;
+        }
+
+        if (isCorrect) {
+            soundPlayer.playCorrectSound();
+            if (!hintUsedForCurrentProblem) {
+                correctAnswers++;
+            } else {
+                incorrectAnswers++;
+            }
+            nextProblemRunnable = () -> {
+                if (!gameFinished && !isFinishing() && !isDestroyed()) {
+                    generateNewProblem();
+                }
+            };
+            mainHandler.postDelayed(nextProblemRunnable, DELAY_NEXT_PROBLEM);
+        } else {
+            soundPlayer.playIncorrectSound();
+            incorrectAnswers++;
+            currentInput.setLength(0);
+            updateInputDisplay();
+            problemActive = true;
+        }
+    }
+
+    private void finishGame(boolean timedOut, boolean isError) {
+        if (gameFinished) return;
+        gameFinished = true;
+        problemActive = false;
+        cancelPendingCallbacks();
+        if (roundTimer != null) { roundTimer.cancel(); roundTimer = null; }
+        if (!isError && storageHelper != null) {
+            storageHelper.saveGameResult(new GameResult(System.currentTimeMillis(), correctAnswers, incorrectAnswers));
+        } else if (isError) { Toast.makeText(this, R.string.game_error_end, Toast.LENGTH_LONG).show(); }
+        finishRunnable = () -> { if (!isFinishing() && !isDestroyed()) GameActivity.super.finish(); };
+        mainHandler.postDelayed(finishRunnable, isError ? 2000 : (timedOut ? 1000 : 200));
+    }
+
+    private void setupKeypad() {
+        setClickListener(R.id.button0); setClickListener(R.id.button1); setClickListener(R.id.button2);
+        setClickListener(R.id.button3); setClickListener(R.id.button4); setClickListener(R.id.button5);
+        setClickListener(R.id.button6); setClickListener(R.id.button7); setClickListener(R.id.button8);
+        setClickListener(R.id.button9); setClickListener(R.id.buttonOK); setClickListener(R.id.buttonHint);
+        setClickListener(R.id.buttonClear); setClickListener(R.id.buttonSlash); setClickListener(R.id.buttonDot);
+    }
+    private void setClickListener(int id) {
+        View v = findViewById(id); if (v != null) v.setOnClickListener(this);
+    }
+    @Override public void onClick(View v) {
+        if (!problemActive) return;
+        int id = v.getId();
+        if ((id == R.id.buttonDot || id == R.id.buttonSlash) && !v.isEnabled()) return;
+        if (id == R.id.buttonOK) { checkAnswer();
+        } else if (id == R.id.buttonHint) { showHint();
+        } else if (id == R.id.buttonClear) { currentInput.setLength(0); updateInputDisplay();
+        } else if (v instanceof Button) {
+            String text = ((Button) v).getText().toString();
+            if (text.equals(".") && (currentInput.toString().contains(".") || currentInput.toString().contains("/"))) return;
+            if (text.equals("/") && (currentInput.toString().contains("/") || currentInput.toString().contains(".") || currentInput.length() == 0)) return;
+            if (currentInput.length() < 15) { currentInput.append(text); updateInputDisplay(); }
+        }
+    }
+    private void startGame() {
+        correctAnswers = 0; incorrectAnswers = 0; gameFinished = false;
+        isEndlessMode = gameSettings.getRoundTimeMillis() == 0L;
+        if (isEndlessMode) {
+            progressBarTime.setVisibility(View.VISIBLE);
+            progressBarTime.setMax(100);
+            progressBarTime.setProgress(100);
+        } else {
+            progressBarTime.setVisibility(View.VISIBLE);
+            progressBarTime.setMax((int) (gameSettings.getRoundTimeMillis() / 1000));
+            startTimer(gameSettings.getRoundTimeMillis());
+        }
+        generateNewProblem();
+    }
+    private void updateInputDisplay() { if (textViewInput != null) textViewInput.setText(currentInput.toString()); }
+    private void startTimer(long totalMillis) {
+        if (progressBarTime != null) progressBarTime.setProgress((int)(totalMillis/1000));
+        roundTimer = new CountDownTimer(totalMillis, 1000) {
+            @Override public void onTick(long millis) { if (progressBarTime != null) progressBarTime.setProgress((int) (millis / 1000)); }
+            @Override public void onFinish() { if (progressBarTime != null) progressBarTime.setProgress(0); finishGame(true, false); }
+        }.start();
+    }
+    private void showHint() {
+        if (currentProblem != null && problemActive && textViewHint != null) {
+            cancelHintHidingTask(); // Cancel any existing hide task
+            textViewHint.setText(currentProblem.getCorrectAnswerString()); 
+            textViewHint.setVisibility(View.VISIBLE);
+            textViewHint.bringToFront(); // Ensure it's on top
+            hintUsedForCurrentProblem = true;
+            hintRunnable = () -> { if (textViewHint != null) textViewHint.setVisibility(View.GONE); };
+            mainHandler.postDelayed(hintRunnable, HINT_VISIBILITY_DURATION_MS);
+        }
+    }
+    private void cancelHintHidingTask() {
+        if (mainHandler != null && hintRunnable != null) mainHandler.removeCallbacks(hintRunnable);
+        hintRunnable = null;
+    }
+    private void cancelPendingCallbacks() {
+        if (mainHandler == null) return;
+        if (hintRunnable != null) mainHandler.removeCallbacks(hintRunnable);
+        if (nextProblemRunnable != null) mainHandler.removeCallbacks(nextProblemRunnable);
+        if (finishRunnable != null) mainHandler.removeCallbacks(finishRunnable);
+        hintRunnable = null;
+        nextProblemRunnable = null;
+        finishRunnable = null;
+    }
+    @Override protected void onDestroy() {
+        cancelPendingCallbacks();
+        if (roundTimer != null) roundTimer.cancel();
+        if (soundPlayer != null) soundPlayer.release();
+        super.onDestroy();
+    }
+    @Override public void onBackPressed() {
+        if (!gameFinished) {
+            finishGame(false, false);
+        } else if (!isFinishing()) {
+            super.onBackPressed();
+        }
+    }
+}
