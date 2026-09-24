@@ -1,6 +1,5 @@
 package io.github.ambrazevich.think;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.github.ambrazevich.think.adapters.ResultsAdapter;
 import io.github.ambrazevich.think.data.GameResult;
-import io.github.ambrazevich.think.gameutils.LocaleHelper;
 import io.github.ambrazevich.think.gameutils.StorageHelper;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,11 +23,6 @@ public class ResultsActivity extends AppCompatActivity {
     private StorageHelper storageHelper;
     private TextView textViewNoResults;
     private Button buttonCleanResults;
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(LocaleHelper.onAttach(newBase));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

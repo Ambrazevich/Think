@@ -1,12 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Think!</string>
-
-    <!-- Main Menu -->
     <string name="settings">הגדרות</string>
     <string name="results">תוצאות</string>
-    <string name="start_game">התחל</string>
-
-    <!-- Settings -->
+    <string name="start_game">התחלה</string>
     <string name="level">רמה</string>
     <string name="time">זמן</string>
     <string name="operations">פעולות</string>
@@ -18,60 +14,29 @@
     <string name="square_root">שורש ריבועי</string>
     <string name="common_fractions">שברים פשוטים</string>
     <string name="decimal_fractions">שברים עשרוניים</string>
-    <string name="error_select_operation">אנא בחר לפחות פעולה מתמטית אחת.</string>
-    <string name="configure_settings_first">אנא הגדר את ההגדרות תחילה (בחר לפחות פעולה אחת).</string>
-    <string name="game_error_gen">שגיאה: לא ניתן ליצור בעיה חדשה.</string>
-    <string name="game_error_end">המשחק הסתיים עקב שגיאה.</string>
+    <string name="error_select_operation">יש לבחור לפחות פעולה מתמטית אחת.</string>
+    <string name="configure_settings_first">יש לבחור תחילה לפחות פעולה אחת בהגדרות.</string>
+    <string name="game_error_gen">לא ניתן ליצור תרגיל חדש.</string>
+    <string name="game_error_end">הסיבוב הסתיים עקב שגיאה.</string>
     <string name="language">שפה</string>
     <string name="dark_mode">מצב כהה</string>
-
-    <!-- Game Screen -->
-    <string name="back_button_desc">חזרה לתפריט ראשי</string>
-    <string name="btn_ok">OK</string>
-    <string name="btn_hint">\?</string>
-    <string name="btn_clear">C</string>
-    <string name="btn_fraction_slash">/</string>
-    <string name="btn_decimal_point">.</string>
-    <string name="game_over">הסיבוב נגמר!</string>
-    <string name="problem_format">%1$s =</string>
-
-    <!-- Keypad Digits -->
-    <string name="btn_0">0</string>
-    <string name="btn_1">1</string>
-    <string name="btn_2">2</string>
-    <string name="btn_3">3</string>
-    <string name="btn_4">4</string>
-    <string name="btn_5">5</string>
-    <string name="btn_6">6</string>
-    <string name="btn_7">7</string>
-    <string name="btn_8">8</string>
-    <string name="btn_9">9</string>
-
-    <!-- Results Screen -->
-    <string name="results_title">תוצאות משחק</string>
-    <string name="results_format">%1$d/%2$d</string>
-    <string name="results_date_format">%1$s</string>
-    <string name="no_results">אין תוצאות עדיין. שחק משחק!</string>
-    <string name="clean_results">נקה</string>
-    <string name="confirm_clear_results_title">אישור ניקוי</string>
-    <string name="confirm_clear_results_message">האם אתה בטוח שברצונך למחוק את כל התוצאות? פעולה זו אינה הפיכה.</string>
+    <string-array name="time_options"><item>דקה אחת</item><item>2 דקות</item><item>∞</item></string-array>
+    <string-array name="language_options">
+        <item>כמו במערכת</item><item>English</item><item>Русский</item><item>עברית</item>
+        <item>Français</item><item>Italiano</item><item>Deutsch</item><item>Português</item>
+    </string-array>
+    <string-array name="difficulty_levels"><item>קל</item><item>בינוני</item><item>קשה</item></string-array>
+    <string name="back_button_desc">חזרה לתפריט הראשי</string>
+    <string name="btn_ok">שליחת התשובה</string>
+    <string name="game_over">הסיבוב הסתיים!</string>
+    <string name="results_title">תוצאות המשחק</string>
+    <string name="no_results">עדיין אין תוצאות. אפשר להתחיל סיבוב!</string>
+    <string name="clean_results">ניקוי</string>
+    <string name="confirm_clear_results_title">לנקות את התוצאות?</string>
+    <string name="confirm_clear_results_message">למחוק את כל תוצאות המשחקים? לא ניתן לבטל פעולה זו.</string>
     <string name="yes">כן</string>
     <string name="no">לא</string>
-
-    <!-- Accessibility and Content Descriptions -->
-    <string name="content_desc_problem_area">הבעיה המתמטית מופיעה כאן</string>
-    <string name="content_desc_input_area">הכנס את התשובה כאן</string>
-    <string name="content_desc_time_indicator">מחוון זמן נותר</string>
-
-    <string-array name="time_options">
-        <item>1 דקה</item>
-        <item>2 דקות</item>
-        <item>∞</item>
-    </string-array>
-
-    <string-array name="difficulty_levels">
-        <item>קל</item>
-        <item>בינוני</item>
-        <item>קשה</item>
-    </string-array>
+    <string name="content_desc_problem_area">תרגיל מתמטי</string>
+    <string name="content_desc_input_area">התשובה שהוזנה</string>
+    <string name="content_desc_time_indicator">הזמן שנותר</string>
 </resources>

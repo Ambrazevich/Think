@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">Paramètres</string><string name="results">Résultats</string><string name="start_game">Commencer</string>
+    <string name="level">Niveau</string><string name="time">Durée</string><string name="operations">Opérations</string>
+    <string name="addition">Addition</string><string name="subtraction">Soustraction</string><string name="multiplication">Multiplication</string><string name="division">Division</string>
+    <string name="power">Puissance</string><string name="square_root">Racine carrée</string><string name="common_fractions">Fractions ordinaires</string><string name="decimal_fractions">Nombres décimaux</string>
+    <string name="error_select_operation">Sélectionnez au moins une opération mathématique.</string>
+    <string name="configure_settings_first">Sélectionnez d’abord au moins une opération dans les paramètres.</string>
+    <string name="game_error_gen">Impossible de générer un nouvel exercice.</string><string name="game_error_end">La manche s’est terminée à cause d’une erreur.</string>
+    <string name="language">Langue</string><string name="dark_mode">Mode sombre</string>
+    <string-array name="time_options"><item>1 min</item><item>2 min</item><item>∞</item></string-array>
+    <string-array name="language_options"><item>Langue du système</item><item>English</item><item>Русский</item><item>עברית</item><item>Français</item><item>Italiano</item><item>Deutsch</item><item>Português</item></string-array>
+    <string-array name="difficulty_levels"><item>Facile</item><item>Moyen</item><item>Difficile</item></string-array>
+    <string name="back_button_desc">Retour au menu principal</string><string name="btn_ok">Valider la réponse</string><string name="game_over">Manche terminée !</string>
+    <string name="results_title">Résultats de la partie</string><string name="no_results">Aucun résultat. Jouez une manche !</string><string name="clean_results">EFFACER</string>
+    <string name="confirm_clear_results_title">Effacer les résultats ?</string><string name="confirm_clear_results_message">Voulez-vous vraiment supprimer tous les résultats ? Cette action est irréversible.</string>
+    <string name="yes">Oui</string><string name="no">Non</string>
+    <string name="content_desc_problem_area">Exercice mathématique</string><string name="content_desc_input_area">Réponse saisie</string><string name="content_desc_time_indicator">Temps restant</string>
+</resources>

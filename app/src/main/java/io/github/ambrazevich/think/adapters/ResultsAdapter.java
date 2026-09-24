@@ -15,18 +15,14 @@ import androidx.core.content.ContextCompat;
 
 import io.github.ambrazevich.think.R;
 import io.github.ambrazevich.think.data.GameResult;
+import io.github.ambrazevich.think.gameutils.LocalizedDateFormatter;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ResultViewHolder> {
 
-    private List<GameResult> resultsList;
-    private Context context;
-    // Date format to match "dd/MM/yyyy HH:mm"
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+    private final List<GameResult> resultsList;
+    private final Context context;
 
 
     public ResultsAdapter(Context context, List<GameResult> resultsList) {
@@ -69,10 +65,8 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ResultVi
 
         holder.textViewScore.setText(builder);
 
-        // Format the timestamp and set the date/time text (e.g., "22/06/2025 11:31")
-        holder.textViewDateTime.setText(String.format(Locale.getDefault(),
-                context.getString(R.string.results_date_format),
-                dateFormat.format(new Date(result.getTimestamp()))));
+        holder.textViewDateTime.setText(
+                LocalizedDateFormatter.format(context, result.getTimestamp()));
     }
 
     @Override

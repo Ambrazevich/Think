@@ -1,6 +1,5 @@
 package io.github.ambrazevich.think;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -9,15 +8,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import io.github.ambrazevich.think.data.Settings;
-import io.github.ambrazevich.think.gameutils.LocaleHelper;
 import io.github.ambrazevich.think.gameutils.StorageHelper;
 
 public class MainActivity extends AppCompatActivity {
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(LocaleHelper.onAttach(newBase));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

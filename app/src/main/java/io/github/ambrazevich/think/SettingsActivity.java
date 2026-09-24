@@ -5,9 +5,7 @@ import android.util.Log;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import io.github.ambrazevich.think.gameutils.LocaleHelper;
-import android.content.Context;
-import android.content.Intent;
+import io.github.ambrazevich.think.gameutils.AppLanguageManager;
 import io.github.ambrazevich.think.data.OperationType;
 import io.github.ambrazevich.think.data.Settings;
 import io.github.ambrazevich.think.gameutils.StorageHelper;
@@ -29,11 +27,6 @@ public class SettingsActivity extends AppCompatActivity {
     private StorageHelper storageHelper;
     private Settings currentSettings;
     private String[] languageCodes;
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(LocaleHelper.onAttach(newBase));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +111,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         // Load Language
-        String currentLang = LocaleHelper.getLanguage(this);
+        String currentLang = AppLanguageManager.getSelectedLanguage();
         for (int i = 0; i < languageCodes.length; i++) {
             if (languageCodes[i].equals(currentLang)) {
                 numberPickerLanguage.setValue(i);
@@ -173,12 +166,9 @@ public class SettingsActivity extends AppCompatActivity {
 
     private boolean applySelectedLanguageIfChanged() {
         String selectedLanguage = languageCodes[numberPickerLanguage.getValue()];
-        if (selectedLanguage.equals(LocaleHelper.getLanguage(this))) return false;
+        if (selectedLanguage.equals(AppLanguageManager.getSelectedLanguage())) return false;
 
-        LocaleHelper.setLocale(this, selectedLanguage);
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+        AppLanguageManager.setSelectedLanguage(selectedLanguage);
         return true;
     }
 
@@ -190,7 +180,12 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (persistSettingsFromUI(true) && !applySelectedLanguageIfChanged()) {
+        if (!persistSettingsFromUI(true)) {
+            return;
+        }
+        if (applySelectedLanguageIfChanged()) {
+            finish();
+        } else {
             super.onBackPressed();
         }
     }

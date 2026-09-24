@@ -1,6 +1,5 @@
 package io.github.ambrazevich.think;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -18,7 +17,6 @@ import io.github.ambrazevich.think.data.GameResult;
 import io.github.ambrazevich.think.data.Problem;
 import io.github.ambrazevich.think.data.Settings;
 import io.github.ambrazevich.think.gameutils.Fraction;
-import io.github.ambrazevich.think.gameutils.LocaleHelper;
 import io.github.ambrazevich.think.gameutils.ProblemGenerator;
 import io.github.ambrazevich.think.gameutils.StorageHelper;
 import java.math.BigDecimal;
@@ -57,11 +55,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = "GameActivity";
 
     @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(LocaleHelper.onAttach(newBase));
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         storageHelper = new StorageHelper(this);
@@ -83,10 +76,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         buttonSlash = findViewById(R.id.buttonSlash);
 
         setupKeypad();
-        if (savedInstanceState == null) {
+        Bundle stateToRestore = GameRoundStateStore.get();
+        if (stateToRestore == null
+                && savedInstanceState != null
+                && savedInstanceState.containsKey(STATE_PROBLEM)) {
+            stateToRestore = savedInstanceState;
+        }
+        if (stateToRestore == null) {
             startGame();
         } else {
-            restoreGame(savedInstanceState);
+            restoreGame(stateToRestore);
         }
     }
 
@@ -106,6 +105,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         textViewHint.setVisibility(View.GONE);
         hintUsedForCurrentProblem = false;
         problemActive = true;
+        snapshotRoundState();
     }
 
     private void updateKeypadForProblem(Problem.AnswerType answerType) {
@@ -149,6 +149,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             } else {
                 incorrectAnswers++;
             }
+            snapshotRoundState();
             nextProblemRunnable = () -> {
                 if (!gameFinished && !isFinishing() && !isDestroyed()) {
                     generateNewProblem();
@@ -161,12 +162,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             currentInput.setLength(0);
             updateInputDisplay();
             problemActive = true;
+            snapshotRoundState();
         }
     }
 
     private void finishGame(boolean timedOut, boolean isError) {
         if (gameFinished) return;
         gameFinished = true;
+        GameRoundStateStore.clear();
         problemActive = false;
         cancelPendingCallbacks();
         if (roundTimer != null) { roundTimer.cancel(); roundTimer = null; }
@@ -193,15 +196,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if ((id == R.id.buttonDot || id == R.id.buttonSlash) && !v.isEnabled()) return;
         if (id == R.id.buttonOK) { checkAnswer();
         } else if (id == R.id.buttonHint) { showHint();
-        } else if (id == R.id.buttonClear) { currentInput.setLength(0); updateInputDisplay();
+        } else if (id == R.id.buttonClear) { currentInput.setLength(0); updateInputDisplay(); snapshotRoundState();
         } else if (v instanceof Button) {
             String text = ((Button) v).getText().toString();
             if (text.equals(".") && (currentInput.toString().contains(".") || currentInput.toString().contains("/"))) return;
             if (text.equals("/") && (currentInput.toString().contains("/") || currentInput.toString().contains(".") || currentInput.length() == 0)) return;
-            if (currentInput.length() < 15) { currentInput.append(text); updateInputDisplay(); }
+            if (currentInput.length() < 15) { currentInput.append(text); updateInputDisplay(); snapshotRoundState(); }
         }
     }
     private void startGame() {
+        GameRoundStateStore.clear();
         correctAnswers = 0; incorrectAnswers = 0; gameFinished = false;
         isEndlessMode = gameSettings.getRoundTimeMillis() == 0L;
         if (isEndlessMode) {
@@ -262,6 +266,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             };
             mainHandler.postDelayed(nextProblemRunnable, DELAY_NEXT_PROBLEM);
         }
+        snapshotRoundState();
     }
     private void showRestoredHint() {
         textViewHint.setText(currentProblem.getCorrectAnswerString());
@@ -269,8 +274,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         hintRunnable = () -> textViewHint.setVisibility(View.GONE);
         mainHandler.postDelayed(hintRunnable, HINT_VISIBILITY_DURATION_MS);
     }
-    @Override protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+    private void writeRoundState(Bundle outState) {
         outState.putSerializable(STATE_PROBLEM, currentProblem);
         outState.putString(STATE_INPUT, currentInput.toString());
         outState.putInt(STATE_CORRECT, correctAnswers);
@@ -280,6 +284,27 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         outState.putBoolean(STATE_PROBLEM_ACTIVE, problemActive);
         outState.putBoolean(STATE_GAME_FINISHED, gameFinished);
         outState.putLong(STATE_ROUND_END, roundEndElapsedRealtime);
+    }
+    private void snapshotRoundState() {
+        if (currentProblem == null || gameFinished) {
+            return;
+        }
+        Bundle state = new Bundle();
+        writeRoundState(state);
+        GameRoundStateStore.save(state);
+    }
+    @Override protected void onSaveInstanceState(Bundle outState) {
+        writeRoundState(outState);
+        GameRoundStateStore.save(outState);
+        super.onSaveInstanceState(outState);
+    }
+    @Override protected void onStop() {
+        if (!gameFinished && currentProblem != null) {
+            Bundle state = new Bundle();
+            writeRoundState(state);
+            GameRoundStateStore.save(state);
+        }
+        super.onStop();
     }
     private void updateInputDisplay() { if (textViewInput != null) textViewInput.setText(currentInput.toString()); }
     private void startTimer(long totalMillis) {
@@ -296,6 +321,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             textViewHint.setVisibility(View.VISIBLE);
             textViewHint.bringToFront(); // Ensure it's on top
             hintUsedForCurrentProblem = true;
+            snapshotRoundState();
             hintRunnable = () -> { if (textViewHint != null) textViewHint.setVisibility(View.GONE); };
             mainHandler.postDelayed(hintRunnable, HINT_VISIBILITY_DURATION_MS);
         }

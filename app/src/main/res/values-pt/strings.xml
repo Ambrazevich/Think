@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">Definições</string><string name="results">Resultados</string><string name="start_game">Iniciar</string>
+    <string name="level">Nível</string><string name="time">Tempo</string><string name="operations">Operações</string>
+    <string name="addition">Adição</string><string name="subtraction">Subtração</string><string name="multiplication">Multiplicação</string><string name="division">Divisão</string>
+    <string name="power">Potência</string><string name="square_root">Raiz quadrada</string><string name="common_fractions">Frações comuns</string><string name="decimal_fractions">Números decimais</string>
+    <string name="error_select_operation">Seleciona pelo menos uma operação matemática.</string><string name="configure_settings_first">Seleciona primeiro pelo menos uma operação nas definições.</string>
+    <string name="game_error_gen">Não foi possível gerar um novo exercício.</string><string name="game_error_end">A ronda terminou devido a um erro.</string>
+    <string name="language">Idioma</string><string name="dark_mode">Tema escuro</string>
+    <string-array name="time_options"><item>1 min</item><item>2 min</item><item>∞</item></string-array>
+    <string-array name="language_options"><item>Como no sistema</item><item>English</item><item>Русский</item><item>עברית</item><item>Français</item><item>Italiano</item><item>Deutsch</item><item>Português</item></string-array>
+    <string-array name="difficulty_levels"><item>Fácil</item><item>Médio</item><item>Difícil</item></string-array>
+    <string name="back_button_desc">Voltar ao menu principal</string><string name="btn_ok">Confirmar resposta</string><string name="game_over">Ronda terminada!</string>
+    <string name="results_title">Resultados do jogo</string><string name="no_results">Ainda não há resultados. Joga uma ronda!</string><string name="clean_results">LIMPAR</string>
+    <string name="confirm_clear_results_title">Limpar os resultados?</string><string name="confirm_clear_results_message">Queres eliminar todos os resultados? Esta ação não pode ser anulada.</string>
+    <string name="yes">Sim</string><string name="no">Não</string>
+    <string name="content_desc_problem_area">Exercício matemático</string><string name="content_desc_input_area">Resposta introduzida</string><string name="content_desc_time_indicator">Tempo restante</string>
+</resources>

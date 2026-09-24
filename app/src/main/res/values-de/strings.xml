@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">Einstellungen</string><string name="results">Ergebnisse</string><string name="start_game">Starten</string>
+    <string name="level">Stufe</string><string name="time">Zeit</string><string name="operations">Rechenarten</string>
+    <string name="addition">Addition</string><string name="subtraction">Subtraktion</string><string name="multiplication">Multiplikation</string><string name="division">Division</string>
+    <string name="power">Potenz</string><string name="square_root">Quadratwurzel</string><string name="common_fractions">Gewöhnliche Brüche</string><string name="decimal_fractions">Dezimalzahlen</string>
+    <string name="error_select_operation">Wähle mindestens eine Rechenart aus.</string><string name="configure_settings_first">Wähle zuerst mindestens eine Rechenart in den Einstellungen aus.</string>
+    <string name="game_error_gen">Eine neue Aufgabe konnte nicht erstellt werden.</string><string name="game_error_end">Die Runde wurde wegen eines Fehlers beendet.</string>
+    <string name="language">Sprache</string><string name="dark_mode">Dunkles Design</string>
+    <string-array name="time_options"><item>1 Min.</item><item>2 Min.</item><item>∞</item></string-array>
+    <string-array name="language_options"><item>Wie im System</item><item>English</item><item>Русский</item><item>עברית</item><item>Français</item><item>Italiano</item><item>Deutsch</item><item>Português</item></string-array>
+    <string-array name="difficulty_levels"><item>Leicht</item><item>Mittel</item><item>Schwer</item></string-array>
+    <string name="back_button_desc">Zurück zum Hauptmenü</string><string name="btn_ok">Antwort bestätigen</string><string name="game_over">Runde beendet!</string>
+    <string name="results_title">Spielergebnisse</string><string name="no_results">Noch keine Ergebnisse. Spiele eine Runde!</string><string name="clean_results">LÖSCHEN</string>
+    <string name="confirm_clear_results_title">Ergebnisse löschen?</string><string name="confirm_clear_results_message">Möchtest du alle Spielergebnisse löschen? Dies kann nicht rückgängig gemacht werden.</string>
+    <string name="yes">Ja</string><string name="no">Nein</string>
+    <string name="content_desc_problem_area">Mathematische Aufgabe</string><string name="content_desc_input_area">Eingegebene Antwort</string><string name="content_desc_time_indicator">Verbleibende Zeit</string>
+</resources>

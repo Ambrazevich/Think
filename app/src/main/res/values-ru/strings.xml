@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">Настройки</string>
+    <string name="results">Результаты</string>
+    <string name="start_game">Начать</string>
+    <string name="level">Уровень</string>
+    <string name="time">Время</string>
+    <string name="operations">Операции</string>
+    <string name="addition">Сложение</string>
+    <string name="subtraction">Вычитание</string>
+    <string name="multiplication">Умножение</string>
+    <string name="division">Деление</string>
+    <string name="power">Степень</string>
+    <string name="square_root">Квадратный корень</string>
+    <string name="common_fractions">Обыкновенные дроби</string>
+    <string name="decimal_fractions">Десятичные дроби</string>
+    <string name="error_select_operation">Выберите хотя бы одну математическую операцию.</string>
+    <string name="configure_settings_first">Сначала выберите в настройках хотя бы одну операцию.</string>
+    <string name="game_error_gen">Не удалось создать новую задачу.</string>
+    <string name="game_error_end">Раунд завершён из-за ошибки.</string>
+    <string name="language">Язык</string>
+    <string name="dark_mode">Тёмная тема</string>
+    <string-array name="time_options"><item>1 мин</item><item>2 мин</item><item>∞</item></string-array>
+    <string-array name="language_options">
+        <item>Как в системе</item><item>English</item><item>Русский</item><item>עברית</item>
+        <item>Français</item><item>Italiano</item><item>Deutsch</item><item>Português</item>
+    </string-array>
+    <string-array name="difficulty_levels"><item>Легко</item><item>Средне</item><item>Сложно</item></string-array>
+    <string name="back_button_desc">Вернуться в главное меню</string>
+    <string name="btn_ok">Отправить ответ</string>
+    <string name="game_over">Раунд окончен!</string>
+    <string name="results_title">Результаты игры</string>
+    <string name="no_results">Результатов пока нет. Сыграйте раунд!</string>
+    <string name="clean_results">ОЧИСТИТЬ</string>
+    <string name="confirm_clear_results_title">Очистить результаты?</string>
+    <string name="confirm_clear_results_message">Удалить все результаты игр? Это действие нельзя отменить.</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="content_desc_problem_area">Математическая задача</string>
+    <string name="content_desc_input_area">Введённый ответ</string>
+    <string name="content_desc_time_indicator">Оставшееся время</string>
+</resources>
