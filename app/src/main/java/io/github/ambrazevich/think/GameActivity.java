@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +42,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Runnable nextProblemRunnable;
     private Runnable finishRunnable;
     private boolean gameFinished;
+    private long roundEndElapsedRealtime;
+    private static final String STATE_PROBLEM = "problem";
+    private static final String STATE_INPUT = "input";
+    private static final String STATE_CORRECT = "correct";
+    private static final String STATE_INCORRECT = "incorrect";
+    private static final String STATE_HINT_USED = "hint_used";
+    private static final String STATE_HINT_VISIBLE = "hint_visible";
+    private static final String STATE_PROBLEM_ACTIVE = "problem_active";
+    private static final String STATE_GAME_FINISHED = "game_finished";
+    private static final String STATE_ROUND_END = "round_end";
     private static final int HINT_VISIBILITY_DURATION_MS = 3000;
     private static final long DELAY_NEXT_PROBLEM = 750;
     private static final String TAG = "GameActivity";
@@ -72,7 +83,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         buttonSlash = findViewById(R.id.buttonSlash);
 
         setupKeypad();
-        startGame();
+        if (savedInstanceState == null) {
+            startGame();
+        } else {
+            restoreGame(savedInstanceState);
+        }
     }
 
     private void generateNewProblem() {
@@ -196,9 +211,75 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             progressBarTime.setVisibility(View.VISIBLE);
             progressBarTime.setMax((int) (gameSettings.getRoundTimeMillis() / 1000));
+            roundEndElapsedRealtime = SystemClock.elapsedRealtime() + gameSettings.getRoundTimeMillis();
             startTimer(gameSettings.getRoundTimeMillis());
         }
         generateNewProblem();
+    }
+    private void restoreGame(Bundle state) {
+        if (state.getBoolean(STATE_GAME_FINISHED)) {
+            finish(); // The completed result was saved before the Activity was recreated.
+            return;
+        }
+        currentProblem = (Problem) state.getSerializable(STATE_PROBLEM);
+        if (currentProblem == null) {
+            startGame();
+            return;
+        }
+        correctAnswers = state.getInt(STATE_CORRECT);
+        incorrectAnswers = state.getInt(STATE_INCORRECT);
+        hintUsedForCurrentProblem = state.getBoolean(STATE_HINT_USED);
+        problemActive = state.getBoolean(STATE_PROBLEM_ACTIVE);
+        currentInput = new StringBuilder(state.getString(STATE_INPUT, ""));
+        isEndlessMode = gameSettings.getRoundTimeMillis() == 0L;
+        textViewProblem.setText(getString(R.string.problem_format, currentProblem.getDisplayEquation()));
+        updateKeypadForProblem(currentProblem.getAnswerType());
+        updateInputDisplay();
+        if (state.getBoolean(STATE_HINT_VISIBLE)) {
+            showRestoredHint();
+        } else {
+            textViewHint.setVisibility(View.GONE);
+        }
+        progressBarTime.setVisibility(View.VISIBLE);
+        if (isEndlessMode) {
+            progressBarTime.setMax(100);
+            progressBarTime.setProgress(100);
+        } else {
+            roundEndElapsedRealtime = state.getLong(STATE_ROUND_END);
+            progressBarTime.setMax((int) (gameSettings.getRoundTimeMillis() / 1000));
+            long remaining = roundEndElapsedRealtime - SystemClock.elapsedRealtime();
+            if (remaining <= 0) {
+                progressBarTime.setProgress(0);
+                finishGame(true, false);
+                return;
+            }
+            startTimer(remaining);
+        }
+        // A correct answer is displayed briefly before the following problem.
+        if (!problemActive) {
+            nextProblemRunnable = () -> {
+                if (!gameFinished && !isFinishing() && !isDestroyed()) generateNewProblem();
+            };
+            mainHandler.postDelayed(nextProblemRunnable, DELAY_NEXT_PROBLEM);
+        }
+    }
+    private void showRestoredHint() {
+        textViewHint.setText(currentProblem.getCorrectAnswerString());
+        textViewHint.setVisibility(View.VISIBLE);
+        hintRunnable = () -> textViewHint.setVisibility(View.GONE);
+        mainHandler.postDelayed(hintRunnable, HINT_VISIBILITY_DURATION_MS);
+    }
+    @Override protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(STATE_PROBLEM, currentProblem);
+        outState.putString(STATE_INPUT, currentInput.toString());
+        outState.putInt(STATE_CORRECT, correctAnswers);
+        outState.putInt(STATE_INCORRECT, incorrectAnswers);
+        outState.putBoolean(STATE_HINT_USED, hintUsedForCurrentProblem);
+        outState.putBoolean(STATE_HINT_VISIBLE, textViewHint != null && textViewHint.getVisibility() == View.VISIBLE);
+        outState.putBoolean(STATE_PROBLEM_ACTIVE, problemActive);
+        outState.putBoolean(STATE_GAME_FINISHED, gameFinished);
+        outState.putLong(STATE_ROUND_END, roundEndElapsedRealtime);
     }
     private void updateInputDisplay() { if (textViewInput != null) textViewInput.setText(currentInput.toString()); }
     private void startTimer(long totalMillis) {

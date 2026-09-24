@@ -1,8 +1,10 @@
 package io.github.ambrazevich.think.data;
 
 import io.github.ambrazevich.think.gameutils.Fraction;
+import java.io.Serializable;
 
-public class Problem {
+public class Problem implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     public enum AnswerType {
         INTEGER,

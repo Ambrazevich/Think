@@ -2,9 +2,11 @@ package io.github.ambrazevich.think.gameutils;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Fraction {
+public class Fraction implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int numerator;
     private int denominator;
 
