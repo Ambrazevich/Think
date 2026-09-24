@@ -22,7 +22,7 @@
     <string name="dark_mode">Тёмная тема</string>
     <string-array name="time_options"><item>1 мин</item><item>2 мин</item><item>∞</item></string-array>
     <string-array name="language_options">
-        <item>Как в системе</item><item>English</item><item>Русский</item><item>עברית</item>
+        <item>Автомат</item><item>English</item><item>Русский</item><item>עברית</item>
         <item>Français</item><item>Italiano</item><item>Deutsch</item><item>Português</item>
     </string-array>
     <string-array name="difficulty_levels"><item>Легко</item><item>Средне</item><item>Сложно</item></string-array>

@@ -9,7 +9,7 @@
     <string name="game_error_gen">Impossible de générer un nouvel exercice.</string><string name="game_error_end">La manche s’est terminée à cause d’une erreur.</string>
     <string name="language">Langue</string><string name="dark_mode">Mode sombre</string>
     <string-array name="time_options"><item>1 min</item><item>2 min</item><item>∞</item></string-array>
-    <string-array name="language_options"><item>Langue du système</item><item>English</item><item>Русский</item><item>עברית</item><item>Français</item><item>Italiano</item><item>Deutsch</item><item>Português</item></string-array>
+    <string-array name="language_options"><item>Auto</item><item>English</item><item>Русский</item><item>עברית</item><item>Français</item><item>Italiano</item><item>Deutsch</item><item>Português</item></string-array>
     <string-array name="difficulty_levels"><item>Facile</item><item>Moyen</item><item>Difficile</item></string-array>
     <string name="back_button_desc">Retour au menu principal</string><string name="btn_ok">Valider la réponse</string><string name="game_over">Manche terminée !</string>
     <string name="results_title">Résultats de la partie</string><string name="no_results">Aucun résultat. Jouez une manche !</string><string name="clean_results">EFFACER</string>

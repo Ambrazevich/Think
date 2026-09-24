@@ -8,7 +8,7 @@
     <string name="game_error_gen">Eine neue Aufgabe konnte nicht erstellt werden.</string><string name="game_error_end">Die Runde wurde wegen eines Fehlers beendet.</string>
     <string name="language">Sprache</string><string name="dark_mode">Dunkles Design</string>
     <string-array name="time_options"><item>1 Min.</item><item>2 Min.</item><item>∞</item></string-array>
-    <string-array name="language_options"><item>Wie im System</item><item>English</item><item>Русский</item><item>עברית</item><item>Français</item><item>Italiano</item><item>Deutsch</item><item>Português</item></string-array>
+    <string-array name="language_options"><item>Autom.</item><item>English</item><item>Русский</item><item>עברית</item><item>Français</item><item>Italiano</item><item>Deutsch</item><item>Português</item></string-array>
     <string-array name="difficulty_levels"><item>Leicht</item><item>Mittel</item><item>Schwer</item></string-array>
     <string name="back_button_desc">Zurück zum Hauptmenü</string><string name="btn_ok">Antwort bestätigen</string><string name="game_over">Runde beendet!</string>
     <string name="results_title">Spielergebnisse</string><string name="no_results">Noch keine Ergebnisse. Spiele eine Runde!</string><string name="clean_results">LÖSCHEN</string>

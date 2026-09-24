@@ -8,7 +8,7 @@
     <string name="game_error_gen">Não foi possível gerar um novo exercício.</string><string name="game_error_end">A ronda terminou devido a um erro.</string>
     <string name="language">Idioma</string><string name="dark_mode">Tema escuro</string>
     <string-array name="time_options"><item>1 min</item><item>2 min</item><item>∞</item></string-array>
-    <string-array name="language_options"><item>Como no sistema</item><item>English</item><item>Русский</item><item>עברית</item><item>Français</item><item>Italiano</item><item>Deutsch</item><item>Português</item></string-array>
+    <string-array name="language_options"><item>Auto</item><item>English</item><item>Русский</item><item>עברית</item><item>Français</item><item>Italiano</item><item>Deutsch</item><item>Português</item></string-array>
     <string-array name="difficulty_levels"><item>Fácil</item><item>Médio</item><item>Difícil</item></string-array>
     <string name="back_button_desc">Voltar ao menu principal</string><string name="btn_ok">Confirmar resposta</string><string name="game_over">Ronda terminada!</string>
     <string name="results_title">Resultados do jogo</string><string name="no_results">Ainda não há resultados. Joga uma ronda!</string><string name="clean_results">LIMPAR</string>

@@ -8,7 +8,7 @@
     <string name="game_error_gen">Impossibile generare un nuovo esercizio.</string><string name="game_error_end">Il turno è terminato a causa di un errore.</string>
     <string name="language">Lingua</string><string name="dark_mode">Tema scuro</string>
     <string-array name="time_options"><item>1 min</item><item>2 min</item><item>∞</item></string-array>
-    <string-array name="language_options"><item>Come il sistema</item><item>English</item><item>Русский</item><item>עברית</item><item>Français</item><item>Italiano</item><item>Deutsch</item><item>Português</item></string-array>
+    <string-array name="language_options"><item>Auto</item><item>English</item><item>Русский</item><item>עברית</item><item>Français</item><item>Italiano</item><item>Deutsch</item><item>Português</item></string-array>
     <string-array name="difficulty_levels"><item>Facile</item><item>Medio</item><item>Difficile</item></string-array>
     <string name="back_button_desc">Torna al menu principale</string><string name="btn_ok">Invia risposta</string><string name="game_over">Turno terminato!</string>
     <string name="results_title">Risultati della partita</string><string name="no_results">Nessun risultato. Gioca un turno!</string><string name="clean_results">CANCELLA</string>

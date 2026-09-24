@@ -22,7 +22,7 @@
     <string name="dark_mode">מצב כהה</string>
     <string-array name="time_options"><item>דקה אחת</item><item>2 דקות</item><item>∞</item></string-array>
     <string-array name="language_options">
-        <item>כמו במערכת</item><item>English</item><item>Русский</item><item>עברית</item>
+        <item>אוטומטי</item><item>English</item><item>Русский</item><item>עברית</item>
         <item>Français</item><item>Italiano</item><item>Deutsch</item><item>Português</item>
     </string-array>
     <string-array name="difficulty_levels"><item>קל</item><item>בינוני</item><item>קשה</item></string-array>
