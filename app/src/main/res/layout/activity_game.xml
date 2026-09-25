@@ -136,7 +136,7 @@
             android:layout_width="0dp" android:layout_height="0dp" android:layout_margin="4dp"
             android:contentDescription="@string/btn_ok"
             app:icon="@drawable/ic_check" app:iconGravity="textStart" app:iconPadding="0dp"
-            app:iconSize="28dp" app:iconTint="@color/game_on_primary"
+            app:iconSize="24dp" app:iconTint="@color/game_on_primary"
             app:layout_column="3" app:layout_columnWeight="1" app:layout_gravity="fill"
             app:layout_row="0" app:layout_rowWeight="1" />
 
