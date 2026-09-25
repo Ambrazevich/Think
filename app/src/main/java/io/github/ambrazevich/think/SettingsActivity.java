@@ -3,6 +3,7 @@ package io.github.ambrazevich.think;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.NumberPicker;
+import android.widget.ScrollView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import io.github.ambrazevich.think.gameutils.AppLanguageManager;
@@ -15,11 +16,17 @@ import java.util.Set;
 
 public class SettingsActivity extends AppCompatActivity {
     private static final String TAG = "SettingsActivity";
+    private static final String STATE_SCROLL_Y = "settings_scroll_y";
+    private static final String STATE_DIFFICULTY = "settings_difficulty";
+    private static final String STATE_TIME = "settings_time";
+    private static final String STATE_OPERATIONS = "settings_operations";
+    private static final String STATE_DARK_MODE = "settings_dark_mode";
 
     // --- Using NumberPickers instead of Spinners ---
     private NumberPicker numberPickerDifficulty;
     private NumberPicker numberPickerTime;
-    private NumberPicker numberPickerLanguage; // Add Language Picker
+    private NumberPicker numberPickerLanguage;
+    private ScrollView settingsScroll;
 
     private SwitchMaterial switchAddition, switchSubtraction, switchMultiplication, switchDivision, switchPower,
             switchSquareRoot, switchCommonFractions, switchDecimalFractions, switchDarkMode;
@@ -27,6 +34,7 @@ public class SettingsActivity extends AppCompatActivity {
     private StorageHelper storageHelper;
     private Settings currentSettings;
     private String[] languageCodes;
+    private boolean updatingLanguagePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +53,8 @@ public class SettingsActivity extends AppCompatActivity {
         // Initialize views
         numberPickerDifficulty = findViewById(R.id.numberPickerDifficulty);
         numberPickerTime = findViewById(R.id.numberPickerTime);
-        numberPickerLanguage = findViewById(R.id.numberPickerLanguage); // Init
+        numberPickerLanguage = findViewById(R.id.numberPickerLanguage);
+        settingsScroll = findViewById(R.id.settingsScroll);
         switchAddition = findViewById(R.id.switchAddition);
         switchSubtraction = findViewById(R.id.switchSubtraction);
         switchMultiplication = findViewById(R.id.switchMultiplication);
@@ -58,6 +67,10 @@ public class SettingsActivity extends AppCompatActivity {
 
         setupNumberPickers();
         loadSettingsToUI();
+        restoreUiState(savedInstanceState);
+
+        numberPickerLanguage.setOnValueChangedListener(
+                (picker, oldValue, newValue) -> handleLanguageSelection(newValue));
 
         switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
             currentSettings.setDarkMode(isChecked);
@@ -112,12 +125,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         // Load Language
         String currentLang = AppLanguageManager.getSelectedLanguage();
-        for (int i = 0; i < languageCodes.length; i++) {
-            if (languageCodes[i].equals(currentLang)) {
-                numberPickerLanguage.setValue(i);
-                break;
-            }
-        }
+        setLanguagePickerValue(findLanguageIndex(currentLang));
 
         Set<OperationType> ops = currentSettings.getEnabledOperations();
         if (ops == null) ops = new HashSet<>();
@@ -134,10 +142,56 @@ public class SettingsActivity extends AppCompatActivity {
         switchDarkMode.setChecked(currentSettings.isDarkMode());
     }
 
-    private boolean persistSettingsFromUI(boolean showValidationError) {
-        int timeValue = numberPickerTime.getValue();
-        long roundTimeMillis = timeValue == 2 ? 0L : (long) (timeValue + 1) * 60_000L;
+    private int findLanguageIndex(String languageCode) {
+        for (int i = 0; i < languageCodes.length; i++) {
+            if (languageCodes[i].equals(languageCode)) return i;
+        }
+        return 0;
+    }
 
+    private void setLanguagePickerValue(int value) {
+        updatingLanguagePicker = true;
+        numberPickerLanguage.setValue(value);
+        updatingLanguagePicker = false;
+    }
+
+    void handleLanguageSelection(int newValue) {
+        if (updatingLanguagePicker) return;
+
+        String selectedLanguage = languageCodes[newValue];
+        if (selectedLanguage.equals(AppLanguageManager.getSelectedLanguage())) return;
+
+        persistSettingsBeforeLocaleChange();
+        AppLanguageManager.setSelectedLanguage(selectedLanguage);
+    }
+
+    private void restoreUiState(Bundle savedInstanceState) {
+        if (savedInstanceState == null) return;
+
+        numberPickerDifficulty.setValue(savedInstanceState.getInt(
+                STATE_DIFFICULTY, numberPickerDifficulty.getValue()));
+        numberPickerTime.setValue(savedInstanceState.getInt(
+                STATE_TIME, numberPickerTime.getValue()));
+
+        boolean[] operationStates = savedInstanceState.getBooleanArray(STATE_OPERATIONS);
+        if (operationStates != null && operationStates.length == 8) {
+            switchAddition.setChecked(operationStates[0]);
+            switchSubtraction.setChecked(operationStates[1]);
+            switchMultiplication.setChecked(operationStates[2]);
+            switchDivision.setChecked(operationStates[3]);
+            switchPower.setChecked(operationStates[4]);
+            switchSquareRoot.setChecked(operationStates[5]);
+            switchCommonFractions.setChecked(operationStates[6]);
+            switchDecimalFractions.setChecked(operationStates[7]);
+        }
+        switchDarkMode.setChecked(savedInstanceState.getBoolean(
+                STATE_DARK_MODE, switchDarkMode.isChecked()));
+
+        int scrollY = savedInstanceState.getInt(STATE_SCROLL_Y, 0);
+        settingsScroll.post(() -> settingsScroll.scrollTo(0, scrollY));
+    }
+
+    private boolean persistSettingsFromUI(boolean showValidationError) {
         Set<OperationType> enabledOps = new HashSet<>();
         if (switchAddition.isChecked()) enabledOps.add(OperationType.ADDITION);
         if (switchSubtraction.isChecked()) enabledOps.add(OperationType.SUBTRACTION);
@@ -155,21 +209,48 @@ public class SettingsActivity extends AppCompatActivity {
             return false;
         }
 
-        currentSettings.setDifficultyLevel(Settings.Difficulty.values()[numberPickerDifficulty.getValue()]);
-        currentSettings.setRoundTimeMillis(roundTimeMillis);
+        copyBasicSettingsFromUI();
         currentSettings.setEnabledOperations(enabledOps);
-        currentSettings.setDarkMode(switchDarkMode.isChecked());
         storageHelper.saveSettings(currentSettings);
         Log.d(TAG, "Settings saved successfully.");
         return true;
     }
 
-    private boolean applySelectedLanguageIfChanged() {
-        String selectedLanguage = languageCodes[numberPickerLanguage.getValue()];
-        if (selectedLanguage.equals(AppLanguageManager.getSelectedLanguage())) return false;
+    private void persistSettingsBeforeLocaleChange() {
+        if (persistSettingsFromUI(false)) return;
 
-        AppLanguageManager.setSelectedLanguage(selectedLanguage);
-        return true;
+        // Keep the last valid operation set, but do not lose unrelated wheel/switch changes.
+        copyBasicSettingsFromUI();
+        storageHelper.saveSettings(currentSettings);
+    }
+
+    private void copyBasicSettingsFromUI() {
+        int timeValue = numberPickerTime.getValue();
+        long roundTimeMillis = timeValue == 2 ? 0L : (long) (timeValue + 1) * 60_000L;
+
+        currentSettings.setDifficultyLevel(
+                Settings.Difficulty.values()[numberPickerDifficulty.getValue()]);
+        currentSettings.setRoundTimeMillis(roundTimeMillis);
+        currentSettings.setDarkMode(switchDarkMode.isChecked());
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt(STATE_SCROLL_Y, settingsScroll.getScrollY());
+        outState.putInt(STATE_DIFFICULTY, numberPickerDifficulty.getValue());
+        outState.putInt(STATE_TIME, numberPickerTime.getValue());
+        outState.putBooleanArray(STATE_OPERATIONS, new boolean[]{
+                switchAddition.isChecked(),
+                switchSubtraction.isChecked(),
+                switchMultiplication.isChecked(),
+                switchDivision.isChecked(),
+                switchPower.isChecked(),
+                switchSquareRoot.isChecked(),
+                switchCommonFractions.isChecked(),
+                switchDecimalFractions.isChecked()
+        });
+        outState.putBoolean(STATE_DARK_MODE, switchDarkMode.isChecked());
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -183,10 +264,6 @@ public class SettingsActivity extends AppCompatActivity {
         if (!persistSettingsFromUI(true)) {
             return;
         }
-        if (applySelectedLanguageIfChanged()) {
-            finish();
-        } else {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
     }
 }
