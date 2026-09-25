@@ -5,246 +5,220 @@
     android:id="@+id/gameRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/game_background"
-    android:padding="16dp"
     android:layoutDirection="ltr"
+    android:background="@color/game_background"
+    android:paddingStart="16dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="12dp"
     tools:context=".GameActivity">
 
-    <!-- Time Indicator -->
     <ProgressBar
         android:id="@+id/progressBarTime"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
-        android:layout_height="12dp"
+        android:layout_height="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:contentDescription="@string/content_desc_time_indicator"
         android:max="100"
         android:progress="100"
         android:progressDrawable="@drawable/progress_bar_time"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:contentDescription="@string/content_desc_time_indicator" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Problem Display Area -->
     <TextView
         android:id="@+id/textViewProblem"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        android:textColor="@color/problem_text_color"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:contentDescription="@string/content_desc_problem_area"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center"
+        android:includeFontPadding="false"
+        android:maxLines="2"
+        android:textColor="@color/problem_text_color"
         android:textDirection="ltr"
-        android:fontFamily="sans-serif-black"
-        app:layout_constraintTop_toBottomOf="@id/progressBarTime"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="38sp"
+        app:layout_constraintBottom_toTopOf="@id/textViewInput"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/textViewInput"
-        app:layout_constraintVertical_bias="0.4"
-        tools:text="123 + 456"
-        android:contentDescription="@string/content_desc_problem_area" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progressBarTime"
+        app:layout_constraintVertical_bias="0.48"
+        tools:text="123 + 456 =" />
 
-    <!-- Answer Input Area -->
     <TextView
         android:id="@+id/textViewInput"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:textColor="@color/input_text_color"
-        android:background="@drawable/input_background_shape"  
+        android:layout_height="72dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/input_background_shape"
+        android:contentDescription="@string/content_desc_input_area"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:textDirection="ltr"
-        android:padding="12dp"
-        android:minHeight="70dp"
+        android:includeFontPadding="false"
         android:maxLines="1"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:scrollHorizontally="true"
+        android:textColor="@color/input_text_color"
+        android:textDirection="ltr"
+        android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@id/keypadGrid"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="24dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        tools:text="579"
-        android:contentDescription="@string/content_desc_input_area"/>
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="579" />
 
-    <!-- Hint Display Area (Overlays Input) -->
     <TextView
         android:id="@+id/textViewHint"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:fontFamily="sans-serif-black"
-        android:textColor="@color/input_text_color"
+        android:layout_height="72dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/input_background_shape"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center"
+        android:includeFontPadding="false"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="@color/input_text_color"
         android:textDirection="ltr"
+        android:textSize="36sp"
         android:visibility="gone"
-        android:padding="12dp"
-        android:minHeight="70dp"
         app:layout_constraintBottom_toTopOf="@id/keypadGrid"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="24dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        app:layout_constraintStart_toStartOf="parent"
         tools:text="579"
-        tools:visibility="visible"/>
-        <!-- Note: created a placeholder reference to input_background_shape, 
-             if it doesn't exist I should create it or remove it. 
-             Ideally input should have a subtle background in this dark theme. 
-             I will remove the reference for safety and use color directly if needed, 
-             or just transparent. Let's keep it transparent but maybe add a bottom border manually if needed. 
-             Actually, let's keep it simple: no background drawable reference to avoid crash. -->
+        tools:visibility="visible" />
 
-    <!-- Keypad -->
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/keypadGrid"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.5"
+        android:layoutDirection="ltr"
         app:columnCount="4"
-        app:rowCount="4"
-        android:layoutDirection="ltr">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rowCount="4">
 
-        <!-- Row 0 -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button1"
             style="@style/ThinkKeypadButtonDark"
+            android:layout_width="0dp" android:layout_height="0dp" android:layout_margin="4dp"
             android:text="@string/btn_1"
-            android:layout_width="0dp" android:layout_height="0dp"
-            android:layout_margin="4dp"
-            app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
-            app:layout_row="0" app:layout_column="0" />
+            app:layout_column="0" app:layout_columnWeight="1" app:layout_gravity="fill"
+            app:layout_row="0" app:layout_rowWeight="1" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button2"
             style="@style/ThinkKeypadButtonDark"
+            android:layout_width="0dp" android:layout_height="0dp" android:layout_margin="4dp"
             android:text="@string/btn_2"
-            android:layout_width="0dp" android:layout_height="0dp"
-            android:layout_margin="4dp"
-            app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
-            app:layout_row="0" app:layout_column="1" />
+            app:layout_column="1" app:layout_columnWeight="1" app:layout_gravity="fill"
+            app:layout_row="0" app:layout_rowWeight="1" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button3"
             style="@style/ThinkKeypadButtonDark"
+            android:layout_width="0dp" android:layout_height="0dp" android:layout_margin="4dp"
             android:text="@string/btn_3"
-            android:layout_width="0dp" android:layout_height="0dp"
-            android:layout_margin="4dp"
-            app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
-            app:layout_row="0" app:layout_column="2" />
+            app:layout_column="2" app:layout_columnWeight="1" app:layout_gravity="fill"
+            app:layout_row="0" app:layout_rowWeight="1" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonOK"
-            style="@style/ThinkKeypadButtonLight"
-            app:icon="@drawable/ic_check"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp"
-            app:iconTint="@color/black"
-            app:iconSize="32dp"
+            style="@style/ThinkKeypadButtonPrimary"
+            android:layout_width="0dp" android:layout_height="0dp" android:layout_margin="4dp"
             android:contentDescription="@string/btn_ok"
-            android:layout_width="0dp" android:layout_height="0dp"
-            android:layout_margin="4dp"
-            app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
-            app:layout_row="0" app:layout_column="3" />
+            app:icon="@drawable/ic_check" app:iconGravity="textStart" app:iconPadding="0dp"
+            app:iconSize="28dp" app:iconTint="@color/game_on_primary"
+            app:layout_column="3" app:layout_columnWeight="1" app:layout_gravity="fill"
+            app:layout_row="0" app:layout_rowWeight="1" />
 
-        <!-- Row 1 -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button4"
             style="@style/ThinkKeypadButtonDark"
+            android:layout_width="0dp" android:layout_height="0dp" android:layout_margin="4dp"
             android:text="@string/btn_4"
-            android:layout_width="0dp" android:layout_height="0dp"
-            android:layout_margin="4dp"
-            app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
-            app:layout_row="1" app:layout_column="0" />
+            app:layout_column="0" app:layout_columnWeight="1" app:layout_gravity="fill"
+            app:layout_row="1" app:layout_rowWeight="1" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button5"
             style="@style/ThinkKeypadButtonDark"
+            android:layout_width="0dp" android:layout_height="0dp" android:layout_margin="4dp"
             android:text="@string/btn_5"
-            android:layout_width="0dp" android:layout_height="0dp"
-            android:layout_margin="4dp"
-            app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
-            app:layout_row="1" app:layout_column="1" />
+            app:layout_column="1" app:layout_columnWeight="1" app:layout_gravity="fill"
+            app:layout_row="1" app:layout_rowWeight="1" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button6"
             style="@style/ThinkKeypadButtonDark"
+            android:layout_width="0dp" android:layout_height="0dp" android:layout_margin="4dp"
             android:text="@string/btn_6"
-            android:layout_width="0dp" android:layout_height="0dp"
-            android:layout_margin="4dp"
-            app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
-            app:layout_row="1" app:layout_column="2" />
+            app:layout_column="2" app:layout_columnWeight="1" app:layout_gravity="fill"
+            app:layout_row="1" app:layout_rowWeight="1" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonHint"
             style="@style/ThinkKeypadButtonLight"
+            android:layout_width="0dp" android:layout_height="0dp" android:layout_margin="4dp"
             android:text="@string/btn_hint"
-            android:layout_width="0dp" android:layout_height="0dp"
-            android:layout_margin="4dp"
-            app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
-            app:layout_row="1" app:layout_column="3" />
+            app:layout_column="3" app:layout_columnWeight="1" app:layout_gravity="fill"
+            app:layout_row="1" app:layout_rowWeight="1" />
 
-        <!-- Row 2 -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button7"
             style="@style/ThinkKeypadButtonDark"
+            android:layout_width="0dp" android:layout_height="0dp" android:layout_margin="4dp"
             android:text="@string/btn_7"
-            android:layout_width="0dp" android:layout_height="0dp"
-            android:layout_margin="4dp"
-            app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
-            app:layout_row="2" app:layout_column="0" />
+            app:layout_column="0" app:layout_columnWeight="1" app:layout_gravity="fill"
+            app:layout_row="2" app:layout_rowWeight="1" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button8"
             style="@style/ThinkKeypadButtonDark"
+            android:layout_width="0dp" android:layout_height="0dp" android:layout_margin="4dp"
             android:text="@string/btn_8"
-            android:layout_width="0dp" android:layout_height="0dp"
-            android:layout_margin="4dp"
-            app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
-            app:layout_row="2" app:layout_column="1" />
+            app:layout_column="1" app:layout_columnWeight="1" app:layout_gravity="fill"
+            app:layout_row="2" app:layout_rowWeight="1" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button9"
             style="@style/ThinkKeypadButtonDark"
+            android:layout_width="0dp" android:layout_height="0dp" android:layout_margin="4dp"
             android:text="@string/btn_9"
-            android:layout_width="0dp" android:layout_height="0dp"
-            android:layout_margin="4dp"
-            app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
-            app:layout_row="2" app:layout_column="2" />
+            app:layout_column="2" app:layout_columnWeight="1" app:layout_gravity="fill"
+            app:layout_row="2" app:layout_rowWeight="1" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonClear"
             style="@style/ThinkKeypadButtonLight"
+            android:layout_width="0dp" android:layout_height="0dp" android:layout_margin="4dp"
             android:text="@string/btn_clear"
-            android:layout_width="0dp" android:layout_height="0dp"
-            android:layout_margin="4dp"
-            app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
-            app:layout_row="2" app:layout_column="3" />
+            app:layout_column="3" app:layout_columnWeight="1" app:layout_gravity="fill"
+            app:layout_row="2" app:layout_rowWeight="1" />
 
-        <!-- Row 3 -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button0"
             style="@style/ThinkKeypadButtonDark"
+            android:layout_width="0dp" android:layout_height="0dp" android:layout_margin="4dp"
             android:text="@string/btn_0"
-            android:layout_width="0dp" android:layout_height="0dp"
-            android:layout_margin="4dp"
-            app:layout_columnSpan="2" app:layout_columnWeight="2" app:layout_rowWeight="1"
-            app:layout_gravity="fill" app:layout_row="3" app:layout_column="0" />
+            app:layout_column="0" app:layout_columnSpan="2" app:layout_columnWeight="2"
+            app:layout_gravity="fill" app:layout_row="3" app:layout_rowWeight="1" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonSlash"
             style="@style/ThinkKeypadButtonLight"
+            android:layout_width="0dp" android:layout_height="0dp" android:layout_margin="4dp"
             android:text="@string/btn_fraction_slash"
-            android:layout_width="0dp" android:layout_height="0dp"
-            android:layout_margin="4dp"
-            app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
-            app:layout_row="3" app:layout_column="2" />
+            app:layout_column="2" app:layout_columnWeight="1" app:layout_gravity="fill"
+            app:layout_row="3" app:layout_rowWeight="1" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonDot"
             style="@style/ThinkKeypadButtonLight"
+            android:layout_width="0dp" android:layout_height="0dp" android:layout_margin="4dp"
             android:text="@string/btn_decimal_point"
-            android:layout_width="0dp" android:layout_height="0dp"
-            android:layout_margin="4dp"
-            app:layout_columnWeight="1" app:layout_rowWeight="1" app:layout_gravity="fill"
-            app:layout_row="3" app:layout_column="3" />
-
+            app:layout_column="3" app:layout_columnWeight="1" app:layout_gravity="fill"
+            app:layout_row="3" app:layout_rowWeight="1" />
     </androidx.gridlayout.widget.GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

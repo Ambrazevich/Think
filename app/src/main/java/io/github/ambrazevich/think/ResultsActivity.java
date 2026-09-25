@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import io.github.ambrazevich.think.adapters.ResultsAdapter;
 import io.github.ambrazevich.think.data.GameResult;
 import io.github.ambrazevich.think.gameutils.StorageHelper;
@@ -67,7 +67,7 @@ public class ResultsActivity extends AppCompatActivity {
     }
 
     private void confirmClearResults() {
-        new AlertDialog.Builder(this)
+        new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.confirm_clear_results_title)
                 .setMessage(R.string.confirm_clear_results_message)
                 .setPositiveButton(R.string.yes, (dialog, which) -> {
@@ -75,7 +75,6 @@ public class ResultsActivity extends AppCompatActivity {
                     loadResults(); // Refresh the view
                 })
                 .setNegativeButton(R.string.no, null)
-                .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
 }

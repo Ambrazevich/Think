@@ -2,61 +2,64 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/resultsRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/game_background"
-    android:padding="24dp"
+    android:paddingStart="20dp"
+    android:paddingTop="20dp"
+    android:paddingEnd="20dp"
+    android:paddingBottom="20dp"
     tools:context=".ResultsActivity">
 
     <TextView
         android:id="@+id/textViewResultsTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/ThinkScreenTitle"
         android:text="@string/results_title"
-        android:textSize="32sp"
-        android:textColor="@color/game_primary"
-        android:textStyle="bold"
-        android:fontFamily="sans-serif-black"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="24dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewResults"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/textViewResultsTitle"
-        app:layout_constraintBottom_toTopOf="@id/buttonCleanResults"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="16dp"
         android:clipToPadding="false"
-        tools:listitem="@layout/list_item_result"/>
+        app:layout_constraintBottom_toTopOf="@id/buttonCleanResults"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewResultsTitle"
+        tools:listitem="@layout/list_item_result" />
 
     <TextView
         android:id="@+id/textViewNoResults"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/no_results"
-        android:textSize="20sp"
-        android:textColor="@color/text_secondary"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="gone"/>
-
-    <Button
-        android:id="@+id/buttonCleanResults"
-        style="@style/ThinkButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:lineSpacingExtra="3dp"
+        android:text="@string/no_results"
+        android:textColor="@color/text_secondary"
+        android:textSize="17sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/buttonCleanResults"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewResultsTitle"
+        tools:visibility="visible" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonCleanResults"
+        style="@style/ThinkButton.Danger"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:text="@string/clean_results"
-        android:backgroundTint="@color/game_error"
-        android:textColor="@color/white"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_max="440dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

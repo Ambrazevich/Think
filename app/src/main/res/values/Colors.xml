@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Pastel Light Game Palette (Day Mode) -->
-    <color name="game_background">#F5F7FA</color> <!-- Light Blue-Grey Background -->
-    <color name="game_surface">#FFFFFF</color>   <!-- White Surface -->
-    <color name="game_primary">#B39DDB</color>    <!-- Pastel Deep Purple (200) -->
-    <color name="game_primary_variant">#7E57C2</color> <!-- Deep Purple (400) -->
-    <color name="game_secondary">#80CBC4</color>  <!-- Pastel Teal (Restored) -->
-    
-    <color name="text_primary">#37474F</color>    <!-- Blue Grey 800 -->
-    
-    <color name="keypad_text_color">#333333</color> <!-- Dark digits for Day Mode -->
-    <color name="text_secondary">#78909C</color>  <!-- Blue Grey 400 -->
-    <color name="game_error">#E57373</color>      <!-- Red 300 -->
-    <color name="correct_green">#81C784</color>   <!-- Green 300 -->
-    <color name="incorrect_red">#E57373</color>     <!-- Red 300 -->
+    <!-- Light theme semantic roles -->
+    <color name="game_background">#F7F5F2</color>
+    <color name="game_surface">#FFFFFF</color>
+    <color name="game_surface_variant">#EEF2F1</color>
+    <color name="surface_pressed">#E3EAE8</color>
 
-    <!-- Legacy Mappings -->
-    <color name="fb_blue">@color/game_primary</color>
-    <color name="fb_blue_light">@color/game_secondary</color>
-    <color name="fb_background">@color/game_background</color>
-    <color name="fb_text_dark">@color/text_primary</color>
-    <color name="fb_text_light">@color/text_secondary</color>
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
+    <color name="game_primary">#0E625F</color>
+    <color name="game_primary_pressed">#094A48</color>
+    <color name="game_primary_variant">#0B504D</color>
+    <color name="game_on_primary">#FFFFFF</color>
+    <color name="accent_container">#D9EEEB</color>
+    <color name="accent_container_pressed">#C6E3DF</color>
+    <color name="on_accent_container">#134B49</color>
 
-    <!-- App-specific colors mappings -->
-    <color name="problem_text_color">#455A64</color> <!-- Dark Grey for problem text on light bg -->
+    <color name="text_primary">#20242B</color>
+    <color name="text_secondary">#59616B</color>
+    <color name="text_disabled">#7B828A</color>
+    <color name="outline_soft">#D5DCDA</color>
+    <color name="outline_strong">#66736F</color>
+
+    <color name="game_error">#B3261E</color>
+    <color name="game_error_pressed">#8F1F19</color>
+    <color name="error_container">#FCE8E6</color>
+    <color name="on_error">#FFFFFF</color>
+    <color name="correct_green">#176B4D</color>
+    <color name="incorrect_red">#B3261E</color>
+
+    <color name="problem_text_color">@color/text_primary</color>
+    <color name="keypad_text_color">@color/text_primary</color>
     <color name="hint_text_color">@color/text_secondary</color>
-    <color name="button_text_color">#FFFFFF</color> <!-- White text on pastel buttons -->
-    <color name="progress_bar_background">@color/game_surface</color>
-    <color name="progress_bar_progress">@color/game_secondary</color>
+    <color name="button_text_color">@color/game_on_primary</color>
+    <color name="progress_bar_background">#CBD8D5</color>
+    <color name="progress_bar_progress">@color/game_primary</color>
+    <color name="input_background_color">@color/game_surface</color>
+    <color name="input_stroke_color">@color/outline_strong</color>
+    <color name="input_text_color">@color/text_primary</color>
+    <color name="settings_accent_color">@color/game_primary</color>
 
-    <!-- Input Field Colors -->
-    <color name="input_background_color">#ECEFF1</color> <!-- Blue Grey 50 -->
-    <color name="input_stroke_color">#CFD8DC</color>     <!-- Blue Grey 100 -->
-    <color name="input_text_color">#37474F</color>       <!-- Dark text for input -->
-    
-    <color name="settings_accent_color">#333333</color> <!-- Dark gray for settings in Day Mode -->
+    <color name="ripple_primary">#330E625F</color>
+    <color name="ripple_neutral">#1F20242B</color>
+    <color name="ripple_error">#33B3261E</color>
+
 </resources>

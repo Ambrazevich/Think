@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Modern Dark Game Palette (Night Mode) -->
-    <color name="game_background">#121212</color>
-    <color name="game_surface">#1E1E1E</color>
-    <color name="game_primary">#BB86FC</color>
-    <color name="game_primary_variant">#3700B3</color>
-    <color name="game_secondary">#03DAC6</color>  <!-- Turquoise (Restored) -->
+    <!-- Dark theme semantic roles -->
+    <color name="game_background">#15171C</color>
+    <color name="game_surface">#24272E</color>
+    <color name="game_surface_variant">#2D3139</color>
+    <color name="surface_pressed">#383D46</color>
 
-    <color name="text_primary">#F0F0F0</color>
+    <color name="game_primary">#FF6B78</color>
+    <color name="game_primary_pressed">#FF8791</color>
+    <color name="game_primary_variant">#D95562</color>
+    <color name="game_on_primary">#15171C</color>
+    <color name="accent_container">#4A2C33</color>
+    <color name="accent_container_pressed">#5B343D</color>
+    <color name="on_accent_container">#FFDADD</color>
 
-    <color name="keypad_text_color">@color/game_primary</color> <!-- Purple digits for Night Mode -->
-    <color name="text_secondary">#A0A0A0</color>
-    <color name="game_error">#CF6679</color>
-    <color name="correct_green">#4CAF50</color>
-    <color name="incorrect_red">#F44336</color>
+    <color name="text_primary">#F4F4F2</color>
+    <color name="text_secondary">#BEC3CB</color>
+    <color name="text_disabled">#858B95</color>
+    <color name="outline_soft">#434852</color>
+    <color name="outline_strong">#727B89</color>
 
-    <!-- Legacy Mappings -->
-    <color name="fb_blue">@color/game_primary</color>
-    <color name="fb_blue_light">@color/game_secondary</color>
-    <color name="fb_background">@color/game_background</color>
-    <color name="fb_text_dark">@color/text_primary</color>
-    <color name="fb_text_light">@color/text_secondary</color>
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
+    <color name="game_error">#FFB4AB</color>
+    <color name="game_error_pressed">#FFDAD6</color>
+    <color name="error_container">#5A2425</color>
+    <color name="on_error">#3B0907</color>
+    <color name="correct_green">#75DBA6</color>
+    <color name="incorrect_red">#FFB4AB</color>
 
-    <!-- App-specific colors mappings -->
-    <color name="problem_text_color">#FFFFFF</color>
+    <color name="problem_text_color">@color/text_primary</color>
+    <color name="keypad_text_color">@color/text_primary</color>
     <color name="hint_text_color">@color/text_secondary</color>
-    <color name="button_text_color">#000000</color>
-    <color name="progress_bar_background">@color/game_surface</color>
-    <color name="progress_bar_progress">@color/game_secondary</color>
+    <color name="button_text_color">@color/game_on_primary</color>
+    <color name="progress_bar_background">#3D424C</color>
+    <color name="progress_bar_progress">@color/game_primary</color>
+    <color name="input_background_color">@color/game_surface</color>
+    <color name="input_stroke_color">@color/outline_strong</color>
+    <color name="input_text_color">@color/text_primary</color>
+    <color name="settings_accent_color">@color/game_primary</color>
 
-    <!-- Input Field Colors -->
-    <color name="input_background_color">#252525</color>
-    <color name="input_stroke_color">#3E3E3E</color>
-    <color name="input_text_color">#FFFFFF</color>
+    <color name="ripple_primary">#40FF6B78</color>
+    <color name="ripple_neutral">#33F4F4F2</color>
+    <color name="ripple_error">#40FFB4AB</color>
 
-    <color name="settings_accent_color">@color/game_secondary</color>
 </resources>
