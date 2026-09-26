@@ -17,6 +17,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.EnumSet;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import io.github.ambrazevich.think.data.OperationType;
 import io.github.ambrazevich.think.data.Settings;
@@ -39,12 +40,16 @@ public class SettingsLanguageChangeTest {
         testSettings.setDarkMode(originalSettings.isDarkMode());
         storage.saveSettings(testSettings);
         setLocale("en");
+        AtomicInteger expectedScrollY = new AtomicInteger();
 
         try (ActivityScenario<SettingsActivity> scenario =
                      ActivityScenario.launch(SettingsActivity.class)) {
             scenario.onActivity(activity -> {
                 ScrollView scroll = activity.findViewById(R.id.settingsScroll);
-                scroll.scrollTo(0, 96);
+                int maxScrollY = Math.max(
+                        0, scroll.getChildAt(0).getHeight() - scroll.getHeight());
+                scroll.scrollTo(0, Math.min(96, maxScrollY));
+                expectedScrollY.set(scroll.getScrollY());
                 assertEquals(1,
                         ((NumberPicker) activity.findViewById(R.id.numberPickerLanguage)).getValue());
             });
@@ -68,7 +73,7 @@ public class SettingsLanguageChangeTest {
                         R.id.switchDivision)).isChecked());
                 assertTrue(((android.widget.CompoundButton) activity.findViewById(
                         R.id.switchCommonFractions)).isChecked());
-                assertEquals(96,
+                assertEquals(expectedScrollY.get(),
                         ((ScrollView) activity.findViewById(R.id.settingsScroll)).getScrollY());
             });
 
@@ -81,7 +86,7 @@ public class SettingsLanguageChangeTest {
                 assertEquals(0,
                         ((NumberPicker) activity.findViewById(R.id.numberPickerLanguage)).getValue());
                 assertEquals(SettingsActivity.class, activity.getClass());
-                assertEquals(96,
+                assertEquals(expectedScrollY.get(),
                         ((ScrollView) activity.findViewById(R.id.settingsScroll)).getScrollY());
             });
         } finally {

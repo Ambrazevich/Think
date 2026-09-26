@@ -81,8 +81,12 @@ public class LanguageOptionLayoutTest {
             picker.setValue(value);
             String expected = values[value - picker.getMinValue()];
             assertEquals(expected, input.getText().toString());
-            assertTrue(label + " value is wider than its picker: " + expected,
-                    input.getPaint().measureText(expected) <= availableWidth);
+            float measuredWidth = input.getPaint().measureText(expected);
+            assertTrue(label + " value is wider than its picker: " + expected
+                            + " (text=" + measuredWidth
+                            + ", available=" + availableWidth
+                            + ", textSize=" + input.getTextSize() + ")",
+                    measuredWidth <= availableWidth);
         }
 
         Rect pickerBounds = new Rect();

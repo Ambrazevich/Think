@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="settings_screen_horizontal_padding">12dp</dimen>
+    <dimen name="settings_wheel_horizontal_padding">4dp</dimen>
+    <dimen name="settings_picker_text_size">12sp</dimen>
+</resources>

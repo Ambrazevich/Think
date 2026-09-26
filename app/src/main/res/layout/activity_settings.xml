@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/game_background"
-    android:paddingStart="20dp"
+    android:paddingStart="@dimen/settings_screen_horizontal_padding"
     android:paddingTop="20dp"
-    android:paddingEnd="20dp"
+    android:paddingEnd="@dimen/settings_screen_horizontal_padding"
     tools:context=".SettingsActivity">
 
     <ScrollView
@@ -39,9 +39,9 @@
                     android:layout_height="wrap_content"
                     android:baselineAligned="false"
                     android:orientation="horizontal"
-                    android:paddingStart="8dp"
+                    android:paddingStart="@dimen/settings_wheel_horizontal_padding"
                     android:paddingTop="16dp"
-                    android:paddingEnd="8dp"
+                    android:paddingEnd="@dimen/settings_wheel_horizontal_padding"
                     android:paddingBottom="12dp">
 
                     <LinearLayout
