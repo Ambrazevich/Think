@@ -6,15 +6,38 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+
+import com.google.android.play.core.review.ReviewInfo;
+import com.google.android.play.core.review.ReviewManager;
+import com.google.android.play.core.review.ReviewManagerFactory;
 
 import io.github.ambrazevich.think.data.Settings;
+import io.github.ambrazevich.think.gameutils.InAppReviewPromptStore;
 import io.github.ambrazevich.think.gameutils.StorageHelper;
 
 public class MainActivity extends AppCompatActivity {
 
+    private InAppReviewPromptStore reviewPromptStore;
+    private ActivityResultLauncher<Intent> gameLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        reviewPromptStore = new InAppReviewPromptStore(this);
+        gameLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    Intent data = result.getData();
+                    boolean meaningfulRoundCompleted = result.getResultCode() == RESULT_OK
+                            && data != null
+                            && data.getBooleanExtra(
+                            GameActivity.EXTRA_MEANINGFUL_ROUND_COMPLETED, false);
+                    if (meaningfulRoundCompleted) {
+                        maybeRequestInAppReview();
+                    }
+                });
         
         // Apply Night Mode based on settings
         StorageHelper storageHelper = new StorageHelper(this);
@@ -57,9 +80,47 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(MainActivity.this, GameActivity.class);
-                    startActivity(intent);
+                    gameLauncher.launch(intent);
                 }
             });
+        }
+    }
+
+    private void maybeRequestInAppReview() {
+        long now = System.currentTimeMillis();
+        if (!reviewPromptStore.shouldRequestReview(now)) {
+            return;
+        }
+
+        // A failed or quota-suppressed API call is still an attempt. The Play API deliberately
+        // does not reveal whether its card was shown or whether the player submitted a review.
+        reviewPromptStore.recordAttempt(now);
+
+        final ReviewManager reviewManager;
+        try {
+            reviewManager = ReviewManagerFactory.create(this);
+        } catch (RuntimeException unavailable) {
+            return;
+        }
+
+        try {
+            reviewManager.requestReviewFlow().addOnCompleteListener(this, request -> {
+                if (!request.isSuccessful() || isFinishing() || isDestroyed()) {
+                    return;
+                }
+                ReviewInfo reviewInfo = request.getResult();
+                try {
+                    reviewManager.launchReviewFlow(this, reviewInfo)
+                            .addOnCompleteListener(this, ignored -> {
+                                // Keep MainActivity open and continue normally regardless of
+                                // whether Google Play displayed or completed the review card.
+                            });
+                } catch (RuntimeException unavailable) {
+                    // Missing or unavailable Play Store must not alter the navigation flow.
+                }
+            });
+        } catch (RuntimeException unavailable) {
+            // Missing or unavailable Play Store must not alter the navigation flow.
         }
     }
 }

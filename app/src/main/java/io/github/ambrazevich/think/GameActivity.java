@@ -1,5 +1,6 @@
 package io.github.ambrazevich.think;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -17,11 +18,16 @@ import io.github.ambrazevich.think.data.GameResult;
 import io.github.ambrazevich.think.data.Problem;
 import io.github.ambrazevich.think.data.Settings;
 import io.github.ambrazevich.think.gameutils.Fraction;
+import io.github.ambrazevich.think.gameutils.InAppReviewPromptPolicy;
+import io.github.ambrazevich.think.gameutils.InAppReviewPromptStore;
 import io.github.ambrazevich.think.gameutils.ProblemGenerator;
 import io.github.ambrazevich.think.gameutils.StorageHelper;
 import java.math.BigDecimal;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
+
+    static final String EXTRA_MEANINGFUL_ROUND_COMPLETED =
+            "io.github.ambrazevich.think.MEANINGFUL_ROUND_COMPLETED";
 
     private TextView textViewProblem, textViewInput, textViewHint;
     private ProgressBar progressBarTime;
@@ -40,6 +46,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Runnable nextProblemRunnable;
     private Runnable finishRunnable;
     private boolean gameFinished;
+    private boolean meaningfulRoundCompleted;
     private long roundEndElapsedRealtime;
     private static final String STATE_PROBLEM = "problem";
     private static final String STATE_INPUT = "input";
@@ -49,6 +56,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private static final String STATE_HINT_VISIBLE = "hint_visible";
     private static final String STATE_PROBLEM_ACTIVE = "problem_active";
     private static final String STATE_GAME_FINISHED = "game_finished";
+    private static final String STATE_MEANINGFUL_ROUND_COMPLETED =
+            "meaningful_round_completed";
     private static final String STATE_ROUND_END = "round_end";
     private static final int HINT_VISIBILITY_DURATION_MS = 3000;
     private static final long DELAY_NEXT_PROBLEM = 750;
@@ -173,9 +182,17 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         problemActive = false;
         cancelPendingCallbacks();
         if (roundTimer != null) { roundTimer.cancel(); roundTimer = null; }
+        boolean meaningfulRound = InAppReviewPromptPolicy.isMeaningfulRound(
+                correctAnswers, incorrectAnswers, isError);
         if (!isError && storageHelper != null) {
             storageHelper.saveGameResult(new GameResult(System.currentTimeMillis(), correctAnswers, incorrectAnswers));
+            if (meaningfulRound) {
+                new InAppReviewPromptStore(this).recordCompletedRound(
+                        correctAnswers, incorrectAnswers, false);
+                meaningfulRoundCompleted = true;
+            }
         } else if (isError) { Toast.makeText(this, R.string.game_error_end, Toast.LENGTH_LONG).show(); }
+        publishRoundResult();
         finishRunnable = () -> { if (!isFinishing() && !isDestroyed()) GameActivity.super.finish(); };
         mainHandler.postDelayed(finishRunnable, isError ? 2000 : (timedOut ? 1000 : 200));
     }
@@ -222,6 +239,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
     private void restoreGame(Bundle state) {
         if (state.getBoolean(STATE_GAME_FINISHED)) {
+            meaningfulRoundCompleted = state.getBoolean(
+                    STATE_MEANINGFUL_ROUND_COMPLETED, false);
+            publishRoundResult();
             finish(); // The completed result was saved before the Activity was recreated.
             return;
         }
@@ -283,7 +303,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         outState.putBoolean(STATE_HINT_VISIBLE, textViewHint != null && textViewHint.getVisibility() == View.VISIBLE);
         outState.putBoolean(STATE_PROBLEM_ACTIVE, problemActive);
         outState.putBoolean(STATE_GAME_FINISHED, gameFinished);
+        outState.putBoolean(STATE_MEANINGFUL_ROUND_COMPLETED, meaningfulRoundCompleted);
         outState.putLong(STATE_ROUND_END, roundEndElapsedRealtime);
+    }
+    private void publishRoundResult() {
+        Intent result = new Intent().putExtra(
+                EXTRA_MEANINGFUL_ROUND_COMPLETED, meaningfulRoundCompleted);
+        setResult(meaningfulRoundCompleted ? RESULT_OK : RESULT_CANCELED, result);
     }
     private void snapshotRoundState() {
         if (currentProblem == null || gameFinished) {
