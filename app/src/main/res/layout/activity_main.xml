@@ -27,6 +27,7 @@
         android:autoSizeStepGranularity="1sp"
         android:autoSizeTextType="uniform"
         android:fontFamily="sans-serif-medium"
+        android:gravity="center"
         android:includeFontPadding="false"
         android:letterSpacing="0.02"
         android:maxLines="1"

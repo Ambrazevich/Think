@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import android.app.Activity;
 import android.graphics.Color;
 import android.text.Layout;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -16,6 +17,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.os.LocaleListCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -23,6 +26,10 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Arrays;
+
+import io.github.ambrazevich.think.adapters.ResultsAdapter;
+import io.github.ambrazevich.think.data.GameResult;
 import io.github.ambrazevich.think.data.Settings;
 import io.github.ambrazevich.think.gameutils.StorageHelper;
 
@@ -88,14 +95,69 @@ public class UiThemeLayoutTest {
         }
     }
 
+    @Test
+    public void resultRowsAreContiguousAndResultsScreenHasNoStaticLabels() {
+        try (ActivityScenario<ResultsActivity> scenario =
+                     ActivityScenario.launch(ResultsActivity.class)) {
+            scenario.onActivity(activity -> {
+                ViewGroup root = activity.findViewById(R.id.resultsRoot);
+                assertEquals("Results screen should only contain the list and clear button",
+                        2, root.getChildCount());
+
+                RecyclerView recycler = new RecyclerView(activity);
+                recycler.setLayoutManager(new LinearLayoutManager(activity));
+                recycler.setAdapter(new ResultsAdapter(activity, Arrays.asList(
+                        new GameResult(1_700_000_000_000L, 8, 1),
+                        new GameResult(1_699_999_000_000L, 6, 2),
+                        new GameResult(1_699_998_000_000L, 4, 3))));
+
+                int width = root.getWidth();
+                recycler.measure(
+                        View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
+                        View.MeasureSpec.makeMeasureSpec(1200, View.MeasureSpec.EXACTLY));
+                recycler.layout(0, 0, width, 1200);
+
+                assertTrue("Synthetic result list did not lay out enough rows",
+                        recycler.getChildCount() >= 3);
+                for (int index = 1; index < recycler.getChildCount(); index++) {
+                    View previous = recycler.getChildAt(index - 1);
+                    View current = recycler.getChildAt(index);
+                    assertEquals("Result rows should not have empty vertical gaps",
+                            previous.getBottom(), current.getTop());
+                }
+            });
+        }
+    }
+
     private static void assertActivityFits(
             Class<? extends Activity> activityClass, String languageTag, boolean dark) {
         String label = activityClass.getSimpleName() + " " + languageTag
                 + (dark ? " dark" : " light");
         try (ActivityScenario<? extends Activity> scenario = ActivityScenario.launch(activityClass)) {
-            scenario.onActivity(activity ->
-                    assertNoEllipsizedText(activity.findViewById(android.R.id.content), label));
+            scenario.onActivity(activity -> {
+                assertNoEllipsizedText(activity.findViewById(android.R.id.content), label);
+                if (activity instanceof MainActivity) {
+                    assertMainTitleCentered(activity, label);
+                }
+            });
         }
+    }
+
+    private static void assertMainTitleCentered(Activity activity, String label) {
+        TextView title = activity.findViewById(R.id.textGameTitle);
+        View content = activity.findViewById(android.R.id.content);
+        assertEquals(label + " main title must use centered gravity",
+                Gravity.CENTER_HORIZONTAL,
+                title.getGravity() & Gravity.HORIZONTAL_GRAVITY_MASK);
+
+        Layout layout = title.getLayout();
+        assertNotNull(label + " main title was not laid out", layout);
+        float textCenter = title.getX() + title.getTotalPaddingLeft()
+                + (layout.getLineLeft(0) + layout.getLineRight(0)) / 2f;
+        float screenCenter = content.getWidth() / 2f;
+        assertTrue(label + " main title is off center by "
+                        + Math.abs(textCenter - screenCenter) + " px",
+                Math.abs(textCenter - screenCenter) <= 1f);
     }
 
     private static void assertNoEllipsizedText(View view, String label) {

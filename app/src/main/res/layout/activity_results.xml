@@ -12,47 +12,16 @@
     android:paddingBottom="20dp"
     tools:context=".ResultsActivity">
 
-    <TextView
-        android:id="@+id/textViewResultsTitle"
-        style="@style/ThinkScreenTitle"
-        android:layout_width="0dp"
-        android:maxLines="2"
-        android:text="@string/results_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewResults"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
         android:layout_marginBottom="16dp"
-        android:clipToPadding="false"
         app:layout_constraintBottom_toTopOf="@id/buttonCleanResults"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewResultsTitle"
+        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/list_item_result" />
-
-    <TextView
-        android:id="@+id/textViewNoResults"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:fontFamily="sans-serif"
-        android:gravity="center"
-        android:lineSpacingExtra="3dp"
-        android:text="@string/no_results"
-        android:textColor="@color/text_secondary"
-        android:textSize="17sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/buttonCleanResults"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewResultsTitle"
-        tools:visibility="visible" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonCleanResults"

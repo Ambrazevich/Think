@@ -1,9 +1,7 @@
 package io.github.ambrazevich.think;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +10,6 @@ import io.github.ambrazevich.think.adapters.ResultsAdapter;
 import io.github.ambrazevich.think.data.GameResult;
 import io.github.ambrazevich.think.gameutils.StorageHelper;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ResultsActivity extends AppCompatActivity {
@@ -21,7 +18,6 @@ public class ResultsActivity extends AppCompatActivity {
     private ResultsAdapter resultsAdapter;
     private List<GameResult> gameResultsList;
     private StorageHelper storageHelper;
-    private TextView textViewNoResults;
     private Button buttonCleanResults;
 
     @Override
@@ -31,7 +27,6 @@ public class ResultsActivity extends AppCompatActivity {
 
         storageHelper = new StorageHelper(this);
         recyclerViewResults = findViewById(R.id.recyclerViewResults);
-        textViewNoResults = findViewById(R.id.textViewNoResults);
         buttonCleanResults = findViewById(R.id.buttonCleanResults);
 
         recyclerViewResults.setLayoutManager(new LinearLayoutManager(this));
@@ -57,11 +52,6 @@ public class ResultsActivity extends AppCompatActivity {
         gameResultsList.clear();
         if (loadedResults != null && !loadedResults.isEmpty()) {
             gameResultsList.addAll(loadedResults);
-            textViewNoResults.setVisibility(View.GONE);
-            recyclerViewResults.setVisibility(View.VISIBLE);
-        } else {
-            textViewNoResults.setVisibility(View.VISIBLE);
-            recyclerViewResults.setVisibility(View.GONE);
         }
         resultsAdapter.notifyDataSetChanged(); // Use notifyDataSetChanged after updating the adapter's list
     }
