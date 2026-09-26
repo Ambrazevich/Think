@@ -3,9 +3,9 @@ package io.github.ambrazevich.think;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import android.widget.CompoundButton;
 import android.widget.NumberPicker;
 import android.widget.ScrollView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.os.LocaleListCompat;
@@ -53,9 +53,11 @@ public class SettingsLanguageChangeTest {
 
             scenario.onActivity(activity -> {
                 assertEquals("ru", AppLanguageManager.getSelectedLanguage());
-                assertEquals("Настройки",
-                        ((TextView) activity.findViewById(
-                                R.id.textViewSettingsTitle)).getText().toString());
+                assertEquals("ru", activity.getResources().getConfiguration()
+                        .getLocales().get(0).getLanguage());
+                assertEquals(activity.getString(R.string.dark_mode),
+                        ((CompoundButton) activity.findViewById(
+                                R.id.switchDarkMode)).getText().toString());
                 assertEquals(2,
                         ((NumberPicker) activity.findViewById(R.id.numberPickerLanguage)).getValue());
                 assertEquals(Settings.Difficulty.HARD.ordinal(),

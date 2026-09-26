@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="settings">Einstellungen</string><string name="results">Ergebnisse</string><string name="start_game">Starten</string>
-    <string name="level">Stufe</string><string name="time">Zeit</string><string name="operations">Rechenarten</string>
+    <string name="level">Stufe</string><string name="time">Zeit</string>
     <string name="addition">Addition</string><string name="subtraction">Subtraktion</string><string name="multiplication">Multiplikation</string><string name="division">Division</string>
     <string name="power">Potenz</string><string name="square_root">Quadratwurzel</string><string name="common_fractions">Gewöhnliche Brüche</string><string name="decimal_fractions">Dezimalzahlen</string>
     <string name="error_select_operation">Wähle mindestens eine Rechenart aus.</string><string name="configure_settings_first">Wähle zuerst mindestens eine Rechenart in den Einstellungen aus.</string>

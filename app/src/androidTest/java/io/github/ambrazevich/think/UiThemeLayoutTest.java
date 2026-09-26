@@ -115,6 +115,11 @@ public class UiThemeLayoutTest {
                 int lastLine = layout.getLineCount() - 1;
                 assertTrue(label + " clips: " + textView.getText(),
                         layout.getLineEnd(lastLine) >= layout.getText().length());
+                int availableHeight = textView.getHeight()
+                        - textView.getCompoundPaddingTop()
+                        - textView.getCompoundPaddingBottom();
+                assertTrue(label + " clips vertically: " + textView.getText(),
+                        layout.getHeight() <= availableHeight);
             }
         }
 

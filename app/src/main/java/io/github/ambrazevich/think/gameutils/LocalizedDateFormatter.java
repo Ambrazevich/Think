@@ -2,7 +2,6 @@ package io.github.ambrazevich.think.gameutils;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.os.Build;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -24,10 +23,6 @@ public final class LocalizedDateFormatter {
 
     private static Locale getResourceLocale(Context context) {
         Configuration configuration = context.getResources().getConfiguration();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return configuration.getLocales().get(0);
-        }
-        //noinspection deprecation
-        return configuration.locale;
+        return configuration.getLocales().get(0);
     }
 }
