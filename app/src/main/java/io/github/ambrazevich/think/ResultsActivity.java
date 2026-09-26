@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import io.github.ambrazevich.think.adapters.ResultsAdapter;
 import io.github.ambrazevich.think.data.GameResult;
+import io.github.ambrazevich.think.gameutils.EdgeToEdgeInsets;
 import io.github.ambrazevich.think.gameutils.StorageHelper;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ public class ResultsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+        EdgeToEdgeInsets.apply(this, findViewById(R.id.resultsRoot));
 
         storageHelper = new StorageHelper(this);
         recyclerViewResults = findViewById(R.id.recyclerViewResults);

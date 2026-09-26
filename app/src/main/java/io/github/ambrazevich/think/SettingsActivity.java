@@ -5,8 +5,10 @@ import android.util.Log;
 import android.widget.NumberPicker;
 import android.widget.ScrollView;
 import android.widget.Toast;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import io.github.ambrazevich.think.gameutils.AppLanguageManager;
+import io.github.ambrazevich.think.gameutils.EdgeToEdgeInsets;
 import io.github.ambrazevich.think.data.OperationType;
 import io.github.ambrazevich.think.data.Settings;
 import io.github.ambrazevich.think.gameutils.StorageHelper;
@@ -40,6 +42,7 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        EdgeToEdgeInsets.apply(this, findViewById(R.id.settingsRoot));
 
         storageHelper = new StorageHelper(this);
         currentSettings = storageHelper.loadSettings();
@@ -81,6 +84,17 @@ public class SettingsActivity extends AppCompatActivity {
             int mode = isChecked ? androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES : androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO;
             androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(mode);
             // Activity will recreate automatically
+        });
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (!persistSettingsFromUI(true)) {
+                    return;
+                }
+                setEnabled(false);
+                getOnBackPressedDispatcher().onBackPressed();
+            }
         });
 
     }
@@ -259,11 +273,4 @@ public class SettingsActivity extends AppCompatActivity {
         persistSettingsFromUI(false);
     }
 
-    @Override
-    public void onBackPressed() {
-        if (!persistSettingsFromUI(true)) {
-            return;
-        }
-        super.onBackPressed();
-    }
 }

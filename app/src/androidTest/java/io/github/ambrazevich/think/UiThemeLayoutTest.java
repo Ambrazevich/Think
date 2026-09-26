@@ -15,8 +15,11 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.graphics.Insets;
 import androidx.core.content.ContextCompat;
 import androidx.core.os.LocaleListCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.core.app.ActivityScenario;
@@ -129,6 +132,14 @@ public class UiThemeLayoutTest {
         }
     }
 
+    @Test
+    public void everyScreenKeepsContentOutsideSystemBars() {
+        assertSystemBarInsets(MainActivity.class, R.id.mainRoot);
+        assertSystemBarInsets(SettingsActivity.class, R.id.settingsRoot);
+        assertSystemBarInsets(ResultsActivity.class, R.id.resultsRoot);
+        assertSystemBarInsets(GameActivity.class, R.id.gameRoot);
+    }
+
     private static void assertActivityFits(
             Class<? extends Activity> activityClass, String languageTag, boolean dark) {
         String label = activityClass.getSimpleName() + " " + languageTag
@@ -158,6 +169,30 @@ public class UiThemeLayoutTest {
         assertTrue(label + " main title is off center by "
                         + Math.abs(textCenter - screenCenter) + " px",
                 Math.abs(textCenter - screenCenter) <= 1f);
+    }
+
+    private static void assertSystemBarInsets(
+            Class<? extends Activity> activityClass, int rootId) {
+        try (ActivityScenario<? extends Activity> scenario =
+                     ActivityScenario.launch(activityClass)) {
+            scenario.onActivity(activity -> {
+                View root = activity.findViewById(rootId);
+                WindowInsetsCompat windowInsets = ViewCompat.getRootWindowInsets(root);
+                assertNotNull(activityClass.getSimpleName() + " has no root window insets",
+                        windowInsets);
+                Insets safeInsets = windowInsets.getInsets(
+                        WindowInsetsCompat.Type.systemBars()
+                                | WindowInsetsCompat.Type.displayCutout());
+                assertTrue(activityClass.getSimpleName() + " overlaps the status bar",
+                        root.getPaddingTop() >= safeInsets.top);
+                assertTrue(activityClass.getSimpleName() + " overlaps the navigation bar",
+                        root.getPaddingBottom() >= safeInsets.bottom);
+                assertTrue(activityClass.getSimpleName() + " overlaps the left cutout",
+                        root.getPaddingLeft() >= safeInsets.left);
+                assertTrue(activityClass.getSimpleName() + " overlaps the right cutout",
+                        root.getPaddingRight() >= safeInsets.right);
+            });
+        }
     }
 
     private static void assertNoEllipsizedText(View view, String label) {

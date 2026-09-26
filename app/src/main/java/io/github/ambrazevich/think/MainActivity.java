@@ -14,6 +14,7 @@ import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
 
 import io.github.ambrazevich.think.data.Settings;
+import io.github.ambrazevich.think.gameutils.EdgeToEdgeInsets;
 import io.github.ambrazevich.think.gameutils.InAppReviewPromptStore;
 import io.github.ambrazevich.think.gameutils.StorageHelper;
 
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_main);
+        EdgeToEdgeInsets.apply(this, findViewById(R.id.mainRoot));
 
         Button buttonSettings = findViewById(R.id.buttonSettings);
         Button buttonResults = findViewById(R.id.buttonResults);

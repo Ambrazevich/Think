@@ -13,11 +13,13 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import io.github.ambrazevich.think.data.GameResult;
 import io.github.ambrazevich.think.data.Problem;
 import io.github.ambrazevich.think.data.Settings;
 import io.github.ambrazevich.think.gameutils.Fraction;
+import io.github.ambrazevich.think.gameutils.EdgeToEdgeInsets;
 import io.github.ambrazevich.think.gameutils.InAppReviewPromptPolicy;
 import io.github.ambrazevich.think.gameutils.InAppReviewPromptStore;
 import io.github.ambrazevich.think.gameutils.ProblemGenerator;
@@ -77,12 +79,25 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         problemGenerator = new ProblemGenerator(gameSettings);
         soundPlayer = new SoundPlayer(this);
         setContentView(R.layout.activity_game);
+        EdgeToEdgeInsets.apply(this, findViewById(R.id.gameRoot));
         textViewProblem = findViewById(R.id.textViewProblem);
         textViewInput = findViewById(R.id.textViewInput);
         textViewHint = findViewById(R.id.textViewHint);
         progressBarTime = findViewById(R.id.progressBarTime);
         buttonDot = findViewById(R.id.buttonDot);
         buttonSlash = findViewById(R.id.buttonSlash);
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (!gameFinished) {
+                    finishGame(false, false);
+                    return;
+                }
+                setEnabled(false);
+                getOnBackPressedDispatcher().onBackPressed();
+            }
+        });
 
         setupKeypad();
         Bundle stateToRestore = GameRoundStateStore.get();
@@ -370,12 +385,5 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if (roundTimer != null) roundTimer.cancel();
         if (soundPlayer != null) soundPlayer.release();
         super.onDestroy();
-    }
-    @Override public void onBackPressed() {
-        if (!gameFinished) {
-            finishGame(false, false);
-        } else if (!isFinishing()) {
-            super.onBackPressed();
-        }
     }
 }
