@@ -19,6 +19,8 @@
     <string name="game_error_end">הסיבוב הסתיים עקב שגיאה.</string>
     <string name="language">שפה</string>
     <string name="dark_mode">מצב כהה</string>
+    <string name="privacy_policy">מדיניות פרטיות</string>
+    <string name="privacy_policy_open_error">לא ניתן לפתוח את מדיניות הפרטיות.</string>
     <string-array name="time_options"><item>דקה אחת</item><item>2 דקות</item><item>∞</item></string-array>
     <string-array name="language_options">
         <item>אוטומטי</item><item>English</item><item>Русский</item><item>עברית</item>

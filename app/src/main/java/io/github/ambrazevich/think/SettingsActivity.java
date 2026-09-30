@@ -1,7 +1,11 @@
 package io.github.ambrazevich.think;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.ScrollView;
 import android.widget.Toast;
@@ -67,6 +71,18 @@ public class SettingsActivity extends AppCompatActivity {
         switchCommonFractions = findViewById(R.id.switchCommonFractions);
         switchDecimalFractions = findViewById(R.id.switchDecimalFractions);
         switchDarkMode = findViewById(R.id.switchDarkMode);
+        Button buttonPrivacyPolicy = findViewById(R.id.buttonPrivacyPolicy);
+
+        buttonPrivacyPolicy.setOnClickListener(v -> {
+            Intent intent = new Intent(
+                    Intent.ACTION_VIEW, Uri.parse(getString(R.string.privacy_policy_url)));
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException unavailable) {
+                Toast.makeText(
+                        this, R.string.privacy_policy_open_error, Toast.LENGTH_LONG).show();
+            }
+        });
 
         setupNumberPickers();
         loadSettingsToUI();

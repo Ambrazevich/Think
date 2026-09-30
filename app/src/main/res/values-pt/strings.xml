@@ -7,6 +7,7 @@
     <string name="error_select_operation">Seleciona pelo menos uma operação matemática.</string><string name="configure_settings_first">Seleciona primeiro pelo menos uma operação nas definições.</string>
     <string name="game_error_gen">Não foi possível gerar um novo exercício.</string><string name="game_error_end">A ronda terminou devido a um erro.</string>
     <string name="language">Idioma</string><string name="dark_mode">Tema escuro</string>
+    <string name="privacy_policy">Política de privacidade</string><string name="privacy_policy_open_error">Não foi possível abrir a política de privacidade.</string>
     <string-array name="time_options"><item>1 min</item><item>2 min</item><item>∞</item></string-array>
     <string-array name="language_options"><item>Auto</item><item>English</item><item>Русский</item><item>עברית</item><item>Français</item><item>Italiano</item><item>Deutsch</item><item>Português</item></string-array>
     <string-array name="difficulty_levels"><item>Fácil</item><item>Médio</item><item>Difícil</item></string-array>

@@ -7,6 +7,7 @@
     <string name="error_select_operation">Seleziona almeno un’operazione matematica.</string><string name="configure_settings_first">Seleziona prima almeno un’operazione nelle impostazioni.</string>
     <string name="game_error_gen">Impossibile generare un nuovo esercizio.</string><string name="game_error_end">Il turno è terminato a causa di un errore.</string>
     <string name="language">Lingua</string><string name="dark_mode">Tema scuro</string>
+    <string name="privacy_policy">Informativa sulla privacy</string><string name="privacy_policy_open_error">Impossibile aprire l’informativa sulla privacy.</string>
     <string-array name="time_options"><item>1 min</item><item>2 min</item><item>∞</item></string-array>
     <string-array name="language_options"><item>Auto</item><item>English</item><item>Русский</item><item>עברית</item><item>Français</item><item>Italiano</item><item>Deutsch</item><item>Português</item></string-array>
     <string-array name="difficulty_levels"><item>Facile</item><item>Medio</item><item>Difficile</item></string-array>

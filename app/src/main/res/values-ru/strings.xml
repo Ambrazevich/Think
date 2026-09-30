@@ -19,6 +19,8 @@
     <string name="game_error_end">Раунд завершён из-за ошибки.</string>
     <string name="language">Язык</string>
     <string name="dark_mode">Тёмная тема</string>
+    <string name="privacy_policy">Политика конфиденциальности</string>
+    <string name="privacy_policy_open_error">Не удалось открыть политику конфиденциальности.</string>
     <string-array name="time_options"><item>1 мин</item><item>2 мин</item><item>∞</item></string-array>
     <string-array name="language_options">
         <item>Автомат</item><item>English</item><item>Русский</item><item>עברית</item>

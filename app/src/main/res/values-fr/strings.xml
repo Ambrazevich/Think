@@ -8,6 +8,7 @@
     <string name="configure_settings_first">Sélectionnez d’abord au moins une opération dans les paramètres.</string>
     <string name="game_error_gen">Impossible de générer un nouvel exercice.</string><string name="game_error_end">La manche s’est terminée à cause d’une erreur.</string>
     <string name="language">Langue</string><string name="dark_mode">Mode sombre</string>
+    <string name="privacy_policy">Politique de confidentialité</string><string name="privacy_policy_open_error">Impossible d’ouvrir la politique de confidentialité.</string>
     <string-array name="time_options"><item>1 min</item><item>2 min</item><item>∞</item></string-array>
     <string-array name="language_options"><item>Auto</item><item>English</item><item>Русский</item><item>עברית</item><item>Français</item><item>Italiano</item><item>Deutsch</item><item>Português</item></string-array>
     <string-array name="difficulty_levels"><item>Facile</item><item>Moyen</item><item>Difficile</item></string-array>
